@@ -79,11 +79,7 @@ export default function LoginFinal() {
         return
       }
 
-<<<<<<< HEAD
-      // Navigation handled by AuthRedirect component
-=======
       // Login successful - let AuthRedirect handle navigation
->>>>>>> 0ebe05dcd24e3bd47f2a58369ed0831615c5875e
       setIsLoading(false)
       
     } catch (error: any) {
