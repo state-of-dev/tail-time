@@ -8,20 +8,29 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Navigation } from '@/components/navigation'
-import { 
-  Calendar, 
-  Clock, 
-  MapPin, 
-  Phone, 
-  Heart, 
-  DollarSign, 
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Phone,
+  Heart,
+  DollarSign,
   User,
   Star,
   Dog,
   History,
   AlertCircle,
-  CheckCircle
+  CheckCircle,
+  PawPrint,
+  Sparkles,
+  Trophy,
+  Crown,
+  Zap
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 import { CustomerRescheduleResponse } from '@/components/appointments/customer-reschedule-response'
 
 interface Appointment {

@@ -5,18 +5,29 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { 
-  Mail, 
-  Lock, 
+import {
+  Mail,
+  Lock,
   Heart,
   Loader2,
   ArrowRight,
   Eye,
   EyeOff,
   User,
-  Building2
+  Building2,
+  PawPrint,
+  Sparkles,
+  Zap,
+  Crown,
+  Star,
+  Trophy
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
@@ -95,49 +106,83 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
-        <Card className="brutal-shadow">
-          <CardHeader className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 bg-chart-2 rounded-base brutal-border brutal-shadow-sm">
-                <Heart className="w-8 h-8 text-main-foreground" />
+    <div className="min-h-screen bg-chart-7 relative overflow-hidden">
+      {/* Floating Stars Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Star6 className="absolute top-20 left-10 star-decoration" size={StarSizes.lg} />
+        <Star7 className="absolute top-40 right-20 star-decoration" size={StarSizes.md} />
+        <Star8 className="absolute bottom-32 left-32 star-decoration" size={StarSizes.xl} />
+        <Star9 className="absolute top-60 left-1/2 star-decoration" size={StarSizes.sm} />
+        <Star10 className="absolute bottom-20 right-40 star-decoration" size={StarSizes.lg} />
+        <Star1 className="absolute top-32 right-1/3 star-decoration" size={StarSizes.md} />
+      </div>
+
+      <div className="relative z-10 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-lg w-full space-y-8">
+          {/* Hero Badge */}
+          <div className="text-center">
+            <Badge className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-4 text-lg font-black brutal-border-thick rounded-base transform rotate-1 mb-8">
+              <Star className="icon-large mr-2 icon-float" />
+              <Star13 size={StarSizes.md} className="star-decoration" />
+              ÚNETE A TAILTIME
+              <Star19 size={StarSizes.md} className="star-decoration" />
+              <Trophy className="icon-large ml-2 icon-float" />
+            </Badge>
+          </div>
+
+          <Card className="bg-main brutal-border-thick brutal-shadow-xl hover:brutal-hover transition-all duration-200">
+            <CardHeader className="text-center space-y-6 bg-chart-3 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0">
+              <div className="flex justify-center">
+                <div className="p-6 bg-chart-4 rounded-base brutal-border-thick brutal-shadow-lg">
+                  <PawPrint className="icon-hero text-main-foreground icon-float" />
+                </div>
               </div>
-            </div>
-            <CardTitle className="text-2xl font-semibold text-foreground">
-              Crear Cuenta
-            </CardTitle>
-            <CardDescription>
-              Únete a TailTime y comienza tu experiencia personalizada
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleRegister} className="space-y-6">
+              <div className="space-y-4">
+                <CardTitle className="text-4xl font-black text-main-foreground uppercase">
+                  <Star20 size={StarSizes.lg} className="star-decoration inline-block mr-2" />
+                  CREAR CUENTA
+                  <Star21 size={StarSizes.lg} className="star-decoration inline-block ml-2" />
+                </CardTitle>
+                <CardDescription className="text-xl font-bold text-main-foreground/80 uppercase">
+                  ÚNETE A LA REVOLUCIÓN
+                  <Badge className="bg-chart-5 text-main-foreground brutal-border brutal-shadow ml-2 font-black">
+                    GROOMING
+                  </Badge>
+                </CardDescription>
+              </div>
+            </CardHeader>
+          <CardContent className="space-y-8 bg-main p-8">
+            <form onSubmit={handleRegister} className="space-y-8">
               {/* Account Type Selector */}
-              <div>
-                <Label className="text-base font-semibold">Tipo de Cuenta</Label>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Elige el tipo de cuenta que mejor se adapte a ti
-                </p>
-                <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-6">
+                <div className="text-center">
+                  <Label className="font-black text-main-foreground text-2xl uppercase flex items-center justify-center gap-2">
+                    <Star22 size={StarSizes.md} className="star-decoration" />
+                    TIPO DE CUENTA
+                    <Star23 size={StarSizes.md} className="star-decoration" />
+                  </Label>
+                  <p className="font-bold text-main-foreground/80 text-lg uppercase mt-2">
+                    ELIGE TU AVENTURA
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <button
                     type="button"
                     onClick={() => setFormData(prev => ({ ...prev, accountType: 'customer' }))}
-                    className={`p-4 rounded-lg border-2 transition-all duration-200 ${
+                    className={`p-6 rounded-base brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200 ${
                       formData.accountType === 'customer'
-                        ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
-                        : 'border-border hover:border-primary/50 hover:bg-accent'
+                        ? 'bg-chart-1 text-main-foreground'
+                        : 'bg-chart-2 text-main-foreground hover:bg-chart-1'
                     }`}
                     disabled={isLoading}
                   >
-                    <div className="flex flex-col items-center text-center space-y-2">
-                      <Heart className={`w-8 h-8 ${
-                        formData.accountType === 'customer' ? 'text-primary' : 'text-muted-foreground'
-                      }`} />
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <Heart className="icon-hero icon-float" />
+                      <Star24 size={StarSizes.md} className="star-decoration" />
                       <div>
-                        <div className="font-semibold text-foreground">Cliente</div>
-                        <div className="text-xs text-muted-foreground">
-                          Buscar servicios para mis mascotas
+                        <div className="font-black text-xl uppercase">CLIENTE</div>
+                        <div className="font-bold text-sm uppercase">
+                          BUSCAR SERVICIOS PARA MIS MASCOTAS
                         </div>
                       </div>
                     </div>
@@ -146,21 +191,20 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     onClick={() => setFormData(prev => ({ ...prev, accountType: 'groomer' }))}
-                    className={`p-4 rounded-lg border-2 transition-all duration-200 ${
+                    className={`p-6 rounded-base brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200 ${
                       formData.accountType === 'groomer'
-                        ? 'border-primary bg-primary/5 ring-2 ring-primary/20'
-                        : 'border-border hover:border-primary/50 hover:bg-accent'
+                        ? 'bg-chart-6 text-main-foreground'
+                        : 'bg-chart-5 text-main-foreground hover:bg-chart-6'
                     }`}
                     disabled={isLoading}
                   >
-                    <div className="flex flex-col items-center text-center space-y-2">
-                      <Building2 className={`w-8 h-8 ${
-                        formData.accountType === 'groomer' ? 'text-primary' : 'text-muted-foreground'
-                      }`} />
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <Building2 className="icon-hero icon-float" />
+                      <Star25 size={StarSizes.md} className="star-decoration" />
                       <div>
-                        <div className="font-semibold text-foreground">Negocio</div>
-                        <div className="text-xs text-muted-foreground">
-                          Ofrecer servicios de grooming
+                        <div className="font-black text-xl uppercase">NEGOCIO</div>
+                        <div className="font-bold text-sm uppercase">
+                          OFRECER SERVICIOS DE GROOMING
                         </div>
                       </div>
                     </div>
@@ -168,43 +212,49 @@ export default function RegisterPage() {
                 </div>
               </div>
 
-              <div>
-                <Label htmlFor="fullName" className="flex items-center gap-2">
-                  <User className="w-4 h-4" />
-                  Nombre Completo
+              <div className="space-y-4">
+                <Label htmlFor="fullName" className="flex items-center gap-2 text-main-foreground font-black text-lg uppercase">
+                  <User className="icon-large icon-float" />
+                  <Star26 size={StarSizes.sm} className="star-decoration" />
+                  NOMBRE COMPLETO
                 </Label>
                 <Input
                   id="fullName"
                   type="text"
                   value={formData.fullName}
                   onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
-                  className="mt-1"
-                  placeholder="Tu nombre completo"
+                  className="brutal-border-thick brutal-shadow-lg hover:brutal-hover font-bold text-lg py-6 text-main-foreground bg-chart-4 placeholder:font-bold placeholder:uppercase"
+                  placeholder="TU NOMBRE COMPLETO"
                   disabled={isLoading}
                   autoComplete="name"
                 />
                 {errors.fullName && (
-                  <p className="text-sm text-destructive mt-1">{errors.fullName}</p>
+                  <Badge className="bg-destructive text-main-foreground brutal-border brutal-shadow font-black">
+                    {errors.fullName.toUpperCase()}
+                  </Badge>
                 )}
               </div>
 
-              <div>
-                <Label htmlFor="email" className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  Email
+              <div className="space-y-4">
+                <Label htmlFor="email" className="flex items-center gap-2 text-main-foreground font-black text-lg uppercase">
+                  <Mail className="icon-large icon-float" />
+                  <Star27 size={StarSizes.sm} className="star-decoration" />
+                  EMAIL
                 </Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  className="mt-1"
-                  placeholder="tu@email.com"
+                  className="brutal-border-thick brutal-shadow-lg hover:brutal-hover font-bold text-lg py-6 text-main-foreground bg-chart-4 placeholder:font-bold placeholder:uppercase"
+                  placeholder="TU@EMAIL.COM"
                   disabled={isLoading}
                   autoComplete="email"
                 />
                 {errors.email && (
-                  <p className="text-sm text-destructive mt-1">{errors.email}</p>
+                  <Badge className="bg-destructive text-main-foreground brutal-border brutal-shadow font-black">
+                    {errors.email.toUpperCase()}
+                  </Badge>
                 )}
               </div>
 
@@ -319,6 +369,7 @@ export default function RegisterPage() {
             </form>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   )

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import { 
+import {
   Star,
   Clock,
   MapPin,
@@ -16,8 +16,15 @@ import {
   Heart,
   Calendar,
   ArrowRight,
-  PawPrint
+  PawPrint,
+  Sparkles,
+  Zap,
+  Trophy
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 import {
   Select,
   SelectContent,
@@ -132,82 +139,131 @@ export default function MarketplacePage() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      {/* Hero Section */}
-      <div className="bg-chart-1 brutal-border-thick border-t-0 border-x-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-main brutal-border brutal-shadow-lg mx-auto mb-6 rounded-base flex items-center justify-center">
-              <PawPrint className="w-12 h-12 text-foreground" />
+      {/* Hero Section - Neobrutalism Style */}
+      <section className="py-16 md:py-24 relative bg-chart-1 overflow-hidden border-t-4 border-black">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star1 className="absolute top-20 left-10 star-decoration" size={StarSizes.lg} />
+          <Star6 className="absolute top-40 right-20 star-decoration" size={StarSizes.md} />
+          <Star7 className="absolute bottom-32 left-32 star-decoration" size={StarSizes.xl} />
+          <Star8 className="absolute top-60 left-1/2 star-decoration" size={StarSizes.sm} />
+          <Star9 className="absolute bottom-20 right-40 star-decoration" size={StarSizes.lg} />
+          <Star10 className="absolute top-32 right-1/3 star-decoration" size={StarSizes.md} />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Hero Badge */}
+            <div className="mb-8 flex justify-center">
+              <Badge className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-6 text-lg font-black brutal-border-thick rounded-base transform -rotate-1">
+                <Sparkles className="icon-large mr-2 icon-float" />
+                <Star13 size={StarSizes.lg} className="star-decoration" />
+                MARKETPLACE OFICIAL
+                <Star19 size={StarSizes.lg} className="star-decoration" />
+                <Trophy className="icon-large ml-2 icon-float" />
+              </Badge>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-main-foreground mb-4">
-              Encuentra la Veterinaria o Estética Perfecta
+            {/* Hero Title */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-12 text-main-foreground leading-tight uppercase">
+              <Star20 size={StarSizes['2xl']} className="star-decoration inline-block mr-4" />
+              ENCUENTRA TU
+              <span className="bg-chart-5 text-main-foreground px-6 py-4 mx-4 brutal-shadow-xl brutal-border-thick inline-block transform -rotate-2 rounded-base">
+                <PawPrint className="icon-large inline-block mr-2 icon-float" />
+                <Star21 size={StarSizes.lg} className="star-decoration inline-block" />
+                GROOMER
+                <Star22 size={StarSizes.lg} className="star-decoration inline-block" />
+                <Scissors className="icon-large inline-block ml-2 icon-float" />
+              </span>
+              PERFECTO
+              <Star23 size={StarSizes['2xl']} className="star-decoration inline-block ml-4" />
             </h1>
-            <p className="text-xl text-main-foreground/80 max-w-2xl mx-auto">
-              Descubre profesionales de confianza para el cuidado de tu mascota
+            {/* Hero Subtitle */}
+            <p className="text-xl md:text-2xl text-main-foreground/80 mb-16 max-w-4xl mx-auto leading-relaxed font-bold uppercase">
+              <Calendar className="icon-large inline-block mr-2 icon-float" />
+              PROFESIONALES VERIFICADOS
+              <Heart className="icon-large inline-block mx-2 icon-float" />
+              CUIDADO DE CALIDAD
+              <Zap className="icon-large inline-block ml-2 icon-float" />
             </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar with Filters */}
-          <div className="lg:col-span-1">
-            <Card className="brutal-shadow hover:brutal-hover transition-all duration-200">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Filter className="w-5 h-5" />
-                  Filtros
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
+      {/* Filters Section */}
+      <section className="py-16 bg-chart-3 border-t-4 border-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Filters Header */}
+          <div className="text-center mb-12">
+            <Badge className="bg-chart-6 text-main-foreground brutal-shadow-xl px-8 py-4 text-xl font-black brutal-border-thick rounded-base uppercase transform rotate-1">
+              <Filter className="icon-large mr-2 icon-float" />
+              <Star24 size={StarSizes.md} className="star-decoration" />
+              ENCUENTRA TU MATCH
+              <Star25 size={StarSizes.md} className="star-decoration" />
+              <Search className="icon-large ml-2 icon-float" />
+            </Badge>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Sidebar with Filters */}
+            <div className="lg:col-span-1">
+              <Card className="bg-chart-2 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200">
+                <CardHeader className="bg-chart-4 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0">
+                  <CardTitle className="flex items-center gap-2 font-black text-main-foreground uppercase">
+                    <Star26 size={StarSizes.md} className="star-decoration" />
+                    <Filter className="icon-large" />
+                    FILTROS
+                    <Star27 size={StarSizes.md} className="star-decoration" />
+                  </CardTitle>
+                </CardHeader>
+              <CardContent className="space-y-8 bg-chart-2">
                 {/* Search */}
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Buscar
+                  <label className="font-black text-main-foreground mb-4 block uppercase text-lg">
+                    <Search className="icon-standard mr-2 inline-block icon-float" />
+                    BUSCAR GROOMER
                   </label>
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                     <Input
-                      placeholder="Nombre o descripción..."
+                      placeholder="NOMBRE O DESCRIPCIÓN..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
+                      className="brutal-border-thick brutal-shadow font-bold uppercase placeholder:font-bold text-main-foreground bg-main"
                     />
                   </div>
                 </div>
 
                 {/* Category Filter */}
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Categoría
+                  <label className="font-black text-main-foreground mb-4 block uppercase text-lg">
+                    <Scissors className="icon-standard mr-2 inline-block icon-float" />
+                    CATEGORÍA
                   </label>
                   <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Todas las categorías" />
+                    <SelectTrigger className="brutal-border-thick brutal-shadow font-bold uppercase bg-main text-main-foreground">
+                      <SelectValue placeholder="TODAS LAS CATEGORÍAS" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">Todas las categorías</SelectItem>
-                      <SelectItem value="veterinaria">Veterinaria</SelectItem>
-                      <SelectItem value="estetica">Estética</SelectItem>
-                      <SelectItem value="spa">Spa</SelectItem>
+                    <SelectContent className="brutal-border-thick brutal-shadow bg-main">
+                      <SelectItem value="all" className="font-bold uppercase">TODAS LAS CATEGORÍAS</SelectItem>
+                      <SelectItem value="veterinaria" className="font-bold uppercase">VETERINARIA</SelectItem>
+                      <SelectItem value="estetica" className="font-bold uppercase">ESTÉTICA</SelectItem>
+                      <SelectItem value="spa" className="font-bold uppercase">SPA</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 {/* City Filter */}
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Ciudad
+                  <label className="font-black text-main-foreground mb-4 block uppercase text-lg">
+                    <MapPin className="icon-standard mr-2 inline-block icon-float" />
+                    CIUDAD
                   </label>
                   <Select value={selectedCity} onValueChange={setSelectedCity}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Todas las ciudades" />
+                    <SelectTrigger className="brutal-border-thick brutal-shadow font-bold uppercase bg-main text-main-foreground">
+                      <SelectValue placeholder="TODAS LAS CIUDADES" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">Todas las ciudades</SelectItem>
+                    <SelectContent className="brutal-border-thick brutal-shadow bg-main">
+                      <SelectItem value="all" className="font-bold uppercase">TODAS LAS CIUDADES</SelectItem>
                       {getUniqueCities().map(city => (
-                        <SelectItem key={city} value={city}>
+                        <SelectItem key={city} value={city} className="font-bold uppercase">
                           {city}
                         </SelectItem>
                       ))}
@@ -216,9 +272,11 @@ export default function MarketplacePage() {
                 </div>
 
                 {/* Results count */}
-                <div className="text-sm text-muted-foreground">
-                  {filteredBusinesses.length} establecimiento{filteredBusinesses.length !== 1 ? 's' : ''} encontrado{filteredBusinesses.length !== 1 ? 's' : ''}
-                </div>
+                <Badge className="bg-chart-8 text-main-foreground brutal-shadow px-4 py-2 font-black brutal-border rounded-base uppercase">
+                  <Star28 size={StarSizes.sm} className="star-decoration mr-2" />
+                  {filteredBusinesses.length} RESULTADO{filteredBusinesses.length !== 1 ? 'S' : ''}
+                  <Star37 size={StarSizes.sm} className="star-decoration ml-2" />
+                </Badge>
               </CardContent>
             </Card>
           </div>
@@ -226,101 +284,103 @@ export default function MarketplacePage() {
           {/* Main Content - Grid of Business Cards */}
           <div className="lg:col-span-3">
             {filteredBusinesses.length === 0 ? (
-              <div className="text-center py-12">
-                <PawPrint className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-foreground mb-2">
-                  No se encontraron establecimientos
+              <div className="text-center py-16 bg-chart-7 brutal-border-thick brutal-shadow-lg rounded-base">
+                <div className="relative">
+                  <Star39 className="absolute top-4 left-1/2 transform -translate-x-1/2 star-decoration" size={StarSizes.lg} />
+                  <PawPrint className="icon-hero mx-auto mb-6 text-main-foreground icon-float" />
+                  <Star40 className="absolute bottom-4 left-1/2 transform -translate-x-1/2 star-decoration" size={StarSizes.lg} />
+                </div>
+                <h3 className="text-2xl font-black text-main-foreground mb-4 uppercase">
+                  NO HAY GROOMERS
                 </h3>
-                <p className="text-muted-foreground">
-                  Intenta ajustar tus filtros o busqueda
+                <p className="text-main-foreground/80 font-bold uppercase">
+                  AJUSTA TUS FILTROS
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                 {filteredBusinesses.map((business) => (
-                  <Card 
-                    key={business.id} 
-                    className="hover:shadow-lg transition-all duration-200 cursor-pointer group"
+                  <Card
+                    key={business.id}
+                    className="bg-main brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200 cursor-pointer group transform hover:-rotate-1"
                     onClick={() => handleBusinessClick(business.slug)}
                   >
-                    <CardHeader className="pb-3">
+                    <CardHeader className="pb-3 bg-chart-4 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-1">
+                          <CardTitle className="text-xl font-black text-main-foreground group-hover:text-main-foreground transition-colors line-clamp-1 uppercase">
                             {business.business_name}
                           </CardTitle>
-                          <div className="flex items-center gap-1 mt-1">
-                            <MapPin className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-sm text-muted-foreground">
-                              {business.city || 'No especificada'}
+                          <div className="flex items-center gap-2 mt-2">
+                            <MapPin className="icon-standard text-main-foreground icon-float" />
+                            <span className="font-bold text-main-foreground/80 uppercase">
+                              {business.city || 'SIN UBICACIÓN'}
                             </span>
                           </div>
                         </div>
-                        <Badge variant="secondary" className="ml-2">
-                          <Scissors className="w-3 h-3 mr-1" />
-                          Activo
+                        <Badge className="bg-chart-6 text-main-foreground brutal-border brutal-shadow">
+                          <Scissors className="icon-standard mr-1 icon-float" />
+                          ACTIVO
                         </Badge>
                       </div>
                     </CardHeader>
-                    <CardContent className="space-y-4">
-                      <CardDescription className="line-clamp-2 min-h-[2.5rem]">
-                        {business.description || 'Profesional dedicado al cuidado de tu mascota'}
+                    <CardContent className="space-y-6 bg-main p-6">
+                      <CardDescription className="font-bold text-main-foreground/80 text-base line-clamp-2 min-h-[3rem] uppercase">
+                        {business.description || 'PROFESIONAL DEDICADO AL CUIDADO DE TU MASCOTA'}
                       </CardDescription>
-                      
+
                       {/* Services badges */}
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="outline" className="text-xs">
-                          <Heart className="w-3 h-3 mr-1" />
-                          Baño
+                      <div className="flex flex-wrap gap-3">
+                        <Badge className="bg-chart-1 text-main-foreground brutal-border brutal-shadow font-black">
+                          <Heart className="icon-standard mr-1 icon-float" />
+                          BAÑO
                         </Badge>
-                        <Badge variant="outline" className="text-xs">
-                          <Scissors className="w-3 h-3 mr-1" />
-                          Corte
+                        <Badge className="bg-chart-2 text-main-foreground brutal-border brutal-shadow font-black">
+                          <Scissors className="icon-standard mr-1 icon-float" />
+                          CORTE
                         </Badge>
-                        <Badge variant="outline" className="text-xs">
-                          <Star className="w-3 h-3 mr-1" />
-                          Spa
+                        <Badge className="bg-chart-3 text-main-foreground brutal-border brutal-shadow font-black">
+                          <Sparkles className="icon-standard mr-1 icon-float" />
+                          SPA
                         </Badge>
                       </div>
 
                       {/* Rating and contact */}
                       <div className="flex items-center justify-between pt-2">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2">
                           <div className="flex items-center">
                             {[1, 2, 3, 4, 5].map((star) => (
                               <Star
                                 key={star}
-                                className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                                className="icon-standard fill-chart-3 text-chart-3"
                               />
                             ))}
                           </div>
-                          <span className="text-sm text-muted-foreground ml-1">
+                          <span className="font-black text-main-foreground">
                             (4.9)
                           </span>
                         </div>
                         {business.phone && (
                           <Button
-                            variant="ghost"
                             size="sm"
                             onClick={(e) => {
                               e.stopPropagation()
                               window.open(`tel:${business.phone}`, '_self')
                             }}
-                            className="h-8 w-8 p-0"
+                            className="bg-chart-5 text-main-foreground brutal-border brutal-shadow hover:brutal-hover font-black"
                           >
-                            <Phone className="w-4 h-4" />
+                            <Phone className="icon-standard icon-float" />
                           </Button>
                         )}
                       </div>
 
                       {/* CTA Button */}
-                      <Button 
-                        className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                        variant="outline"
+                      <Button
+                        className="w-full bg-chart-6 hover:bg-chart-7 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black text-lg py-6 uppercase"
                       >
-                        <Calendar className="w-4 h-4 mr-2" />
-                        Ver Detalles
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                        <Calendar className="icon-large mr-2 icon-float" />
+                        VER DETALLES
+                        <ArrowRight className="icon-large ml-2 icon-float" />
                       </Button>
                     </CardContent>
                   </Card>
@@ -328,8 +388,9 @@ export default function MarketplacePage() {
               </div>
             )}
           </div>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
