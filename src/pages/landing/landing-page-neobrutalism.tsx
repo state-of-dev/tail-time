@@ -50,10 +50,10 @@ export function LandingPageNeobrutalism() {
           <div className="text-center max-w-4xl mx-auto">
             {/* Hero Badge */}
             <div className="mb-8 flex justify-center">
-              <Badge className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-4 text-lg font-bold brutal-border-thick rounded-base transform -rotate-1">
-                <Crown className="icon-large mr-2 icon-float" />
+              <Badge className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-6 text-lg font-bold brutal-border-thick rounded-base transform -rotate-1">
+                <Crown className="icon-hero mr-2 icon-float" />
                 #1 PLATAFORMA PARA GROOMERS
-                <Trophy className="icon-large ml-2 icon-float" />
+                <Trophy className="icon-hero ml-2 icon-float" />
               </Badge>
             </div>
             {/* Hero Title */}
@@ -119,7 +119,7 @@ export function LandingPageNeobrutalism() {
         </div>
       </section>
       {/* Features Section */}
-      <section className="py-24 bg-chart-7 brutal-border-thick border-t-0 border-x-0">
+      <section className="py-24 bg-chart-7 border-t-4 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-20">
@@ -238,7 +238,7 @@ export function LandingPageNeobrutalism() {
         </div>
       </section>
       {/* Stats Section */}
-      <section className="py-20 bg-chart-8">
+      <section className="py-20 bg-chart-8 border-t-4 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <Card className="bg-chart-2 text-main-foreground brutal-shadow brutal-border rounded-base text-center p-8 transform rotate-1">
@@ -289,7 +289,7 @@ export function LandingPageNeobrutalism() {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="py-20 bg-chart-1">
+      <section className="py-20 bg-chart-1 border-t-4 border-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-4 mb-6">
             <PawPrint className="icon-hero text-main-foreground icon-float" />
@@ -325,7 +325,7 @@ export function LandingPageNeobrutalism() {
         </div>
       </section>
       {/* Footer */}
-      <footer className="py-12 bg-chart-5 text-main-foreground">
+      <footer className="py-12 bg-chart-5 text-main-foreground border-t-4 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <PawPrint className="icon-xl icon-float" />
