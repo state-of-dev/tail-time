@@ -2,6 +2,10 @@ import { Navigation } from '@/components/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import {
+  Star1, Star7, Star8, Star9, Star10, Star12, Star14, Star19, Star23, Star28, Star36, Star39,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars';
 import { useNavigate } from 'react-router-dom';
 import {
   Heart,
@@ -46,25 +50,40 @@ export function LandingPageNeobrutalism() {
       <Navigation />
       {/* Hero Section - Neobrutalism Style */}
       <section className="py-16 md:py-24 relative bg-chart-6 overflow-hidden">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star9 className="absolute top-20 left-10 star-decoration" size={StarSizes.lg} />
+          <Star10 className="absolute top-40 right-20 star-decoration" size={StarSizes.md} />
+          <Star23 className="absolute bottom-32 left-32 star-decoration" size={StarSizes.xl} />
+          <Star36 className="absolute top-60 left-1/2 star-decoration" size={StarSizes.sm} />
+          <Star39 className="absolute bottom-20 right-40 star-decoration" size={StarSizes.lg} />
+          <Star1 className="absolute top-32 right-1/3 star-decoration" size={StarSizes.md} />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             {/* Hero Badge */}
             <div className="mb-8 flex justify-center">
               <Badge className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-6 text-lg font-bold brutal-border-thick rounded-base transform -rotate-1">
                 <Crown className="icon-hero mr-2 icon-float" />
+                <Star39 size={StarSizes.lg} className="star-decoration" />
                 #1 PLATAFORMA PARA GROOMERS
+                <Star1 size={StarSizes.lg} className="star-decoration" />
                 <Trophy className="icon-hero ml-2 icon-float" />
               </Badge>
             </div>
             {/* Hero Title */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-12 text-foreground leading-tight">
+              <Star28 size={StarSizes['2xl']} className="star-decoration inline-block mr-4" />
               REVOLUCIONA TU
               <span className="bg-chart-5 text-main-foreground px-6 py-4 mx-4 brutal-shadow-xl brutal-border-thick inline-block transform -rotate-2 rounded-base">
                 <Rocket className="icon-large inline-block mr-2 icon-float" />
+                <Star7 size={StarSizes.lg} className="star-decoration inline-block" />
                 NEGOCIO
+                <Star14 size={StarSizes.lg} className="star-decoration inline-block" />
                 <Sparkle className="icon-large inline-block ml-2 icon-float" />
               </span>
               DE GROOMING
+              <Star36 size={StarSizes['2xl']} className="star-decoration inline-block ml-4" />
             </h1>
             {/* Hero Subtitle */}
             <p className="text-xl md:text-2xl text-foreground/80 mb-16 max-w-4xl mx-auto leading-relaxed font-bold">
@@ -79,17 +98,19 @@ export function LandingPageNeobrutalism() {
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-16">
               <Button
                 size="lg"
-                className="bg-chart-1 hover:bg-chart-1 text-main-foreground brutal-shadow-xl hover:brutal-hover font-black text-lg px-8 py-4 brutal-border-thick rounded-base"
+                className="bg-chart-1 hover:bg-chart-2 text-main-foreground brutal-shadow-xl hover:brutal-hover font-black text-lg px-8 py-4 brutal-border-thick rounded-base"
                 onClick={() => navigate('/auth/register')}
               >
                 <Sparkles className="icon-large mr-2 icon-float" />
+                <Star8 size={StarSizes.md} className="star-decoration" />
                 CREAR MI PÁGINA GRATIS
+                <Star19 size={StarSizes.md} className="star-decoration" />
                 <ArrowRight className="icon-large ml-2 icon-float" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="bg-main hover:bg-secondary-background brutal-shadow-lg hover:brutal-hover font-black text-lg px-8 py-4 brutal-border-thick rounded-base text-foreground"
+                className="bg-main hover:bg-chart-3 brutal-shadow-lg hover:brutal-hover font-black text-lg px-8 py-4 brutal-border-thick rounded-base text-foreground"
                 onClick={() => navigate('/marketplace')}
               >
                 <Play className="icon-large mr-2 icon-float" />
@@ -125,7 +146,9 @@ export function LandingPageNeobrutalism() {
           <div className="text-center mb-20">
             <Badge className="bg-chart-6 text-main-foreground brutal-shadow-xl mb-8 px-8 py-4 text-xl font-black brutal-border-thick rounded-base uppercase transform rotate-1">
               <Zap className="icon-large mr-2 icon-float" />
+              <Star23 size={StarSizes.md} className="star-decoration" />
               TODO INCLUIDO
+              <Star12 size={StarSizes.md} className="star-decoration" />
               <Gem className="icon-large ml-2 icon-float" />
             </Badge>
             <h2 className="text-4xl md:text-6xl font-black mb-8 text-foreground uppercase leading-tight">
@@ -292,7 +315,9 @@ export function LandingPageNeobrutalism() {
       <section className="py-20 bg-chart-1 border-t-4 border-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-4 mb-6">
+            <Star28 className="star-decoration icon-hero" />
             <PawPrint className="icon-hero text-main-foreground icon-float" />
+            <Star12 className="star-decoration icon-hero" />
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-6 text-main-foreground uppercase flex items-center justify-center gap-4">
             <Crown className="icon-xl icon-float" />
@@ -305,7 +330,7 @@ export function LandingPageNeobrutalism() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Button
               size="lg"
-              className="bg-main text-foreground hover:bg-main/90 brutal-shadow hover:brutal-hover font-black text-xl px-12 py-6 brutal-border rounded-base"
+              className="bg-main text-foreground hover:bg-chart-4 brutal-shadow hover:brutal-hover font-black text-xl px-12 py-6 brutal-border rounded-base"
               onClick={() => navigate('/auth/register')}
             >
               <Rocket className="icon-large mr-2 icon-float" />
@@ -315,7 +340,7 @@ export function LandingPageNeobrutalism() {
             <Button
               variant="outline"
               size="lg"
-              className="bg-secondary-background hover:bg-main/20 brutal-shadow hover:brutal-hover font-black text-xl px-12 py-6 brutal-border rounded-base text-foreground"
+              className="bg-secondary-background hover:bg-chart-5 brutal-shadow hover:brutal-hover font-black text-xl px-12 py-6 brutal-border rounded-base text-foreground"
               onClick={() => navigate('/marketplace')}
             >
               <Eye className="icon-large mr-2 icon-float" />
@@ -328,8 +353,10 @@ export function LandingPageNeobrutalism() {
       <footer className="py-12 bg-chart-5 text-main-foreground border-t-4 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
+            <Star7 className="star-decoration icon-large" />
             <PawPrint className="icon-xl icon-float" />
             <span className="font-black text-2xl">TAILTIME</span>
+            <Star14 className="star-decoration icon-large" />
           </div>
           <p className="text-main-foreground/80 flex items-center justify-center gap-2 font-bold">
             <span>© 2024 TAILTIME. HECHO CON</span>

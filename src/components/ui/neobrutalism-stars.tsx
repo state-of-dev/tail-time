@@ -246,7 +246,7 @@ export function Star23(props: StarProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" width={size ?? width} height={size ?? height} {...svgProps}>
       <path fill={color ?? "currentColor"} stroke={stroke} strokeWidth={strokeWidth} className={pathClassName}
-        d="M100 10l26 39 46 7.8-26 39 26 39-46 7.8-26 39-26-39-46-7.8 26-39-26-39 46-7.8z" />
+        d="M108.264 100c149.028 86.91 78.646 157.387-8.264 8.264C13.09 257.387-57.387 186.91 91.737 100-57.387 13.09 13.09-57.387 100 91.737 186.91-57.387 257.387 13.09 108.264 100" />
     </svg>
   );
 }
@@ -287,7 +287,7 @@ export function Star27(props: StarProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" width={size ?? width} height={size ?? height} {...svgProps}>
       <path fill={color ?? "currentColor"} stroke={stroke} strokeWidth={strokeWidth} className={pathClassName}
-        d="M195 195c-54.245-54.245-135.755-54.245-190 0C59.245 140.755 59.245 59.245 5 5c54.245 54.245 135.755 54.245 190 0-54.245 54.245-54.245 135.755 0 190" />
+        d="M118.05 118.05c102.6 102.6-138.7 102.6-36.1 0-102.6 102.6-102.6-138.7 0-36.1-102.6-102.6 138.7-102.6 36.1 0 102.6-102.6 102.6 138.7 0 36.1" />
     </svg>
   );
 }
@@ -297,7 +297,7 @@ export function Star28(props: StarProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" width={size ?? width} height={size ?? height} {...svgProps}>
       <path fill={color ?? "currentColor"} stroke={stroke} strokeWidth={strokeWidth} className={pathClassName}
-        d="M100 10l32 48 48 32-48 32-32 48-32-48-48-32 48-32z M60 60l16 24 24 16-24 16-16 24-16-24-24-16 24-16z M140 140l16 24 24 16-24 16-16 24-16-24-24-16 24-16z" />
+        d="M195 195c-54.245-54.245-135.755-54.245-190 0C59.245 140.755 59.245 59.245 5 5c54.245 54.245 135.755 54.245 190 0-54.245 54.245-54.245 135.755 0 190" />
     </svg>
   );
 }
@@ -378,7 +378,7 @@ export function Star36(props: StarProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" width={size ?? width} height={size ?? height} {...svgProps}>
       <path fill={color ?? "currentColor"} stroke={stroke} strokeWidth={strokeWidth} className={pathClassName}
-        d="M100 25l21 42 42 21-42 21-21 42-21-42-42-21 42-21z M65 65l10.5 21 21 10.5-21 10.5-10.5 21-10.5-21-21-10.5 21-10.5z M135 135l10.5 21 21 10.5-21 10.5-10.5 21-10.5-21-21-10.5 21-10.5z M100 170l7 14 14 7-14 7-7 14-7-14-14-7 14-7z" />
+        d="m100 5 6.718 88.283L195 100l-88.282 6.718L100 195l-6.718-88.282L5 100l88.283-6.718z" />
     </svg>
   );
 }

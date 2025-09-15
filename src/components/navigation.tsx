@@ -107,7 +107,7 @@ export function Navigation() {
                 <Button
                   variant="pet-blue"
                   size="sm"
-                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover hover:bg-chart-2"
                   onClick={() => {
                     if (profile?.role === 'groomer' && businessProfile) {
                       navigate(`/groomer/${businessProfile.slug}/dashboard`)
@@ -123,7 +123,7 @@ export function Navigation() {
                 <Button
                   variant="pet-green"
                   size="sm"
-                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover hover:bg-chart-3"
                   onClick={() => navigate('/marketplace')}
                 >
                   MARKETPLACE
@@ -137,7 +137,7 @@ export function Navigation() {
                 {/* Notification Center - User Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="relative flex items-center gap-2 bg-chart-3 text-main-foreground brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover">
+                    <Button variant="ghost" size="sm" className="relative flex items-center gap-2 bg-chart-3 text-main-foreground brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover hover:bg-chart-4">
                       <UserCircle className={`w-5 h-5 ${unreadCount > 0 ? 'text-primary' : 'text-muted-foreground'}`} />
                       {!loading && (
                         <span className="hidden md:inline">
@@ -264,7 +264,7 @@ export function Navigation() {
                 <Button
                   variant="pet-yellow"
                   size="sm"
-                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover hover:bg-chart-5"
                   onClick={() => navigate('/')}
                 >
                   INICIO
@@ -272,7 +272,7 @@ export function Navigation() {
                 <Button
                   variant="pet-green"
                   size="sm"
-                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover hover:bg-chart-1"
                   onClick={() => navigate('/marketplace')}
                 >
                   MARKETPLACE
@@ -280,7 +280,7 @@ export function Navigation() {
                 <Button
                   variant="pet-purple"
                   size="sm"
-                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover hover:bg-chart-6"
                   onClick={() => navigate('/demo')}
                 >
                   DEMO
@@ -288,7 +288,7 @@ export function Navigation() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="bg-main text-foreground brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
+                  className="bg-main text-foreground brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover hover:bg-chart-8"
                   onClick={() => navigate('/auth/login')}
                 >
                   INICIAR SESIÓN
@@ -296,7 +296,7 @@ export function Navigation() {
                 <Button
                   variant="pet-blue"
                   size="sm"
-                  className="brutal-border brutal-shadow-lg rounded-base font-black hover:brutal-hover"
+                  className="brutal-border brutal-shadow-lg rounded-base font-black hover:brutal-hover hover:bg-chart-7"
                   onClick={() => navigate('/auth/register')}
                 >
                   CREAR MI PÁGINA
