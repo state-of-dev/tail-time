@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
-  Star1, Star7, Star8, Star9, Star10, Star12, Star14, Star19, Star23, Star28, Star36, Star39,
+  Star1, Star7, Star8, Star9, Star10, Star12, Star14, Star19, Star23, Star24, Star26, Star28, Star36, Star39,
   StarSizes
 } from '@/components/ui/neobrutalism-stars';
 import { useNavigate } from 'react-router-dom';
@@ -315,9 +315,9 @@ export function LandingPageNeobrutalism() {
       <section className="py-20 bg-chart-1 border-t-4 border-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <Star28 className="star-decoration icon-hero" />
+            <Star26 className="star-decoration icon-hero" />
             <PawPrint className="icon-hero text-main-foreground icon-float" />
-            <Star12 className="star-decoration icon-hero" />
+            <Star24 className="star-decoration icon-hero" />
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-6 text-main-foreground uppercase flex items-center justify-center gap-4">
             <Crown className="icon-xl icon-float" />
@@ -353,7 +353,7 @@ export function LandingPageNeobrutalism() {
       <footer className="py-12 bg-chart-5 text-main-foreground border-t-4 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Star7 className="star-decoration icon-large" />
+            <Star23 className="star-decoration icon-large" />
             <PawPrint className="icon-xl icon-float" />
             <span className="font-black text-2xl">TAILTIME</span>
             <Star14 className="star-decoration icon-large" />
