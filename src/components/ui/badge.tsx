@@ -1,24 +1,32 @@
 import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "inline-flex items-center justify-center rounded-base brutal-border px-3 py-1 text-xs font-bold w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] overflow-hidden brutal-shadow-sm",
   {
     variants: {
       variant: {
-        default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        success:
-          "border-transparent bg-success text-success-foreground hover:bg-success/80",
-        warning:
-          "border-transparent bg-warning text-warning-foreground hover:bg-warning/80",
-        outline: "text-foreground",
-        pet: "border-transparent bg-pet-primary text-white hover:bg-pet-primary/80",
+        default: "bg-main text-main-foreground",
+        neutral: "bg-secondary-background text-foreground",
+
+        // Pet-themed variants with chart colors
+        "pet-pink": "bg-chart-2 text-main-foreground",
+        "pet-blue": "bg-chart-1 text-main-foreground",
+        "pet-green": "bg-chart-4 text-main-foreground",
+        "pet-yellow": "bg-chart-3 text-main-foreground",
+        "pet-purple": "bg-chart-5 text-main-foreground",
+        "pet-orange": "bg-pet-orange text-main-foreground",
+
+        // Status variants
+        success: "bg-chart-4 text-main-foreground",
+        warning: "bg-chart-3 text-main-foreground",
+        destructive: "bg-chart-2 text-main-foreground",
+
+        // Legacy compatibility
+        secondary: "bg-secondary-background text-foreground",
+        outline: "bg-background text-foreground",
       },
     },
     defaultVariants: {
@@ -28,12 +36,25 @@ const badgeVariants = cva(
 )
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    VariantProps<typeof badgeVariants> {
+  asChild?: boolean
+}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+function Badge({
+  className,
+  variant,
+  asChild = false,
+  ...props
+}: BadgeProps) {
+  const Comp = asChild ? Slot : "span"
+
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <Comp
+      data-slot="badge"
+      className={cn(badgeVariants({ variant }), className)}
+      {...props}
+    />
   )
 }
 

@@ -250,13 +250,13 @@ export default function CustomerDashboardSimple() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'confirmed': return 'bg-green-100 text-green-800'
-      case 'pending': return 'bg-yellow-100 text-yellow-800'
-      case 'completed': return 'bg-blue-100 text-blue-800'
-      case 'cancelled': return 'bg-red-100 text-red-800'
-      case 'rejected': return 'bg-red-100 text-red-800'
-      case 'reschedule_pending': return 'bg-orange-100 text-orange-800'
-      default: return 'bg-gray-100 text-gray-800'
+      case 'confirmed': return 'bg-chart-4 text-main-foreground'
+      case 'pending': return 'bg-chart-3 text-main-foreground'
+      case 'completed': return 'bg-chart-1 text-main-foreground'
+      case 'cancelled': return 'bg-chart-2 text-main-foreground'
+      case 'rejected': return 'bg-chart-2 text-main-foreground'
+      case 'reschedule_pending': return 'bg-chart-5 text-main-foreground'
+      default: return 'bg-secondary-background text-foreground'
     }
   }
 
@@ -264,8 +264,10 @@ export default function CustomerDashboardSimple() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <Heart className="w-8 h-8 animate-pulse text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Cargando tu dashboard...</p>
+          <div className="w-16 h-16 bg-chart-2 brutal-border brutal-shadow animate-pulse mx-auto mb-4 rounded-base flex items-center justify-center">
+            <Heart className="w-8 h-8 text-main-foreground" />
+          </div>
+          <p className="text-foreground/70">Cargando tu dashboard...</p>
         </div>
       </div>
     )
@@ -277,17 +279,17 @@ export default function CustomerDashboardSimple() {
         <Navigation />
         
         {/* Welcome Header */}
-      <div className="border-b border-border bg-card">
+      <div className="brutal-border-thick border-t-0 border-x-0 bg-main">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4 py-6">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-              <User className="w-6 h-6 text-primary" />
+          <div className="flex items-center gap-4 py-8">
+            <div className="w-16 h-16 bg-chart-2 brutal-border brutal-shadow rounded-base flex items-center justify-center">
+              <User className="w-8 h-8 text-main-foreground" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">
-                ¡Hola {profile?.full_name || 'Cliente'}!
+              <h1 className="text-3xl font-bold text-foreground">
+                Hola {profile?.full_name || 'Cliente'}!
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-foreground/70 text-lg">
                 Panel de cliente • {user?.email}
               </p>
             </div>
@@ -305,7 +307,7 @@ export default function CustomerDashboardSimple() {
             {appointments.filter(apt => apt.status === 'reschedule_pending').length > 0 && (
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
-                  <AlertCircle className="w-5 h-5 text-amber-600" />
+                  <AlertCircle className="w-5 h-5 text-chart-3" />
                   <h2 className="text-lg font-semibold text-foreground">Acción Requerida</h2>
                 </div>
                 {appointments
@@ -331,19 +333,19 @@ export default function CustomerDashboardSimple() {
               
               if (todaysAppointments.length > 0) {
                 return (
-                  <Card className="border-primary bg-gradient-to-r from-primary/5 to-primary/10">
+                  <Card className="bg-chart-1 brutal-border brutal-shadow">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2 text-primary">
+                      <CardTitle className="flex items-center gap-2 text-main-foreground">
                         <Clock className="w-5 h-5" />
                         Cita de Hoy
                       </CardTitle>
-                      <CardDescription>
+                      <CardDescription className="text-main-foreground/80">
                         Tienes {todaysAppointments.length} cita{todaysAppointments.length > 1 ? 's' : ''} programada{todaysAppointments.length > 1 ? 's' : ''} para hoy
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {todaysAppointments.map((appointment) => (
-                        <div key={appointment.id} className="bg-background/80 rounded-lg p-4 border border-primary/20">
+                        <div key={appointment.id} className="bg-main/90 rounded-base p-4 brutal-border">
                           <div className="flex items-center justify-between">
                             <div className="flex-1">
                               <div className="flex items-center gap-3 mb-2">

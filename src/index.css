@@ -1,93 +1,295 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 187 85% 43%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 187 85% 43%;
-    --radius: 0.5rem;
+/* Vibrant neobrutalism - bold colors with brutal effects and high contrast */
+:root {
+  --background: #baf2d8;
+  --secondary-background: #fff2a8;
+  --foreground: #1a1a1a;
+  --main-foreground: #1a1a1a;
+  --main: #ffffff;
+  --border: #1a1a1a;
+  --ring: #1a1a1a;
+  --overlay: rgba(26, 26, 26, 0.8);
+  --shadow: 6px 6px 0px 0px var(--border);
+  --text-shadow: 4px 4px 0px #ffffff;
 
-    /* Pet Care Custom Colors */
-    --pet-primary: 187 85% 43%;
-    --pet-secondary: 32 95% 44%;
-    --pet-accent: 154 50% 50%;
-    --success: 142 76% 36%;
-    --success-foreground: 355 100% 97%;
-    --warning: 32 95% 44%;
-    --warning-foreground: 0 0% 98%;
+  /* Vibrant colors with neobrutalism structure */
+  --chart-1: #6a9bff;
+  --chart-2: #ff8a95;
+  --chart-3: #ffe066;
+  --chart-4: #7fddaa;
+  --chart-5: #b088ff;
+  --chart-6: #ff9f66;
+  --chart-7: #66d9ff;
+  --chart-8: #ff66b3;
+  --chart-active-dot: #1a1a1a;
 
-    /* Sidebar */
-    --sidebar: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  /* Vibrant pet colors */
+  --pet-pink: var(--chart-2);
+  --pet-blue: var(--chart-1);
+  --pet-green: var(--chart-4);
+  --pet-yellow: var(--chart-3);
+  --pet-purple: var(--chart-5);
+  --pet-orange: var(--chart-6);
+  --pet-cyan: var(--chart-7);
+  --pet-magenta: var(--chart-8);
 
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 187 85% 50%;
-    --primary-foreground: 224 71.4% 4.1%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 187 85% 50%;
+  /* Legacy compatibility variables */
+  --pet-primary: var(--chart-1);
+  --pet-secondary: var(--chart-4);
+  --pet-accent: var(--chart-2);
 
-    /* Sidebar Dark */
-    --sidebar: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  /* Status Colors */
+  --success: var(--chart-4);
+  --success-foreground: #ffffff;
+  --warning: var(--chart-3);
+  --warning-foreground: #000000;
+  --destructive: var(--chart-2);
+  --destructive-foreground: #ffffff;
+
+  /* Compatibility variables */
+  --card: var(--secondary-background);
+  --card-foreground: var(--foreground);
+  --popover: var(--secondary-background);
+  --popover-foreground: var(--foreground);
+  --primary: var(--main);
+  --primary-foreground: var(--main-foreground);
+  --secondary: var(--secondary-background);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary-background);
+  --muted-foreground: var(--foreground);
+  --accent: var(--chart-1);
+  --accent-foreground: var(--main-foreground);
+  --input: var(--border);
+  --radius: 5px;
+
+  /* Sidebar */
+  --sidebar: var(--secondary-background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--main);
+  --sidebar-primary-foreground: var(--main-foreground);
+  --sidebar-accent: var(--chart-1);
+  --sidebar-accent-foreground: var(--main-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+@theme inline {
+  --color-main: var(--main);
+  --color-background: var(--background);
+  --color-secondary-background: var(--secondary-background);
+  --color-foreground: var(--foreground);
+  --color-main-foreground: var(--main-foreground);
+  --color-border: var(--border);
+  --color-overlay: var(--overlay);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+
+  --spacing-boxShadowX: 4px;
+  --spacing-boxShadowY: 4px;
+  --spacing-reverseBoxShadowX: -4px;
+  --spacing-reverseBoxShadowY: -4px;
+  --radius-base: 5px;
+  --shadow-shadow: var(--shadow);
+  --font-weight-base: 500;
+  --font-weight-heading: 700;
 }
 
 @layer base {
-  * {
-    border-color: hsl(var(--border));
-  }
-
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply text-foreground bg-background font-sans antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', system-ui, sans-serif;
+  h1, h2, h3, h4, h5, h6{
+    @apply font-semibold;
+  }
+
+  button, input, select, textarea {
+    @apply font-sans;
+  }
+
+  /* Scrollbar styling for neobrutalism */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--secondary-background);
+    border: 2px solid var(--border);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--foreground);
+    border: 1px solid var(--border);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--pet-blue);
+  }
+
+  /* Selection colors */
+  ::selection {
+    background: var(--pet-yellow);
+    color: var(--main-foreground);
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid var(--border);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Enhanced neobrutalism utility classes - screenshot inspired */
+  .brutal-shadow {
+    box-shadow: 6px 6px 0px var(--border);
+  }
+
+  .brutal-shadow-sm {
+    box-shadow: 3px 3px 0px var(--border);
+  }
+
+  .brutal-shadow-lg {
+    box-shadow: 8px 8px 0px var(--border);
+  }
+
+  .brutal-shadow-xl {
+    box-shadow: 12px 12px 0px var(--border);
+  }
+
+  .brutal-border {
+    border: 3px solid var(--border);
+  }
+
+  .brutal-border-thick {
+    border: 4px solid var(--border);
+  }
+
+  .brutal-hover {
+    transition: all 0.1s ease;
+  }
+
+  .brutal-hover:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0px var(--border);
+  }
+
+  .brutal-hover:active {
+    transform: translate(6px, 6px);
+    box-shadow: none;
+  }
+
+  /* Text shadow utilities with proper white contrast */
+  .text-shadow-brutal {
+    text-shadow: var(--text-shadow);
+  }
+
+  .text-shadow-brutal-sm {
+    text-shadow: 2px 2px 0px #ffffff;
+  }
+
+  .text-shadow-brutal-lg {
+    text-shadow: 6px 6px 0px #ffffff;
+  }
+
+  /* Grid utilities */
+  .brutal-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* Button reset for brutal styling */
+  .brutal-button {
+    background: var(--main);
+    border: 3px solid var(--border);
+    box-shadow: 6px 6px 0px var(--border);
+    font-weight: 700;
+    padding: 1rem 2rem;
+    transition: all 0.1s ease;
+  }
+
+  .brutal-button:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0px var(--border);
+  }
+
+  .brutal-button:active {
+    transform: translate(6px, 6px);
+    box-shadow: none;
+  }
+
+  /* Star and decorative elements */
+  .star-decoration {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .star-decoration:nth-child(2n) {
+    animation-delay: 1s;
+  }
+
+  .star-decoration:nth-child(3n) {
+    animation-delay: 2s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+  }
+
+  /* Icon floating animations */
+  .icon-float {
+    display: inline-block;
+    animation: iconFloat 4s ease-in-out infinite;
+  }
+
+  .icon-float:nth-child(2n) {
+    animation-delay: 0.5s;
+  }
+
+  .icon-float:nth-child(3n) {
+    animation-delay: 1.5s;
+  }
+
+  .icon-float:nth-child(4n) {
+    animation-delay: 2.5s;
+  }
+
+  @keyframes iconFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    25% { transform: translateY(-8px) rotate(2deg) scale(1.05); }
+    50% { transform: translateY(-12px) rotate(-1deg) scale(1.1); }
+    75% { transform: translateY(-6px) rotate(1deg) scale(1.05); }
+  }
+
+  /* Icon consistency */
+  .icon-standard {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .icon-large {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .icon-xl {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .icon-hero {
+    width: 4rem;
+    height: 4rem;
   }
 }

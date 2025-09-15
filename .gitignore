@@ -1,6 +1,5 @@
+.claude/
 context/
-sqlscripts/
-scripts/
 
 # Logs
 logs

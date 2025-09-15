@@ -8,19 +8,21 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Separator } from '@/components/ui/separator'
-import { 
-  Mail, 
-  Lock, 
+import { Badge } from '@/components/ui/badge'
+import {
+  Mail,
+  Lock,
   Heart,
   Loader2,
   ArrowRight,
   Eye,
-  EyeOff
+  EyeOff,
+  Sparkles,
+  Dog
 } from 'lucide-react'
 
 export default function LoginFinal() {
-  
+
   const { signIn, user, loading } = useAuth()
   const { hasSessionIssue } = useSessionMonitor()
   const [isLoading, setIsLoading] = useState(false)
@@ -37,13 +39,13 @@ export default function LoginFinal() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
-    
+
     if (!formData.email) {
       newErrors.email = 'Email es requerido'
     } else if (!formData.email.includes('@')) {
       newErrors.email = 'Email inválido'
     }
-    
+
     if (!formData.password) {
       newErrors.password = 'Contraseña es requerida'
     }
@@ -59,12 +61,12 @@ export default function LoginFinal() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!validateForm()) return
 
     setIsLoading(true)
     setErrors({})
-    
+
     try {
       // Clear any problematic session data before login
       if (hasSessionIssue) {
@@ -81,7 +83,7 @@ export default function LoginFinal() {
 
       // Login successful - let AuthRedirect handle navigation
       setIsLoading(false)
-      
+
     } catch (error: any) {
       setErrors({ submit: error?.message || 'Error al iniciar sesión' })
       setIsLoading(false)
@@ -97,14 +99,14 @@ export default function LoginFinal() {
     }
     return <AuthRedirect />
   }
-  
+
   // If still loading auth initialization, show loading state
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="space-y-2 text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="text-sm text-muted-foreground">Verificando sesión...</p>
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="space-y-4 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-border border-t-pet-blue mx-auto"></div>
+          <p className="text-sm text-foreground font-base">Verificando sesión...</p>
         </div>
       </div>
     )
@@ -112,23 +114,30 @@ export default function LoginFinal() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
-        <Card className="border-border">
-          <CardHeader className="text-center">
-            <div className="flex justify-center mb-6">
-              <Heart className="w-12 h-12 text-foreground" />
+      <div className="max-w-md w-full space-y-6">
+
+        {/* Login Card with Neobrutalism */}
+        <Card className="brutal-shadow hover:brutal-hover transition-all duration-200">
+          <CardHeader className="text-center space-y-4">
+            <div className="flex justify-center">
+              <div className="p-4 bg-chart-2 rounded-base brutal-border brutal-shadow-sm">
+                <Dog className="w-8 h-8 text-main-foreground" />
+              </div>
             </div>
-            <CardTitle className="text-2xl font-bold text-foreground">
-              Iniciar Sesión
-            </CardTitle>
-            <CardDescription className="text-muted-foreground">
-              Accede a tu cuenta de Tail Time
-            </CardDescription>
+            <div className="space-y-2">
+              <CardTitle className="text-3xl font-semibold text-foreground">
+                Bienvenido de vuelta
+              </CardTitle>
+              <CardDescription className="text-base text-foreground/80">
+                Accede a tu cuenta de <Badge variant="pet-blue" className="ml-1">TailTime</Badge>
+              </CardDescription>
+            </div>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div>
-                <Label htmlFor="email" className="flex items-center gap-2 text-foreground">
+
+          <CardContent className="space-y-6">
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="flex items-center gap-2 text-foreground font-base font-semibold">
                   <Mail className="w-4 h-4" />
                   Email
                 </Label>
@@ -137,22 +146,22 @@ export default function LoginFinal() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  className="mt-1 bg-background text-foreground border-border"
+                  className="brutal-hover"
                   placeholder="tu@email.com"
                   disabled={isLoading}
                   autoComplete="email"
                 />
                 {errors.email && (
-                  <p className="text-sm text-destructive mt-1">{errors.email}</p>
+                  <p className="text-sm text-destructive mt-1 font-base">{errors.email}</p>
                 )}
               </div>
 
-              <div>
-                <Label htmlFor="password" className="flex items-center gap-2 text-foreground">
+              <div className="space-y-2">
+                <Label htmlFor="password" className="flex items-center gap-2 text-foreground font-base font-semibold">
                   <Lock className="w-4 h-4" />
                   Contraseña
                 </Label>
-                <div className="relative mt-1">
+                <div className="relative">
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
@@ -160,84 +169,114 @@ export default function LoginFinal() {
                     onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                     placeholder="Tu contraseña"
                     disabled={isLoading}
-                    className="pr-10 bg-background text-foreground border-border"
+                    className="pr-12 brutal-hover"
                     autoComplete="current-password"
                   />
-                  <Button
+                  <button
                     type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-secondary-background rounded-sm transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
                     disabled={isLoading}
                     tabIndex={-1}
                   >
                     {showPassword ? (
-                      <EyeOff className="w-4 h-4 text-muted-foreground" />
+                      <EyeOff className="w-4 h-4 text-foreground/70" />
                     ) : (
-                      <Eye className="w-4 h-4 text-muted-foreground" />
+                      <Eye className="w-4 h-4 text-foreground/70" />
                     )}
-                  </Button>
+                  </button>
                 </div>
                 {errors.password && (
-                  <p className="text-sm text-destructive mt-1">{errors.password}</p>
+                  <p className="text-sm text-destructive mt-1 font-base">{errors.password}</p>
                 )}
               </div>
 
               <div className="flex justify-end">
-                <Link 
-                  to="/auth/reset-password" 
-                  className="text-sm text-foreground hover:underline"
+                <Link
+                  to="/auth/reset-password"
+                  className="text-sm text-foreground hover:underline font-base underline-offset-4"
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>
               </div>
 
               {errors.submit && (
-                <div className="p-3 rounded-md bg-destructive/10 border border-destructive/20">
-                  <p className="text-sm text-destructive">{errors.submit}</p>
+                <div className="p-4 rounded-base bg-destructive/20 border-2 border-destructive brutal-shadow-sm">
+                  <p className="text-sm text-destructive font-base">{errors.submit}</p>
                 </div>
               )}
 
               <Button
                 type="submit"
-                className="w-full hover:scale-105 hover:shadow-md transition-all duration-200"
+                className="w-full"
+                variant="pet-blue"
+                size="lg"
                 disabled={isLoading}
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
                     Iniciando sesión...
                   </>
                 ) : (
                   <>
+                    <Sparkles className="w-5 h-5 mr-2" />
                     Iniciar Sesión
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </>
                 )}
               </Button>
 
-              <Separator className="bg-border" />
-
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground">
-                  ¿No tienes cuenta?{' '}
-                  <Link to="/auth/register" className="text-foreground hover:underline font-medium">
-                    Crear cuenta gratis
-                  </Link>
-                </p>
+              {/* Separator line */}
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t-2 border-border"></div>
+                </div>
+                <div className="relative flex justify-center text-xs">
+                  <span className="bg-main px-2 text-foreground/70 font-base">¿No tienes cuenta?</span>
+                </div>
               </div>
 
-              <div className="p-3 rounded-md bg-muted/50 border border-border">
-                <p className="text-xs text-foreground font-medium mb-2">Demo credentials:</p>
-                <div className="space-y-1 text-xs text-muted-foreground">
-                  <p><strong className="text-foreground">Groomer:</strong> groomer@demo.com / demo123</p>
-                  <p><strong className="text-foreground">Cliente:</strong> customer@demo.com / demo123</p>
+              <div className="text-center">
+                <Link to="/auth/register">
+                  <Button variant="pet-green" className="w-full">
+                    <Heart className="w-4 h-4 mr-2" />
+                    Crear cuenta gratis
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Demo credentials with colorful design */}
+              <div className="p-4 rounded-base bg-pet-yellow/20 border-2 border-border brutal-shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <Badge variant="pet-purple">DEMO</Badge>
+                  <span className="text-sm text-foreground font-base font-semibold">Credenciales de prueba</span>
+                </div>
+                <div className="space-y-2 text-sm text-foreground/80 font-base">
+                  <div className="flex justify-between">
+                    <strong className="text-foreground">Groomer:</strong>
+                    <code className="text-xs bg-secondary-background px-2 py-1 rounded border border-border">
+                      groomer@demo.com / demo123
+                    </code>
+                  </div>
+                  <div className="flex justify-between">
+                    <strong className="text-foreground">Cliente:</strong>
+                    <code className="text-xs bg-secondary-background px-2 py-1 rounded border border-border">
+                      customer@demo.com / demo123
+                    </code>
+                  </div>
                 </div>
               </div>
             </form>
           </CardContent>
         </Card>
+
+        {/* Footer branding */}
+        <div className="text-center">
+          <Badge variant="neutral" className="text-xs">
+            Powered by Tail Time Platform ✨
+          </Badge>
+        </div>
       </div>
     </div>
   )

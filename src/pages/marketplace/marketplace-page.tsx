@@ -120,8 +120,10 @@ export default function MarketplacePage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <PawPrint className="w-8 h-8 animate-pulse text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Cargando marketplace...</p>
+          <div className="w-16 h-16 bg-chart-1 brutal-border brutal-shadow animate-pulse mx-auto mb-4 rounded-base flex items-center justify-center">
+            <PawPrint className="w-8 h-8 text-main-foreground" />
+          </div>
+          <p className="text-foreground/70">Cargando marketplace...</p>
         </div>
       </div>
     )
@@ -131,14 +133,16 @@ export default function MarketplacePage() {
     <div className="min-h-screen bg-background">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-primary/20 to-background">
+      <div className="bg-chart-1 brutal-border-thick border-t-0 border-x-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            <PawPrint className="w-16 h-16 text-primary mx-auto mb-6" />
-            <h1 className="text-4xl font-bold text-foreground mb-4">
+            <div className="w-20 h-20 bg-main brutal-border brutal-shadow-lg mx-auto mb-6 rounded-base flex items-center justify-center">
+              <PawPrint className="w-12 h-12 text-foreground" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-main-foreground mb-4">
               Encuentra la Veterinaria o Estética Perfecta
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-main-foreground/80 max-w-2xl mx-auto">
               Descubre profesionales de confianza para el cuidado de tu mascota
             </p>
           </div>
@@ -149,7 +153,7 @@ export default function MarketplacePage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar with Filters */}
           <div className="lg:col-span-1">
-            <Card>
+            <Card className="brutal-shadow hover:brutal-hover transition-all duration-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Filter className="w-5 h-5" />

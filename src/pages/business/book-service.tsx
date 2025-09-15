@@ -297,12 +297,12 @@ export default function BookService() {
                   {services.map((service, categoryIndex) => {
                     const isSelected = bookingState.selectedServiceIndex === service.index
                     return (
-                      <Card 
+                      <Card
                         key={service.index}
-                        className={`cursor-pointer transition-all hover:shadow-md ${
-                          isSelected 
-                            ? 'ring-2 ring-primary bg-primary/5' 
-                            : 'hover:border-primary/50'
+                        className={`cursor-pointer brutal-shadow hover:brutal-hover transition-all duration-200 ${
+                          isSelected
+                            ? 'bg-chart-1 text-main-foreground brutal-border'
+                            : 'bg-secondary-background hover:bg-chart-4/20 brutal-border'
                         }`}
                         onClick={() => handleServiceSelect(service.index)}
                       >
@@ -314,7 +314,7 @@ export default function BookService() {
                                   {service.name}
                                 </h3>
                                 {isSelected && (
-                                  <CheckCircle className="w-5 h-5 text-primary" />
+                                  <CheckCircle className="w-5 h-5 text-chart-4" />
                                 )}
                               </div>
                               <p className="text-muted-foreground text-sm mb-3">
@@ -349,12 +349,12 @@ export default function BookService() {
 
           {/* Continue button */}
           <div className="mt-8 flex justify-center">
-            <Button 
+            <Button
               type="button"
-              size="lg" 
+              size="lg"
               onClick={handleContinue}
               disabled={!bookingState.selectedService}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-chart-2 hover:bg-chart-2/90 text-main-foreground brutal-shadow hover:brutal-hover"
             >
               Continuar
               <ArrowRight className="w-4 h-4" />
@@ -363,28 +363,28 @@ export default function BookService() {
 
           {/* Selected service summary */}
           {bookingState.selectedService && (
-            <Card className="mt-8 bg-muted/30">
+            <Card className="mt-8 bg-chart-3 brutal-shadow brutal-border">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Star className="w-5 h-5 text-amber-500" />
+                <CardTitle className="flex items-center gap-2 text-main-foreground">
+                  <Star className="w-5 h-5 text-main-foreground" />
                   Servicio Seleccionado
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-semibold text-lg">
+                    <h3 className="font-semibold text-lg text-main-foreground">
                       {bookingState.selectedService.name}
                     </h3>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-main-foreground/80 text-sm">
                       {bookingState.selectedService.description}
                     </p>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-primary">
+                    <div className="text-2xl font-bold text-main-foreground">
                       ${bookingState.selectedService.price}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-main-foreground/80">
                       {bookingState.selectedService.duration} minutos
                     </div>
                   </div>

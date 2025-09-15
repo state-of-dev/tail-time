@@ -1,11 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node:*)",
-      "Bash(npx shadcn@latest add:*)",
-      "Bash(timeout:*)",
-      "Bash(cp:*)",
-      "Bash(rm:*)"
+      "Bash(mkdir:*)",
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "WebFetch(domain:www.neobrutalism.dev)",
+      "Bash(find:*)",
+      "WebFetch(domain:ui.shadcn.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(sed:*)"
     ],
     "deny": [],
     "ask": []

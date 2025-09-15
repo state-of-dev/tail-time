@@ -16,71 +16,103 @@ export default {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // Neobrutalism core colors
+        main: "var(--main)",
+        "main-foreground": "var(--main-foreground)",
+        "secondary-background": "var(--secondary-background)",
+        border: "var(--border)",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+
+        // Creative pet-themed colors (colorful mode)
+        "pet-pink": "var(--pet-pink)",
+        "pet-blue": "var(--pet-blue)",
+        "pet-green": "var(--pet-green)",
+        "pet-yellow": "var(--pet-yellow)",
+        "pet-purple": "var(--pet-purple)",
+        "pet-orange": "var(--pet-orange)",
+
+        // Legacy colors (compatibility)
+        input: "var(--border)",
+        ring: "var(--border)",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--main)",
+          foreground: "var(--main-foreground)",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "var(--secondary-background)",
+          foreground: "var(--foreground)",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "var(--main)",
+          foreground: "var(--main-foreground)",
+        },
+        destructive: {
+          DEFAULT: "#ef4444",
+          foreground: "#ffffff",
         },
         success: {
-          DEFAULT: "hsl(var(--success))",
-          foreground: "hsl(var(--success-foreground))",
+          DEFAULT: "#22c55e",
+          foreground: "#ffffff",
         },
         warning: {
-          DEFAULT: "hsl(var(--warning))",
-          foreground: "hsl(var(--warning-foreground))",
+          DEFAULT: "#f59e0b",
+          foreground: "#ffffff",
         },
+        // Mantener compatibilidad con colores existentes
         pet: {
-          primary: "hsl(var(--pet-primary))",
-          secondary: "hsl(var(--pet-secondary))",
-          accent: "hsl(var(--pet-accent))",
+          primary: "var(--pet-primary)",
+          secondary: "var(--pet-secondary)",
+          accent: "var(--pet-accent)",
+        },
+        muted: {
+          DEFAULT: "var(--secondary-background)",
+          foreground: "var(--foreground)",
+        },
+        accent: {
+          DEFAULT: "var(--pet-blue)",
+          foreground: "var(--main-foreground)",
+        },
+        popover: {
+          DEFAULT: "var(--main)",
+          foreground: "var(--main-foreground)",
         },
         sidebar: {
-          DEFAULT: "hsl(var(--sidebar))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+          DEFAULT: "var(--secondary-background)",
+          foreground: "var(--foreground)",
+          primary: "var(--main)",
+          "primary-foreground": "var(--main-foreground)",
+          accent: "var(--pet-blue)",
+          "accent-foreground": "var(--main-foreground)",
+          border: "var(--border)",
+          ring: "var(--border)",
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        base: "4px", // Neobrutalism standard
+        lg: "8px",
+        md: "6px",
+        sm: "2px",
+      },
+      boxShadow: {
+        shadow: "4px 4px 0px var(--border)",
+        "shadow-sm": "2px 2px 0px var(--border)",
+        "shadow-lg": "6px 6px 0px var(--border)",
+      },
+      translate: {
+        boxShadowX: "4px",
+        boxShadowY: "4px",
+        reverseBoxShadowX: "-4px",
+        reverseBoxShadowY: "-4px",
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         display: ['Poppins', 'system-ui', 'sans-serif'],
+        base: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Poppins', 'system-ui', 'sans-serif'],
+      },
+      fontWeight: {
+        base: "500",
       },
       keyframes: {
         "accordion-down": {
@@ -95,11 +127,16 @@ export default {
           from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "bounce-shadow": {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "50%": { transform: "translate(2px, 2px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
+        "bounce-shadow": "bounce-shadow 0.3s ease-in-out",
       },
     },
   },

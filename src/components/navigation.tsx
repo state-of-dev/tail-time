@@ -86,16 +86,16 @@ export function Navigation() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
+    <header className="sticky top-0 z-50 bg-chart-2 brutal-border-thick brutal-shadow border-b-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
               onClick={handleHomeClick}
-              className="flex items-center gap-2 text-xl font-bold text-primary hover:text-primary/80 transition-colors"
+              className="flex items-center gap-2 text-xl font-black text-main-foreground hover:text-main-foreground/80 transition-colors bg-main brutal-border brutal-shadow-sm px-4 py-2 rounded-base hover:brutal-hover"
             >
               <PawPrint className="w-6 h-6" />
-              TailTime
+              TAILTIME
             </button>
           </div>
           
@@ -104,9 +104,10 @@ export function Navigation() {
               // Logged in navigation - All users get access to core features
               <>
                 {/* Dashboard - Different for each role */}
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="pet-blue"
                   size="sm"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
                   onClick={() => {
                     if (profile?.role === 'groomer' && businessProfile) {
                       navigate(`/groomer/${businessProfile.slug}/dashboard`)
@@ -115,16 +116,17 @@ export function Navigation() {
                     }
                   }}
                 >
-                  Dashboard
+                  DASHBOARD
                 </Button>
                 
                 {/* Marketplace - Available for all users */}
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="pet-green"
                   size="sm"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
                   onClick={() => navigate('/marketplace')}
                 >
-                  Marketplace
+                  MARKETPLACE
                 </Button>
                 
                 {/* Groomer navigation simplified - only Dashboard and Marketplace */}
@@ -135,7 +137,7 @@ export function Navigation() {
                 {/* Notification Center - User Dropdown */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="relative flex items-center gap-2">
+                    <Button variant="ghost" size="sm" className="relative flex items-center gap-2 bg-chart-3 text-main-foreground brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover">
                       <UserCircle className={`w-5 h-5 ${unreadCount > 0 ? 'text-primary' : 'text-muted-foreground'}`} />
                       {!loading && (
                         <span className="hidden md:inline">
@@ -254,44 +256,50 @@ export function Navigation() {
                     </div>
                   </DropdownMenuContent>
                 </DropdownMenu>
+
               </>
             ) : (
               // Public navigation
               <>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="pet-yellow"
                   size="sm"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
                   onClick={() => navigate('/')}
                 >
-                  Inicio
+                  INICIO
                 </Button>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="pet-green"
                   size="sm"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
                   onClick={() => navigate('/marketplace')}
                 >
-                  Marketplace
+                  MARKETPLACE
                 </Button>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="pet-purple"
                   size="sm"
+                  className="brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
                   onClick={() => navigate('/demo')}
                 >
-                  Demo
+                  DEMO
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   size="sm"
+                  className="bg-main text-foreground brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover"
                   onClick={() => navigate('/auth/login')}
                 >
-                  Iniciar Sesión
+                  INICIAR SESIÓN
                 </Button>
-                <Button 
-                  variant="pet" 
+                <Button
+                  variant="pet-blue"
                   size="sm"
+                  className="brutal-border brutal-shadow-lg rounded-base font-black hover:brutal-hover"
                   onClick={() => navigate('/auth/register')}
                 >
-                  Crear mi página
+                  CREAR MI PÁGINA
                 </Button>
               </>
             )}

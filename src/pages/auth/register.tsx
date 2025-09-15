@@ -97,16 +97,18 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
-        <Card>
+        <Card className="brutal-shadow">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-6">
-              <Heart className="w-12 h-12 text-primary" />
+              <div className="p-4 bg-chart-2 rounded-base brutal-border brutal-shadow-sm">
+                <Heart className="w-8 h-8 text-main-foreground" />
+              </div>
             </div>
-            <CardTitle className="text-2xl font-bold text-foreground">
+            <CardTitle className="text-2xl font-semibold text-foreground">
               Crear Cuenta
             </CardTitle>
             <CardDescription>
-              Únete a Tail Time y comienza tu experiencia personalizada
+              Únete a TailTime y comienza tu experiencia personalizada
             </CardDescription>
           </CardHeader>
           <CardContent>
