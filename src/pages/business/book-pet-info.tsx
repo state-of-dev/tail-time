@@ -166,88 +166,111 @@ export default function BookPetInfo() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <Heart className="w-8 h-8 animate-pulse text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Cargando formulario...</p>
+          <Heart className="w-8 h-8 animate-pulse text-main-foreground mx-auto mb-4" />
+          <p className="text-main-foreground font-black uppercase">CARGANDO FORMULARIO...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-chart-4">
       <Navigation />
-      {/* Header */}
-      <div className="bg-card border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center gap-4 mb-6">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate(`/business/${businessSlug}/book/datetime`)}
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Cambiar Fecha
-            </Button>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">
-                Información de tu Mascota
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Paso 3 de 4: Cuéntanos sobre tu mascota
-              </p>
+
+      {/* Hero Section - Neobrutalism Style */}
+      <section className="py-16 bg-chart-1 relative overflow-hidden border-t-4 border-black">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star1 className="absolute top-10 left-10 star-decoration" size={StarSizes.lg} />
+          <Star6 className="absolute top-20 right-20 star-decoration" size={StarSizes.md} />
+          <Star7 className="absolute bottom-16 left-32 star-decoration" size={StarSizes.xl} />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          {/* Progress indicator - Neobrutalism Style */}
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+              <Button
+                className="bg-chart-8 hover:bg-chart-6 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black py-4 px-6 uppercase"
+                onClick={() => navigate(`/business/${businessSlug}/book/datetime`)}
+              >
+                <ArrowLeft className="icon-large mr-2 icon-float" />
+                <Star8 size={StarSizes.sm} className="star-decoration mr-2" />
+                CAMBIAR FECHA
+              </Button>
+              <div className="bg-chart-7 text-main-foreground brutal-border brutal-shadow font-black px-6 py-3 text-lg uppercase rounded-base">
+                <Trophy className="icon-standard mr-2 icon-float inline-block" />
+                PASO 3 DE 4
+              </div>
+            </div>
+            <div className="bg-chart-2 brutal-border-thick brutal-shadow-lg rounded-base p-4">
+              <Progress value={75} className="w-full h-6 bg-chart-3" />
             </div>
           </div>
 
-          {/* Progress Bar */}
-          <div className="space-y-2">
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Servicio</span>
-              <span>Fecha y Hora</span>
-              <span className="text-primary font-medium">Información</span>
-              <span>Confirmación</span>
+          {/* Header - Neobrutalism Style */}
+          <div className="text-center mb-12">
+            <div className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-4 text-xl font-black brutal-border-thick rounded-base transform -rotate-1 mb-8 inline-block">
+              <PawPrint className="icon-large mr-2 icon-float" />
+              <Star9 size={StarSizes.md} className="star-decoration" />
+              INFORMACIÓN DE TU MASCOTA
+              <Star10 size={StarSizes.md} className="star-decoration" />
+              <Heart className="icon-large ml-2 icon-float" />
             </div>
-            <Progress value={75} className="h-2" />
+            <h1 className="text-4xl md:text-6xl font-black text-main-foreground uppercase mb-6">
+              <Star13 size={StarSizes.lg} className="star-decoration inline-block mr-4" />
+              CUÉNTANOS SOBRE TU MASCOTA
+              <Star19 size={StarSizes.lg} className="star-decoration inline-block ml-4" />
+            </h1>
+            <p className="text-2xl font-bold text-main-foreground/80 uppercase">
+              <Sparkles className="icon-large inline-block mr-2 icon-float" />
+              QUEREMOS BRINDAR EL MEJOR SERVICIO
+              <Crown className="icon-large inline-block ml-2 icon-float" />
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Form */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Pet Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <PawPrint className="w-5 h-5" />
-                  Información de la Mascota
-                </CardTitle>
-                <CardDescription>
-                  Esta información nos ayuda a brindar el mejor servicio a tu mascota
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="petName">
-                      Nombre de la mascota *
-                    </Label>
-                    <Input
-                      id="petName"
-                      value={petInfo.petName}
-                      onChange={(e) => handleInputChange('petName', e.target.value)}
-                      placeholder="Ej: Firulais"
-                      className={errors.petName ? 'border-destructive' : ''}
-                    />
+      {/* Content - Neobrutalism Style */}
+      <main className="py-16 bg-chart-3 border-t-4 border-black">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Form - Neobrutalism Style */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Pet Information */}
+              <Card className="bg-chart-2 brutal-border-thick brutal-shadow-xl">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                    <PawPrint className="icon-large icon-float" />
+                    <Star20 size={StarSizes.sm} className="star-decoration" />
+                    INFORMACIÓN DE LA MASCOTA
+                  </CardTitle>
+                  <CardDescription className="text-main-foreground/80 font-bold text-lg uppercase">
+                    <Star21 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                    ESTA INFORMACIÓN NOS AYUDA A BRINDAR EL MEJOR SERVICIO
+                    <Star22 size={StarSizes.sm} className="star-decoration inline-block ml-2" />
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="petName" className="text-main-foreground font-black uppercase">
+                        NOMBRE DE LA MASCOTA *
+                      </Label>
+                      <Input
+                        id="petName"
+                        value={petInfo.petName}
+                        onChange={(e) => handleInputChange('petName', e.target.value)}
+                        placeholder="Ej: Firulais"
+                        className={errors.petName ? 'border-destructive' : ''}
+                      />
                     {errors.petName && (
                       <p className="text-sm text-destructive">{errors.petName}</p>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="petBreed">
-                      Raza *
+                    <Label htmlFor="petBreed" className="text-main-foreground font-black uppercase">
+                      RAZA *
                     </Label>
                     <Input
                       id="petBreed"
@@ -262,8 +285,8 @@ export default function BookPetInfo() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="petAge">
-                      Edad (opcional)
+                    <Label htmlFor="petAge" className="text-main-foreground font-black uppercase">
+                      EDAD (OPCIONAL)
                     </Label>
                     <Input
                       id="petAge"
@@ -274,8 +297,8 @@ export default function BookPetInfo() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="petWeight">
-                      Peso aproximado (opcional)
+                    <Label htmlFor="petWeight" className="text-main-foreground font-black uppercase">
+                      PESO APROXIMADO (OPCIONAL)
                     </Label>
                     <Input
                       id="petWeight"
@@ -287,8 +310,8 @@ export default function BookPetInfo() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="petSpecialNotes">
-                    Notas especiales sobre la mascota
+                  <Label htmlFor="petSpecialNotes" className="text-main-foreground font-black uppercase">
+                    NOTAS ESPECIALES SOBRE LA MASCOTA
                   </Label>
                   <Textarea
                     id="petSpecialNotes"
@@ -301,21 +324,24 @@ export default function BookPetInfo() {
               </CardContent>
             </Card>
 
-            {/* Owner Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <User className="w-5 h-5" />
-                  Información de Contacto
-                </CardTitle>
-                <CardDescription>
-                  Para confirmarte la cita y enviarte recordatorios
-                </CardDescription>
-              </CardHeader>
+              {/* Owner Information - Neobrutalism Style */}
+              <Card className="bg-chart-3 brutal-border-thick brutal-shadow-xl">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                    <User className="icon-large icon-float" />
+                    <Star24 size={StarSizes.sm} className="star-decoration" />
+                    INFORMACIÓN DE CONTACTO
+                  </CardTitle>
+                  <CardDescription className="text-main-foreground/80 font-bold text-lg uppercase">
+                    <Star25 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                    PARA CONFIRMARTE LA CITA Y ENVIARTE RECORDATORIOS
+                    <Star26 size={StarSizes.sm} className="star-decoration inline-block ml-2" />
+                  </CardDescription>
+                </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="ownerName">
-                    Tu nombre *
+                  <Label htmlFor="ownerName" className="text-main-foreground font-black uppercase">
+                    TU NOMBRE *
                   </Label>
                   <Input
                     id="ownerName"
@@ -331,11 +357,11 @@ export default function BookPetInfo() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="ownerEmail">
-                      Email *
+                    <Label htmlFor="ownerEmail" className="text-main-foreground font-black uppercase">
+                      EMAIL *
                     </Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Mail className="absolute left-3 top-3 h-4 w-4 text-main-foreground/60" />
                       <Input
                         id="ownerEmail"
                         type="email"
@@ -351,11 +377,11 @@ export default function BookPetInfo() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="ownerPhone">
-                      Teléfono *
+                    <Label htmlFor="ownerPhone" className="text-main-foreground font-black uppercase">
+                      TELÉFONO *
                     </Label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Phone className="absolute left-3 top-3 h-4 w-4 text-main-foreground/60" />
                       <Input
                         id="ownerPhone"
                         type="tel"
@@ -372,11 +398,11 @@ export default function BookPetInfo() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="additionalNotes">
-                    Comentarios adicionales
+                  <Label htmlFor="additionalNotes" className="text-main-foreground font-black uppercase">
+                    COMENTARIOS ADICIONALES
                   </Label>
                   <div className="relative">
-                    <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                    <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-main-foreground/60" />
                     <Textarea
                       id="additionalNotes"
                       value={petInfo.additionalNotes}
@@ -393,39 +419,45 @@ export default function BookPetInfo() {
           {/* Sidebar - Booking Summary */}
           <div className="space-y-6">
             {/* Booking Summary */}
-            <Card className="sticky top-6">
+            <Card className="sticky top-6 bg-chart-8 brutal-border-thick brutal-shadow-xl">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Scissors className="w-5 h-5" />
-                  Resumen de Cita
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <Scissors className="icon-large icon-float" />
+                  <Star27 size={StarSizes.sm} className="star-decoration" />
+                  RESUMEN DE CITA
+                  <Trophy className="icon-large icon-float" />
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
                 {/* Service */}
-                <div className="pb-4 border-b border-border">
-                  <Label className="text-xs text-muted-foreground">SERVICIO</Label>
-                  <h4 className="font-semibold text-foreground">
-                    {bookingState.service.name}
+                <div className="pb-4 border-b-4 border-chart-4">
+                  <div className="bg-chart-6 text-main-foreground brutal-border px-3 py-1 text-xs font-black uppercase rounded-base mb-2 inline-block">
+                    SERVICIO
+                  </div>
+                  <h4 className="font-black text-lg text-main-foreground uppercase">
+                    {bookingState.service.name.toUpperCase()}
                   </h4>
-                  <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
-                    <span>{bookingState.service.duration} min</span>
-                    <span className="text-primary font-semibold">${bookingState.service.price}</span>
+                  <div className="flex items-center gap-4 mt-2 text-sm">
+                    <span className="text-main-foreground/80 font-bold uppercase">{bookingState.service.duration} MIN</span>
+                    <span className="text-main-foreground font-black text-lg">${bookingState.service.price}</span>
                   </div>
                 </div>
 
                 {/* Date & Time */}
-                <div className="pb-4 border-b border-border">
-                  <Label className="text-xs text-muted-foreground">FECHA Y HORA</Label>
-                  <div className="space-y-1">
-                    <div className="font-semibold text-foreground">
-                      {new Date(bookingState.selectedDate).toLocaleDateString('es-ES', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
+                <div className="pb-4 border-b-4 border-chart-4">
+                  <div className="bg-chart-6 text-main-foreground brutal-border px-3 py-1 text-xs font-black uppercase rounded-base mb-2 inline-block">
+                    FECHA Y HORA
+                  </div>
+                  <div className="space-y-2">
+                    <div className="font-black text-lg text-main-foreground uppercase">
+                      {new Date(bookingState.selectedDate).toLocaleDateString('es-ES', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      }).toUpperCase()}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-main-foreground/80 font-bold text-lg uppercase">
                       {formatTime(bookingState.selectedTime)}
                     </div>
                   </div>
@@ -433,14 +465,16 @@ export default function BookPetInfo() {
 
                 {/* Pet Info Preview */}
                 {petInfo.petName && (
-                  <div className="pb-4 border-b border-border">
-                    <Label className="text-xs text-muted-foreground">MASCOTA</Label>
-                    <div className="font-semibold text-foreground">
-                      {petInfo.petName}
+                  <div className="pb-4 border-b-4 border-chart-4">
+                    <div className="bg-chart-6 text-main-foreground brutal-border px-3 py-1 text-xs font-black uppercase rounded-base mb-2 inline-block">
+                      MASCOTA
+                    </div>
+                    <div className="font-black text-lg text-main-foreground uppercase">
+                      {petInfo.petName.toUpperCase()}
                     </div>
                     {petInfo.petBreed && (
-                      <div className="text-sm text-muted-foreground">
-                        {petInfo.petBreed}
+                      <div className="text-sm text-main-foreground/80 font-bold uppercase">
+                        {petInfo.petBreed.toUpperCase()}
                       </div>
                     )}
                   </div>
@@ -448,36 +482,42 @@ export default function BookPetInfo() {
 
                 {/* Continue Button */}
                 <div className="pt-4">
-                  <Button 
-                    className="w-full"
+                  <Button
+                    className="w-full bg-chart-2 hover:bg-chart-2/90 text-main-foreground brutal-border-thick brutal-shadow-xl hover:brutal-hover font-black py-4 text-lg uppercase"
                     onClick={handleContinue}
                   >
-                    Confirmar Cita
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <Star28 size={StarSizes.sm} className="star-decoration mr-2" />
+                    CONFIRMAR CITA
+                    <ArrowRight className="icon-large ml-2 icon-float" />
                   </Button>
                 </div>
               </CardContent>
             </Card>
+            </div>
 
-            {/* Info Card */}
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-start gap-3">
-                  <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div className="space-y-2">
-                    <h4 className="font-medium text-foreground">
-                      Privacidad y Seguridad
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Tu información personal se mantiene privada y segura. Solo la usamos para brindarte el mejor servicio a ti y tu mascota.
-                    </p>
+            {/* Sidebar - Summary */}
+            <div className="space-y-6">
+              {/* Info Card */}
+              <Card className="bg-chart-4 brutal-border-thick brutal-shadow-xl">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <Info className="w-6 h-6 text-main-foreground flex-shrink-0 mt-1 icon-float" />
+                    <div className="space-y-3">
+                      <h4 className="font-black text-lg text-main-foreground uppercase">
+                        <Star39 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                        PRIVACIDAD Y SEGURIDAD
+                      </h4>
+                      <p className="text-sm text-main-foreground/80 font-bold uppercase">
+                        TU INFORMACIÓN PERSONAL SE MANTIENE PRIVADA Y SEGURA. SOLO LA USAMOS PARA BRINDARTE EL MEJOR SERVICIO.
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }

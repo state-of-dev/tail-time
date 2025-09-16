@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/contexts/auth-context-simple'
 import { useAppointmentsRealtime } from '@/hooks/use-appointments-realtime'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { Navigation } from '@/components/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -90,10 +91,12 @@ export default function DashboardNeobrutalism() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-border border-t-pet-blue mx-auto"></div>
-          <p className="text-foreground font-base">Cargando tu dashboard...</p>
+      <div className="min-h-screen bg-chart-3 flex items-center justify-center">
+        <div className="text-center space-y-6">
+          <div className="w-16 h-16 bg-chart-2 brutal-border brutal-shadow animate-pulse mx-auto mb-4 rounded-base flex items-center justify-center">
+            <Heart className="icon-large text-main-foreground icon-float" />
+          </div>
+          <p className="text-main-foreground font-black text-xl uppercase">CARGANDO TU DASHBOARD...</p>
         </div>
       </div>
     )
@@ -101,6 +104,7 @@ export default function DashboardNeobrutalism() {
 
   return (
     <div className="min-h-screen bg-chart-3">
+      <Navigation />
       {/* Header with Neobrutalism Style */}
       <header className="bg-chart-1 brutal-border-thick border-t-0 border-x-0 relative overflow-hidden border-b-4 border-black">
         {/* Floating Stars Background */}
@@ -296,36 +300,36 @@ export default function DashboardNeobrutalism() {
                     {todayAppointments.map((apt) => (
                       <div
                         key={apt.id}
-                        className="p-4 rounded-base border-2 border-border bg-secondary-background hover:bg-pet-yellow/20 transition-all duration-200 brutal-hover"
+                        className="p-6 rounded-base bg-chart-6 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200"
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-4">
-                            <div className="p-2 bg-pet-blue rounded-base border-2 border-border">
-                              <Scissors className="w-4 h-4 text-main-foreground" />
+                            <div className="p-3 bg-chart-8 brutal-border rounded-base">
+                              <Scissors className="icon-standard text-main-foreground icon-float" />
                             </div>
                             <div>
-                              <p className="font-heading font-semibold text-foreground">
-                                {apt.appointment_time} - {apt.service_name}
+                              <p className="font-black text-main-foreground uppercase text-lg">
+                                {apt.appointment_time} - {apt.service_name.toUpperCase()}
                               </p>
-                              <p className="text-sm text-foreground/70 font-base">
-                                {apt.customer_name} con {apt.pet_name}
+                              <p className="text-sm text-main-foreground/80 font-bold uppercase">
+                                {apt.customer_name.toUpperCase()} CON {apt.pet_name.toUpperCase()}
                               </p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-3">
                             <Badge
-                              variant={
-                                apt.status === 'confirmed' ? 'pet-green' :
-                                apt.status === 'pending' ? 'pet-yellow' :
-                                apt.status === 'completed' ? 'pet-blue' : 'destructive'
-                              }
+                              className={`${
+                                apt.status === 'confirmed' ? 'bg-chart-2' :
+                                apt.status === 'pending' ? 'bg-chart-7' :
+                                apt.status === 'completed' ? 'bg-chart-1' : 'bg-chart-8'
+                              } text-main-foreground brutal-border font-black uppercase`}
                             >
-                              {apt.status === 'pending' && 'Pendiente'}
-                              {apt.status === 'confirmed' && 'Confirmada'}
-                              {apt.status === 'completed' && 'Completada'}
-                              {apt.status === 'cancelled' && 'Cancelada'}
+                              {apt.status === 'pending' && 'PENDIENTE'}
+                              {apt.status === 'confirmed' && 'CONFIRMADA'}
+                              {apt.status === 'completed' && 'COMPLETADA'}
+                              {apt.status === 'cancelled' && 'CANCELADA'}
                             </Badge>
-                            <p className="font-base font-semibold text-foreground">
+                            <p className="font-black text-main-foreground text-xl">
                               ${apt.total_amount}
                             </p>
                           </div>
@@ -341,62 +345,64 @@ export default function DashboardNeobrutalism() {
           {/* Right Column */}
           <div className="space-y-6">
             {/* Quick Actions */}
-            <Card className="brutal-shadow bg-pet-yellow">
+            <Card className="brutal-shadow-xl bg-chart-5 brutal-border-thick">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-main-foreground font-heading">
-                  <Sparkles className="w-5 h-5" />
-                  Acciones Rápidas
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <Sparkles className="icon-large icon-float" />
+                  <Star27 size={StarSizes.sm} className="star-decoration" />
+                  ACCIONES RÁPIDAS
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <Button variant="default" className="w-full justify-start">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Nueva Cita Manual
+              <CardContent className="space-y-4">
+                <Button className="w-full justify-start bg-chart-1 text-main-foreground brutal-border font-black uppercase hover:brutal-hover">
+                  <Plus className="icon-standard mr-2 icon-float" />
+                  NUEVA CITA MANUAL
                 </Button>
-                <Button variant="neutral" className="w-full justify-start">
-                  <BarChart3 className="w-4 h-4 mr-2" />
-                  Ver Reportes
+                <Button className="w-full justify-start bg-chart-6 text-main-foreground brutal-border font-black uppercase hover:brutal-hover">
+                  <BarChart3 className="icon-standard mr-2 icon-float" />
+                  VER REPORTES
                 </Button>
-                <Button variant="neutral" className="w-full justify-start">
-                  <Bell className="w-4 h-4 mr-2" />
-                  Notificar Clientes
+                <Button className="w-full justify-start bg-chart-7 text-main-foreground brutal-border font-black uppercase hover:brutal-hover">
+                  <Bell className="icon-standard mr-2 icon-float" />
+                  NOTIFICAR CLIENTES
                 </Button>
-                <Button variant="neutral" className="w-full justify-start">
-                  <PawPrint className="w-4 h-4 mr-2" />
-                  Gestionar Servicios
+                <Button className="w-full justify-start bg-chart-8 text-main-foreground brutal-border font-black uppercase hover:brutal-hover">
+                  <PawPrint className="icon-standard mr-2 icon-float" />
+                  GESTIONAR SERVICIOS
                 </Button>
               </CardContent>
             </Card>
 
             {/* Upcoming Appointments */}
-            <Card className="brutal-shadow">
+            <Card className="brutal-shadow-xl bg-chart-3 brutal-border-thick">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-foreground font-heading">
-                  <TrendingUp className="w-5 h-5" />
-                  Próximas Citas
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <TrendingUp className="icon-large icon-float" />
+                  <Star26 size={StarSizes.sm} className="star-decoration" />
+                  PRÓXIMAS CITAS
                 </CardTitle>
-                <CardDescription className="font-base">
-                  Los próximos 5 días
+                <CardDescription className="text-main-foreground/80 font-bold uppercase">
+                  LOS PRÓXIMOS 5 DÍAS
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {upcomingAppointments.length === 0 ? (
-                  <p className="text-center text-foreground/70 font-base py-4">
-                    No hay citas próximas
+                  <p className="text-center text-main-foreground/80 font-black py-4 uppercase">
+                    NO HAY CITAS PRÓXIMAS
                   </p>
                 ) : (
                   <div className="space-y-3">
                     {upcomingAppointments.map((apt) => (
-                      <div key={apt.id} className="flex items-center justify-between p-3 rounded-base border border-border bg-secondary-background">
+                      <div key={apt.id} className="flex items-center justify-between p-4 rounded-base bg-chart-6 brutal-border">
                         <div>
-                          <p className="text-sm font-heading font-semibold text-foreground">
-                            {new Date(apt.appointment_date).toLocaleDateString('es')}
+                          <p className="text-sm font-black text-main-foreground uppercase">
+                            {new Date(apt.appointment_date).toLocaleDateString('es').toUpperCase()}
                           </p>
-                          <p className="text-xs text-foreground/70 font-base">
-                            {apt.customer_name} - {apt.pet_name}
+                          <p className="text-xs text-main-foreground/80 font-bold uppercase">
+                            {apt.customer_name.toUpperCase()} - {apt.pet_name.toUpperCase()}
                           </p>
                         </div>
-                        <Badge variant="pet-blue" className="text-xs">
+                        <Badge className="bg-chart-8 text-main-foreground brutal-border font-black">
                           ${apt.total_amount}
                         </Badge>
                       </div>
@@ -407,31 +413,32 @@ export default function DashboardNeobrutalism() {
             </Card>
 
             {/* Business Status */}
-            <Card className="brutal-shadow bg-pet-pink">
+            <Card className="brutal-shadow-xl bg-chart-7 brutal-border-thick">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-main-foreground font-heading">
-                  <Star className="w-5 h-5" />
-                  Estado del Negocio
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <Star className="icon-large icon-float" />
+                  <Star25 size={StarSizes.sm} className="star-decoration" />
+                  ESTADO DEL NEGOCIO
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="font-base text-main-foreground/80">Plan:</span>
-                  <Badge variant="default">
-                    {businessProfile?.subscription_status || 'Prueba'}
+              <CardContent className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="font-black text-main-foreground uppercase">PLAN:</span>
+                  <Badge className="bg-chart-1 text-main-foreground brutal-border font-black uppercase">
+                    {(businessProfile?.subscription_status || 'PRUEBA').toUpperCase()}
                   </Badge>
                 </div>
-                <div className="flex justify-between">
-                  <span className="font-base text-main-foreground/80">Perfil:</span>
-                  <Badge variant={businessProfile?.setup_completed ? 'pet-green' : 'warning'}>
-                    {businessProfile?.setup_completed ? 'Completo' : 'Incompleto'}
+                <div className="flex justify-between items-center">
+                  <span className="font-black text-main-foreground uppercase">PERFIL:</span>
+                  <Badge className={`${businessProfile?.setup_completed ? 'bg-chart-2' : 'bg-chart-8'} text-main-foreground brutal-border font-black uppercase`}>
+                    {businessProfile?.setup_completed ? 'COMPLETO' : 'INCOMPLETO'}
                   </Badge>
                 </div>
-                <div className="flex justify-between">
-                  <span className="font-base text-main-foreground/80">Rating:</span>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-current text-main-foreground" />
-                    <span className="font-base text-main-foreground">4.9</span>
+                <div className="flex justify-between items-center">
+                  <span className="font-black text-main-foreground uppercase">RATING:</span>
+                  <div className="flex items-center gap-2">
+                    <Star className="w-5 h-5 fill-current text-main-foreground icon-float" />
+                    <span className="font-black text-main-foreground text-lg">4.9</span>
                   </div>
                 </div>
               </CardContent>

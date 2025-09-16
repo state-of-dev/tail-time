@@ -114,16 +114,16 @@ export function NotificationBell() {
         }`} />
       </Button>
 
-      {/* Notifications Dropdown */}
+      {/* Notifications Dropdown - Neobrutalism Style */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-80 bg-white border border-border rounded-lg shadow-lg z-50 max-h-96 overflow-hidden">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-border">
+        <div className="absolute right-0 top-full mt-2 w-80 bg-chart-2 brutal-border-thick brutal-shadow-xl rounded-base z-50 max-h-96 overflow-hidden">
+          {/* Header - Neobrutalism Style */}
+          <div className="flex items-center justify-between p-4 border-b-4 border-chart-4">
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-foreground">Notificaciones</h3>
+              <h3 className="font-black text-main-foreground uppercase">NOTIFICACIONES</h3>
               {unreadCount > 0 && (
-                <Badge variant="secondary" className="text-xs">
-                  {unreadCount} nuevas
+                <Badge className="bg-chart-8 text-main-foreground brutal-border font-black text-xs uppercase">
+                  {unreadCount} NUEVAS
                 </Badge>
               )}
             </div>
@@ -131,34 +131,31 @@ export function NotificationBell() {
               {notifications.length > 0 && (
                 <>
                   <Button
-                    variant="ghost"
                     size="sm"
                     onClick={() => {
                       setIsOpen(false)
                     }}
-                    className="text-xs h-8 px-2"
+                    className="bg-chart-1 text-main-foreground brutal-border font-black text-xs h-8 px-2 uppercase hover:brutal-hover"
                   >
                     <Check className="w-3 h-3 mr-1" />
-                    Marcar todas
+                    MARCAR TODAS
                   </Button>
                   <Button
-                    variant="ghost"
                     size="sm"
                     onClick={() => {
                       setIsOpen(false)
                     }}
-                    className="text-xs h-8 px-2 text-red-500 hover:text-red-700"
+                    className="bg-chart-2 text-main-foreground brutal-border font-black text-xs h-8 px-2 uppercase hover:brutal-hover"
                   >
                     <X className="w-3 h-3 mr-1" />
-                    Limpiar
+                    LIMPIAR
                   </Button>
                 </>
               )}
               <Button
-                variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(false)}
-                className="h-8 w-8 p-0"
+                className="bg-chart-8 text-main-foreground brutal-border font-black h-8 w-8 p-0 hover:brutal-hover"
               >
                 <X className="w-4 h-4" />
               </Button>
@@ -168,20 +165,20 @@ export function NotificationBell() {
           {/* Notifications List */}
           <div className="max-h-80 overflow-y-auto">
             {notifications.length === 0 ? (
-              <div className="p-8 text-center text-muted-foreground">
-                <Bell className="w-8 h-8 mx-auto mb-3 opacity-50" />
-                <p className="text-sm">No hay notificaciones</p>
-                <p className="text-xs mt-1">
-                  Las notificaciones aparecerán aquí automáticamente
+              <div className="p-8 text-center">
+                <Bell className="w-8 h-8 mx-auto mb-3 text-main-foreground/50" />
+                <p className="text-sm font-black text-main-foreground uppercase">NO HAY NOTIFICACIONES</p>
+                <p className="text-xs mt-1 font-bold text-main-foreground/80 uppercase">
+                  LAS NOTIFICACIONES APARECERÁN AQUÍ AUTOMÁTICAMENTE
                 </p>
               </div>
             ) : (
               <div className="divide-y divide-border">
                 {notifications.map((notification) => (
-                  <div 
+                  <div
                     key={notification.id}
-                    className={`p-4 hover:bg-muted/50 transition-colors cursor-pointer ${
-                      !notification.read ? 'bg-blue-50' : ''
+                    className={`p-4 hover:bg-chart-1/20 transition-colors cursor-pointer ${
+                      !notification.read ? 'bg-chart-8/20' : ''
                     }`}
                     onClick={() => markAsRead(notification.id)}
                   >
@@ -191,25 +188,25 @@ export function NotificationBell() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between">
-                          <h4 className="text-sm font-medium text-foreground line-clamp-1">
-                            {notification.title}
+                          <h4 className="text-sm font-black text-main-foreground line-clamp-1 uppercase">
+                            {notification.title?.toUpperCase()}
                           </h4>
                           <div className="flex items-center gap-2 ml-2">
-                            <span className="text-xs text-muted-foreground">
+                            <span className="text-xs text-main-foreground/80 font-bold">
                               {formatTime(notification.created_at)}
                             </span>
                             {!notification.read && (
-                              <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                              <div className="w-2 h-2 bg-chart-8 rounded-full" />
                             )}
                           </div>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-                          {notification.message}
+                        <p className="text-sm text-main-foreground/80 font-bold mt-1 line-clamp-2 uppercase">
+                          {notification.message?.toUpperCase()}
                         </p>
                         
                         {/* Additional data for appointment notifications */}
                         {notification.data?.appointment_date && (
-                          <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
+                          <div className="flex items-center gap-4 mt-2 text-xs text-main-foreground/80 font-bold">
                             <span className="flex items-center gap-1">
                               <Calendar className="w-3 h-3" />
                               {new Date(notification.data.appointment_date).toLocaleDateString('es-MX')}
@@ -230,14 +227,14 @@ export function NotificationBell() {
             )}
           </div>
 
-          {/* Footer */}
-          <div className="p-3 border-t border-border bg-muted/30">
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
+          {/* Footer - Neobrutalism Style */}
+          <div className="p-3 border-t-4 border-chart-4 bg-chart-3">
+            <div className="flex items-center justify-between text-xs text-main-foreground font-bold uppercase">
               <span>
-                {isConnected ? '🟢 Conectado' : '🔴 Desconectado'} - Tiempo real
+                {isConnected ? '🟢 CONECTADO' : '🔴 DESCONECTADO'} - TIEMPO REAL
               </span>
               <span>
-                {notifications.length} total
+                {notifications.length} TOTAL
               </span>
             </div>
           </div>

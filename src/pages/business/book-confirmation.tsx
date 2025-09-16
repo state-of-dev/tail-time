@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { Label } from '@/components/ui/label'
-import { 
+import {
   ArrowLeft,
   CheckCircle,
   Calendar,
@@ -22,8 +22,17 @@ import {
   Scissors,
   Share2,
   Download,
-  MessageSquare
+  MessageSquare,
+  Star,
+  Trophy,
+  Crown,
+  Sparkles,
+  Tag
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 import { Navigation } from '@/components/navigation'
 
 interface Service {
@@ -305,8 +314,8 @@ export default function BookConfirmation() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <Heart className="w-8 h-8 animate-pulse text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Preparando confirmación...</p>
+          <Heart className="w-8 h-8 animate-pulse text-main-foreground mx-auto mb-4" />
+          <p className="text-main-foreground font-black uppercase">PREPARANDO CONFIRMACIÓN...</p>
         </div>
       </div>
     )
@@ -315,14 +324,14 @@ export default function BookConfirmation() {
   if (error && !business) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Card className="max-w-md">
+        <Card className="max-w-md bg-chart-8 brutal-border-thick brutal-shadow-xl">
           <CardHeader>
-            <CardTitle>Error</CardTitle>
-            <CardDescription>{error}</CardDescription>
+            <CardTitle className="text-main-foreground font-black uppercase">ERROR</CardTitle>
+            <CardDescription className="text-main-foreground/80 font-bold uppercase">{error?.toUpperCase()}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={() => navigate(`/business/${businessSlug}/book`)}>
-              Volver a Servicios
+            <Button className="bg-chart-2 text-main-foreground brutal-border font-black uppercase hover:brutal-hover" onClick={() => navigate(`/business/${businessSlug}/book`)}>
+              VOLVER A SERVICIOS
             </Button>
           </CardContent>
         </Card>
@@ -526,45 +535,66 @@ export default function BookConfirmation() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-chart-4">
       <Navigation />
-      {/* Header */}
-      <div className="bg-card border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center gap-4 mb-6">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate(`/business/${businessSlug}/book/pet-info`)}
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Editar Información
-            </Button>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">
-                Confirmar tu Cita
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Paso 4 de 4: Revisa y confirma los detalles
-              </p>
+
+      {/* Hero Section - Neobrutalism Style */}
+      <section className="py-16 bg-chart-1 relative overflow-hidden border-t-4 border-black">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star1 className="absolute top-10 left-10 star-decoration" size={StarSizes.lg} />
+          <Star6 className="absolute top-20 right-20 star-decoration" size={StarSizes.md} />
+          <Star7 className="absolute bottom-16 left-32 star-decoration" size={StarSizes.xl} />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          {/* Progress indicator - Neobrutalism Style */}
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+              <Button
+                className="bg-chart-8 hover:bg-chart-6 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black py-4 px-6 uppercase"
+                onClick={() => navigate(`/business/${businessSlug}/book/pet-info`)}
+              >
+                <ArrowLeft className="icon-large mr-2 icon-float" />
+                <Star8 size={StarSizes.sm} className="star-decoration mr-2" />
+                EDITAR INFORMACIÓN
+              </Button>
+              <div className="bg-chart-7 text-main-foreground brutal-border brutal-shadow font-black px-6 py-3 text-lg uppercase rounded-base">
+                <Trophy className="icon-standard mr-2 icon-float inline-block" />
+                PASO 4 DE 4
+              </div>
+            </div>
+            <div className="bg-chart-2 brutal-border-thick brutal-shadow-lg rounded-base p-4">
+              <Progress value={100} className="w-full h-6 bg-chart-3" />
             </div>
           </div>
 
-          {/* Progress Bar */}
-          <div className="space-y-2">
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Servicio</span>
-              <span>Fecha y Hora</span>
-              <span>Información</span>
-              <span className="text-primary font-medium">Confirmación</span>
+          {/* Header - Neobrutalism Style */}
+          <div className="text-center mb-12">
+            <div className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-4 text-xl font-black brutal-border-thick rounded-base transform -rotate-1 mb-8 inline-block">
+              <CheckCircle className="icon-large mr-2 icon-float" />
+              <Star9 size={StarSizes.md} className="star-decoration" />
+              CONFIRMAR TU CITA
+              <Star10 size={StarSizes.md} className="star-decoration" />
+              <Heart className="icon-large ml-2 icon-float" />
             </div>
-            <Progress value={100} className="h-2" />
+            <h1 className="text-4xl md:text-6xl font-black text-main-foreground uppercase mb-6">
+              <Star13 size={StarSizes.lg} className="star-decoration inline-block mr-4" />
+              REVISA LOS DETALLES
+              <Star19 size={StarSizes.lg} className="star-decoration inline-block ml-4" />
+            </h1>
+            <p className="text-2xl font-bold text-main-foreground/80 uppercase">
+              <Sparkles className="icon-large inline-block mr-2 icon-float" />
+              ÚLTIMO PASO PARA CONFIRMAR
+              <Crown className="icon-large inline-block ml-2 icon-float" />
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+      {/* Content - Neobrutalism Style */}
+      <main className="py-16 bg-chart-3 border-t-4 border-black">
+        <div className="max-w-4xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Booking Summary */}
           <div className="lg:col-span-2 space-y-6">
@@ -752,7 +782,8 @@ export default function BookConfirmation() {
             </Card>
           </div>
         </div>
-      </div>
+        </div>
+      </main>
     </div>
   )
 }

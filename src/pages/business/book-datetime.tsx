@@ -405,8 +405,8 @@ export default function BookDatetime() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <Heart className="w-8 h-8 animate-pulse text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Cargando calendario...</p>
+          <Heart className="w-8 h-8 animate-pulse text-main-foreground mx-auto mb-4" />
+          <p className="text-main-foreground font-black uppercase">CARGANDO CALENDARIO...</p>
         </div>
       </div>
     )
@@ -415,14 +415,14 @@ export default function BookDatetime() {
   if (error || !business) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Card className="max-w-md">
+        <Card className="max-w-md bg-chart-8 brutal-border-thick brutal-shadow-xl">
           <CardHeader>
-            <CardTitle>Error</CardTitle>
-            <CardDescription>{error}</CardDescription>
+            <CardTitle className="text-main-foreground font-black uppercase">ERROR</CardTitle>
+            <CardDescription className="text-main-foreground/80 font-bold uppercase">{error?.toUpperCase()}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={() => navigate(`/business/${businessSlug}/book`)}>
-              Volver a Servicios
+            <Button className="bg-chart-2 text-main-foreground brutal-border font-black uppercase hover:brutal-hover" onClick={() => navigate(`/business/${businessSlug}/book`)}>
+              VOLVER A SERVICIOS
             </Button>
           </CardContent>
         </Card>
@@ -596,13 +596,13 @@ export default function BookDatetime() {
                 <CardContent>
                   {loadingSlots ? (
                     <div className="text-center py-8">
-                      <Clock className="w-6 h-6 animate-spin text-primary mx-auto mb-2" />
-                      <p className="text-sm text-muted-foreground">Cargando horarios...</p>
+                      <Clock className="w-6 h-6 animate-spin text-main-foreground mx-auto mb-2" />
+                      <p className="text-sm text-main-foreground/80 font-bold uppercase">CARGANDO HORARIOS...</p>
                     </div>
                   ) : timeSlots.length === 0 ? (
-                    <div className="text-center py-8 text-muted-foreground">
-                      <Clock className="w-8 h-8 mx-auto mb-3 opacity-50" />
-                      <p className="text-sm">No hay horarios disponibles en esta fecha</p>
+                    <div className="text-center py-8">
+                      <Clock className="w-8 h-8 mx-auto mb-3 text-main-foreground/50" />
+                      <p className="text-sm text-main-foreground/80 font-bold uppercase">NO HAY HORARIOS DISPONIBLES EN ESTA FECHA</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
