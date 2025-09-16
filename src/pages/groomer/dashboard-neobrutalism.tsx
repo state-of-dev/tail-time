@@ -26,8 +26,14 @@ import {
   Sparkles,
   Heart,
   Zap,
-  Coffee
+  Coffee,
+  Crown,
+  Trophy
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 
 interface Appointment {
   id: string
@@ -94,106 +100,155 @@ export default function DashboardNeobrutalism() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-chart-3">
       {/* Header with Neobrutalism Style */}
-      <header className="bg-main brutal-border-thick border-t-0 border-x-0">
-        <div className="max-w-7xl mx-auto px-4 py-8">
+      <header className="bg-chart-1 brutal-border-thick border-t-0 border-x-0 relative overflow-hidden border-b-4 border-black">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star1 className="absolute top-8 left-10 star-decoration" size={StarSizes.lg} />
+          <Star6 className="absolute top-16 right-20 star-decoration" size={StarSizes.md} />
+          <Star7 className="absolute bottom-8 left-32 star-decoration" size={StarSizes.xl} />
+          <Star8 className="absolute top-12 right-1/3 star-decoration" size={StarSizes.sm} />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 py-12 relative z-10">
           <div className="flex justify-between items-center">
-            <div className="space-y-2">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                Hola, {businessProfile?.business_name || 'Groomer'}!
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="p-4 bg-chart-2 brutal-border-thick brutal-shadow-lg rounded-base">
+                  <PawPrint className="icon-hero text-main-foreground icon-float" />
+                </div>
+                <Badge className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-6 py-3 text-lg font-black brutal-border-thick rounded-base transform -rotate-1">
+                  <Crown className="icon-large mr-2 icon-float" />
+                  <Star9 size={StarSizes.md} className="star-decoration" />
+                  DASHBOARD GROOMER
+                  <Star10 size={StarSizes.md} className="star-decoration" />
+                  <Trophy className="icon-large ml-2 icon-float" />
+                </Badge>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-black text-main-foreground uppercase">
+                <Star13 size={StarSizes.lg} className="star-decoration inline-block mr-2" />
+                ¡HOLA, {(businessProfile?.business_name || 'GROOMER').toUpperCase()}!
+                <Star19 size={StarSizes.lg} className="star-decoration inline-block ml-2" />
               </h1>
-              <p className="text-foreground/70 text-lg">
-                Aquí tienes un resumen de tu negocio hoy
+              <p className="text-xl font-bold text-main-foreground/80 uppercase">
+                <Scissors className="icon-large inline-block mr-2 icon-float" />
+                RESUMEN DE TU NEGOCIO HOY
+                <Sparkles className="icon-large inline-block ml-2 icon-float" />
               </p>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               {/* Connection Status */}
-              <Badge variant={isConnected ? "pet-green" : "destructive"} className="text-sm px-4 py-2">
-                {isConnected ? "En vivo" : "Sin conexión"}
+              <Badge className={`brutal-border brutal-shadow font-black px-6 py-3 uppercase ${isConnected ? 'bg-chart-5 text-main-foreground' : 'bg-destructive text-main-foreground'}`}>
+                <Star20 size={StarSizes.sm} className="star-decoration mr-2" />
+                {isConnected ? "EN VIVO" : "SIN CONEXIÓN"}
+                <Star21 size={StarSizes.sm} className="star-decoration ml-2" />
               </Badge>
 
-              <Button variant="pet-blue" size="lg" onClick={() => navigate('/setup/services')}>
-                <Settings className="w-5 h-5 mr-2" />
-                Configurar
+              <Button
+                className="bg-chart-3 hover:bg-chart-4 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black text-lg py-6 px-8 uppercase"
+                onClick={() => navigate('/setup/services')}
+              >
+                <Settings className="icon-large mr-2 icon-float" />
+                <Star22 size={StarSizes.sm} className="star-decoration mr-2" />
+                CONFIGURAR
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="py-16 bg-chart-3 border-t-4 border-black">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <Badge className="bg-chart-6 text-main-foreground brutal-shadow-xl px-8 py-4 text-xl font-black brutal-border-thick rounded-base uppercase transform rotate-1">
+              <BarChart3 className="icon-large mr-2 icon-float" />
+              <Star23 size={StarSizes.md} className="star-decoration" />
+              MÉTRICAS DE HOY
+              <Star24 size={StarSizes.md} className="star-decoration" />
+              <TrendingUp className="icon-large ml-2 icon-float" />
+            </Badge>
+          </div>
+
+          {/* Metrics Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {/* Today's Appointments */}
-          <Card className="brutal-shadow hover:brutal-hover transition-all duration-200 bg-chart-1 brutal-border">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm text-main-foreground">
-                Citas Hoy
+          <Card className="brutal-shadow-lg hover:brutal-hover transition-all duration-200 bg-chart-1 brutal-border-thick transform hover:-rotate-1">
+            <CardHeader className="bg-chart-4 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0 flex flex-row items-center justify-between space-y-0 pb-4">
+              <CardTitle className="text-lg font-black text-main-foreground uppercase">
+                <Star25 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                CITAS HOY
               </CardTitle>
-              <Calendar className="h-6 w-6 text-main-foreground" />
+              <Calendar className="icon-hero text-main-foreground icon-float" />
             </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-main-foreground">
+            <CardContent className="bg-chart-1 p-6">
+              <div className="text-4xl font-black text-main-foreground mb-2">
                 {todayAppointments.length}
               </div>
-              <p className="text-xs text-main-foreground/80 mt-1">
-                {todayAppointments.filter(apt => apt.status === 'pending').length} pendientes
+              <p className="text-sm font-bold text-main-foreground/80 uppercase">
+                <CheckCircle className="icon-standard inline-block mr-1 icon-float" />
+                {todayAppointments.filter(apt => apt.status === 'pending').length} PENDIENTES
               </p>
             </CardContent>
           </Card>
 
           {/* Week Revenue */}
-          <Card className="brutal-shadow hover:brutal-hover transition-all duration-200 bg-chart-4 brutal-border">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm text-main-foreground">
-                Ingresos Semana
+          <Card className="brutal-shadow-lg hover:brutal-hover transition-all duration-200 bg-chart-4 brutal-border-thick transform hover:rotate-1">
+            <CardHeader className="bg-chart-5 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0 flex flex-row items-center justify-between space-y-0 pb-4">
+              <CardTitle className="text-lg font-black text-main-foreground uppercase">
+                <Star26 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                INGRESOS SEMANA
               </CardTitle>
-              <DollarSign className="h-6 w-6 text-main-foreground" />
+              <DollarSign className="icon-hero text-main-foreground icon-float" />
             </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-main-foreground">
+            <CardContent className="bg-chart-4 p-6">
+              <div className="text-4xl font-black text-main-foreground mb-2">
                 ${thisWeekRevenue.toFixed(0)}
               </div>
-              <p className="text-xs text-main-foreground/80 mt-1">
-                +12% vs semana pasada
+              <p className="text-sm font-bold text-main-foreground/80 uppercase">
+                <TrendingUp className="icon-standard inline-block mr-1 icon-float" />
+                +12% VS SEMANA PASADA
               </p>
             </CardContent>
           </Card>
 
           {/* Completed This Month */}
-          <Card className="brutal-shadow hover:brutal-hover transition-all duration-200 bg-chart-5 brutal-border">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm text-main-foreground">
-                Completadas (Mes)
+          <Card className="brutal-shadow-lg hover:brutal-hover transition-all duration-200 bg-chart-5 brutal-border-thick transform hover:-rotate-1">
+            <CardHeader className="bg-chart-6 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0 flex flex-row items-center justify-between space-y-0 pb-4">
+              <CardTitle className="text-lg font-black text-main-foreground uppercase">
+                <Star27 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                COMPLETADAS (MES)
               </CardTitle>
-              <CheckCircle className="h-6 w-6 text-main-foreground" />
+              <CheckCircle className="icon-hero text-main-foreground icon-float" />
             </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-main-foreground">
+            <CardContent className="bg-chart-5 p-6">
+              <div className="text-4xl font-black text-main-foreground mb-2">
                 {completedThisMonth}
               </div>
-              <p className="text-xs text-main-foreground/80 mt-1">
-                Excelente trabajo!
+              <p className="text-sm font-bold text-main-foreground/80 uppercase">
+                <Trophy className="icon-standard inline-block mr-1 icon-float" />
+                ¡EXCELENTE TRABAJO!
               </p>
             </CardContent>
           </Card>
 
           {/* Total Clients */}
-          <Card className="brutal-shadow hover:brutal-hover transition-all duration-200 bg-chart-2 brutal-border">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm text-main-foreground">
-                Clientes Únicos
+          <Card className="brutal-shadow-lg hover:brutal-hover transition-all duration-200 bg-chart-2 brutal-border-thick transform hover:rotate-1">
+            <CardHeader className="bg-chart-7 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0 flex flex-row items-center justify-between space-y-0 pb-4">
+              <CardTitle className="text-lg font-black text-main-foreground uppercase">
+                <Star28 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                CLIENTES ÚNICOS
               </CardTitle>
-              <Users className="h-6 w-6 text-main-foreground" />
+              <Users className="icon-hero text-main-foreground icon-float" />
             </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold text-main-foreground">
+            <CardContent className="bg-chart-2 p-6">
+              <div className="text-4xl font-black text-main-foreground mb-2">
                 {new Set(appointments.map(apt => apt.customer_name)).size}
               </div>
-              <p className="text-xs text-main-foreground/80 mt-1">
-                Base de clientes creciendo
+              <p className="text-sm font-bold text-main-foreground/80 uppercase">
+                <Heart className="icon-standard inline-block mr-1 icon-float" />
+                BASE DE CLIENTES CRECIENDO
               </p>
             </CardContent>
           </Card>
@@ -203,30 +258,37 @@ export default function DashboardNeobrutalism() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Today's Schedule */}
           <div className="lg:col-span-2">
-            <Card className="brutal-shadow">
-              <CardHeader>
+            <Card className="brutal-shadow-xl bg-chart-8 brutal-border-thick">
+              <CardHeader className="bg-chart-6 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0">
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="flex items-center gap-2 text-foreground font-heading">
-                      <Clock className="w-5 h-5" />
-                      Agenda de Hoy
+                    <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-2xl uppercase">
+                      <Clock className="icon-hero icon-float" />
+                      <Star37 size={StarSizes.lg} className="star-decoration" />
+                      AGENDA DE HOY
                     </CardTitle>
-                    <CardDescription className="font-base">
-                      {todayAppointments.length} citas programadas
+                    <CardDescription className="text-main-foreground/80 font-bold text-lg uppercase">
+                      <CheckCircle className="icon-large inline-block mr-2 icon-float" />
+                      {todayAppointments.length} CITAS PROGRAMADAS
                     </CardDescription>
                   </div>
-                  <Button variant="pet-pink" size="sm">
-                    <Plus className="w-4 h-4 mr-1" />
-                    Nueva Cita
+                  <Button className="bg-chart-3 hover:bg-chart-4 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black text-lg py-4 px-6 uppercase">
+                    <Plus className="icon-large mr-2 icon-float" />
+                    <Star39 size={StarSizes.sm} className="star-decoration mr-2" />
+                    NUEVA CITA
                   </Button>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="bg-chart-8 p-8">
                 {todayAppointments.length === 0 ? (
-                  <div className="text-center py-8">
-                    <Coffee className="w-12 h-12 text-pet-blue mx-auto mb-4" />
-                    <p className="text-foreground font-base">
-                      ¡No hay citas hoy! Perfecto para descansar 😴
+                  <div className="text-center py-12">
+                    <div className="p-8 bg-chart-7 brutal-border-thick brutal-shadow-lg rounded-base inline-block mb-6">
+                      <Coffee className="icon-hero text-main-foreground icon-float" />
+                    </div>
+                    <p className="text-main-foreground font-black text-xl uppercase">
+                      <Star40 size={StarSizes.md} className="star-decoration inline-block mr-2" />
+                      ¡NO HAY CITAS HOY! PERFECTO PARA DESCANSAR
+                      <Star40 size={StarSizes.md} className="star-decoration inline-block ml-2" />
                     </p>
                   </div>
                 ) : (
@@ -377,32 +439,40 @@ export default function DashboardNeobrutalism() {
           </div>
         </div>
 
-        {/* Bottom Action Bar */}
-        <div className="mt-8 p-6 bg-main border-2 border-border rounded-base brutal-shadow">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <Heart className="w-6 h-6 text-pet-pink" />
+        {/* Bottom Action Bar - Neobrutalism Style */}
+        <div className="mt-12 p-8 bg-chart-5 brutal-border-thick brutal-shadow-xl rounded-base">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-6">
+              <div className="p-4 bg-chart-2 brutal-border-thick brutal-shadow-lg rounded-base">
+                <Heart className="icon-hero text-main-foreground icon-float" />
+              </div>
               <div>
-                <h3 className="font-heading font-semibold text-foreground">
-                  ¡Tu negocio está creciendo! 🚀
+                <h3 className="font-black text-2xl text-main-foreground uppercase mb-2">
+                  ¡TU NEGOCIO ESTÁ CRECIENDO!
+                  <Sparkles className="icon-large inline-block ml-2 icon-float" />
                 </h3>
-                <p className="text-sm text-foreground/70 font-base">
-                  {appointments.length} citas totales este mes
+                <p className="text-lg font-bold text-main-foreground/80 uppercase">
+                  <Trophy className="icon-standard inline-block mr-2 icon-float" />
+                  {appointments.length} CITAS TOTALES ESTE MES
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <Button variant="pet-green">
-                <Zap className="w-4 h-4 mr-2" />
-                Mejorar Plan
+            <div className="flex items-center gap-6">
+              <Button className="bg-chart-4 hover:bg-chart-6 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black text-lg py-6 px-8 uppercase">
+                <Zap className="icon-large mr-2 icon-float" />
+                MEJORAR PLAN
               </Button>
-              <Button variant="pet-blue" onClick={() => navigate(`/business/${businessProfile?.slug}`)}>
-                <Dog className="w-4 h-4 mr-2" />
-                Ver Mi Página
+              <Button
+                className="bg-chart-1 hover:bg-chart-7 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black text-lg py-6 px-8 uppercase"
+                onClick={() => navigate(`/business/${businessProfile?.slug}`)}
+              >
+                <Dog className="icon-large mr-2 icon-float" />
+                VER MI PÁGINA
               </Button>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )

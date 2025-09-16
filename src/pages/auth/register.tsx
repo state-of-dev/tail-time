@@ -258,113 +258,129 @@ export default function RegisterPage() {
                 )}
               </div>
 
-              <div>
-                <Label htmlFor="password" className="flex items-center gap-2">
-                  <Lock className="w-4 h-4" />
-                  Contraseña
+              <div className="space-y-4">
+                <Label htmlFor="password" className="flex items-center gap-2 text-main-foreground font-black text-lg uppercase">
+                  <Lock className="icon-large icon-float" />
+                  <Star28 size={StarSizes.sm} className="star-decoration" />
+                  CONTRASEÑA
                 </Label>
-                <div className="relative mt-1">
+                <div className="relative">
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
                     value={formData.password}
                     onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                    placeholder="Tu contraseña"
+                    className="brutal-border-thick brutal-shadow-lg hover:brutal-hover font-bold text-lg py-6 text-main-foreground bg-chart-4 placeholder:font-bold placeholder:uppercase pr-16"
+                    placeholder="TU CONTRASEÑA"
                     disabled={isLoading}
-                    className="pr-10"
                     autoComplete="new-password"
                   />
-                  <Button
+                  <button
                     type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-chart-5 hover:bg-chart-7 brutal-border brutal-shadow rounded-base transition-all hover:brutal-hover"
                     onClick={() => setShowPassword(!showPassword)}
                     disabled={isLoading}
                     tabIndex={-1}
                   >
                     {showPassword ? (
-                      <EyeOff className="w-4 h-4 text-muted-foreground" />
+                      <EyeOff className="icon-standard text-main-foreground" />
                     ) : (
-                      <Eye className="w-4 h-4 text-muted-foreground" />
+                      <Eye className="icon-standard text-main-foreground" />
                     )}
-                  </Button>
+                  </button>
                 </div>
                 {errors.password && (
-                  <p className="text-sm text-destructive mt-1">{errors.password}</p>
+                  <Badge className="bg-destructive text-main-foreground brutal-border brutal-shadow font-black">
+                    {errors.password.toUpperCase()}
+                  </Badge>
                 )}
               </div>
 
-              <div>
-                <Label htmlFor="confirmPassword" className="flex items-center gap-2">
-                  <Lock className="w-4 h-4" />
-                  Confirmar Contraseña
+              <div className="space-y-4">
+                <Label htmlFor="confirmPassword" className="flex items-center gap-2 text-main-foreground font-black text-lg uppercase">
+                  <Lock className="icon-large icon-float" />
+                  <Star37 size={StarSizes.sm} className="star-decoration" />
+                  CONFIRMAR CONTRASEÑA
                 </Label>
-                <div className="relative mt-1">
+                <div className="relative">
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
                     value={formData.confirmPassword}
                     onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                    placeholder="Confirma tu contraseña"
+                    className="brutal-border-thick brutal-shadow-lg hover:brutal-hover font-bold text-lg py-6 text-main-foreground bg-chart-4 placeholder:font-bold placeholder:uppercase pr-16"
+                    placeholder="CONFIRMA TU CONTRASEÑA"
                     disabled={isLoading}
-                    className="pr-10"
                     autoComplete="new-password"
                   />
-                  <Button
+                  <button
                     type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-chart-5 hover:bg-chart-7 brutal-border brutal-shadow rounded-base transition-all hover:brutal-hover"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     disabled={isLoading}
                     tabIndex={-1}
                   >
                     {showConfirmPassword ? (
-                      <EyeOff className="w-4 h-4 text-muted-foreground" />
+                      <EyeOff className="icon-standard text-main-foreground" />
                     ) : (
-                      <Eye className="w-4 h-4 text-muted-foreground" />
+                      <Eye className="icon-standard text-main-foreground" />
                     )}
-                  </Button>
+                  </button>
                 </div>
                 {errors.confirmPassword && (
-                  <p className="text-sm text-destructive mt-1">{errors.confirmPassword}</p>
+                  <Badge className="bg-destructive text-main-foreground brutal-border brutal-shadow font-black">
+                    {errors.confirmPassword.toUpperCase()}
+                  </Badge>
                 )}
               </div>
 
               {errors.submit && (
-                <div className="p-3 rounded-md bg-destructive/10 border border-destructive/20">
-                  <p className="text-sm text-destructive">{errors.submit}</p>
+                <div className="p-6 rounded-base bg-destructive brutal-border-thick brutal-shadow-lg">
+                  <p className="font-black text-main-foreground text-center uppercase">{errors.submit.toUpperCase()}</p>
                 </div>
               )}
 
               <Button
                 type="submit"
-                className="w-full hover:scale-105 hover:shadow-md transition-all duration-200"
+                className="w-full bg-chart-1 hover:bg-chart-2 text-main-foreground brutal-border-thick brutal-shadow-xl hover:brutal-hover font-black text-xl py-8 uppercase"
                 disabled={isLoading}
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Creando cuenta...
+                    <Loader2 className="icon-large mr-2 animate-spin" />
+                    <Star39 size={StarSizes.md} className="star-decoration mr-2" />
+                    CREANDO CUENTA...
                   </>
                 ) : (
                   <>
-                    Crear Cuenta
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <Sparkles className="icon-large mr-2 icon-float" />
+                    <Star40 size={StarSizes.md} className="star-decoration mr-2" />
+                    CREAR CUENTA
+                    <ArrowRight className="icon-large ml-2 icon-float" />
                   </>
                 )}
               </Button>
 
-              <Separator />
+              {/* Separator line */}
+              <div className="relative my-8">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t-4 border-black"></div>
+                </div>
+                <div className="relative flex justify-center">
+                  <Badge className="bg-chart-7 text-main-foreground brutal-border brutal-shadow font-black px-6 py-2 uppercase">
+                    ¿YA TIENES CUENTA?
+                  </Badge>
+                </div>
+              </div>
 
               <div className="text-center">
-                <p className="text-sm text-muted-foreground">
-                  ¿Ya tienes cuenta?{' '}
-                  <Link to="/auth/login" className="text-primary hover:underline font-medium">
-                    Iniciar sesión
-                  </Link>
-                </p>
+                <Link to="/auth/login">
+                  <Button className="w-full bg-chart-3 hover:bg-chart-4 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black text-xl py-8 uppercase">
+                    <Heart className="icon-large mr-2 icon-float" />
+                    INICIAR SESIÓN
+                    <Zap className="icon-large ml-2 icon-float" />
+                  </Button>
+                </Link>
               </div>
             </form>
           </CardContent>

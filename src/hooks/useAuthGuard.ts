@@ -21,24 +21,47 @@ export function useAuthGuard(requireAuth: boolean = true, redirectTo: string = '
 }
 
 export function useSessionMonitor() {
-  const { user, session } = useAuth();
+  const { user, session, clearCorruptedSession } = useAuth();
 
   useEffect(() => {
-    if (user && !session) {
+    // Detect session inconsistencies
+    const hasInconsistency = (user && !session) || (!user && session);
+
+    if (hasInconsistency) {
+      console.warn('Session inconsistency detected:', { user: !!user, session: !!session });
+
+      // Auto-clear corrupted sessions after a short delay
+      const clearTimer = setTimeout(() => {
+        console.log('Auto-clearing corrupted session...');
+        clearCorruptedSession();
+      }, 2000);
+
+      return () => clearTimeout(clearTimer);
     }
-    
-    if (!user && session) {
-    }
-  }, [user, session]);
+  }, [user, session, clearCorruptedSession]);
 
   // Debug info for the console
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.debugAuth = () => {
+        console.log('Auth Debug Info:', {
+          user: !!user,
+          session: !!session,
+          userId: user?.id,
+          sessionExpiry: session?.expires_at,
+          tokenCount: Object.keys(localStorage).filter(k => k.includes('supabase') || k.startsWith('sb-')).length
+        });
+      };
 
+      window.clearAuth = () => {
+        console.log('Manually clearing auth...');
+        clearCorruptedSession();
       };
     }
-  }, [user, session]);
+  }, [user, session, clearCorruptedSession]);
 
-  return { hasSessionIssue: (user && !session) || (!user && session) };
+  return {
+    hasSessionIssue: (user && !session) || (!user && session),
+    clearCorruptedSession
+  };
 }

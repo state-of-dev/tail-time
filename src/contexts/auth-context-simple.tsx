@@ -42,6 +42,7 @@ interface AuthContextType {
   signUp: (email: string, password: string, fullName: string) => Promise<{ error?: AuthError | null }>
   signOut: () => Promise<{ error?: AuthError | null }>
   refreshBusinessProfile: () => Promise<void>
+  clearCorruptedSession: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -53,12 +54,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
 
+  const [isFetchingProfile, setIsFetchingProfile] = useState(false)
+
   const fetchUserProfile = async (userId: string) => {
     try {
-      // Prevent multiple concurrent fetches with better state check
-      if (loading && profile) {
+      // Prevent multiple concurrent fetches
+      if (isFetchingProfile) {
+        console.log('Already fetching profile, skipping...')
         return
       }
+
+      setIsFetchingProfile(true)
       
       const { data, error } = await supabase
         .from('user_profiles')
@@ -149,6 +155,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
     } catch (error: any) {
       setProfile(null)
+    } finally {
+      setIsFetchingProfile(false)
     }
   }
   
@@ -226,6 +234,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  const clearCorruptedSession = async () => {
+    console.log('Clearing corrupted session...')
+
+    // Clear all local state
+    setProfile(null)
+    setBusinessProfile(null)
+    setUser(null)
+    setSession(null)
+    setIsFetchingProfile(false)
+    setLoading(false)
+
+    // Clear all storage
+    try {
+      localStorage.clear()
+      sessionStorage.clear()
+    } catch (error) {
+      console.warn('Error clearing storage:', error)
+    }
+
+    // Force sign out
+    try {
+      await supabase.auth.signOut({ scope: 'global' })
+    } catch (error) {
+      console.warn('Error during force signout:', error)
+    }
+  }
+
   useEffect(() => {
     let mounted = true
     let initializationTimeout: NodeJS.Timeout
@@ -286,25 +321,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (!mounted) {
         return
       }
-      
+
+      console.log('Auth state change:', event, session?.user?.id)
+
+      // Handle TOKEN_REFRESHED separately to avoid unnecessary state updates
+      if (event === 'TOKEN_REFRESHED') {
+        // Only update session, don't refetch profile or change loading state
+        setSession(session)
+        setUser(session?.user ?? null)
+        return
+      }
+
       setSession(session)
       setUser(session?.user ?? null)
-      
-      // Only fetch profile for significant auth changes, not token refreshes
+
+      // Only fetch profile for significant auth changes
       if (session?.user && ['SIGNED_IN', 'INITIAL_SESSION'].includes(event)) {
         await fetchUserProfile(session.user.id)
       } else if (!session && event === 'SIGNED_OUT') {
         setProfile(null)
         setBusinessProfile(null)
-        // Clear any problematic tokens
-        localStorage.removeItem('sb-auth-token')
-        localStorage.removeItem('supabase.auth.token')
+        // Clear all possible token storage locations
+        try {
+          localStorage.removeItem('sb-auth-token')
+          localStorage.removeItem('supabase.auth.token')
+          // Clear all supabase related keys
+          Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('sb-') || key.includes('supabase')) {
+              localStorage.removeItem(key)
+            }
+          })
+        } catch (error) {
+          console.warn('Error clearing localStorage:', error)
+        }
       }
-      
-      // Set loading false for all events to prevent infinite loading
-      if (event !== 'TOKEN_REFRESHED') {
-        setLoading(false)
-      }
+
+      setLoading(false)
     })
 
     return () => {
@@ -341,36 +393,55 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     try {
-      
-      // Clear local state immediately
+      console.log('Signing out...')
+
+      // Clear local state immediately to prevent UI glitches
       setProfile(null)
       setBusinessProfile(null)
       setUser(null)
       setSession(null)
-      
-      // Clear any problematic tokens from localStorage
-      localStorage.removeItem('sb-auth-token')
-      localStorage.removeItem('supabase.auth.token')
-      
-      const { error } = await supabase.auth.signOut()
-      
+      setIsFetchingProfile(false)
+
+      // Clear all possible token storage locations
+      try {
+        localStorage.removeItem('sb-auth-token')
+        localStorage.removeItem('supabase.auth.token')
+        // Clear all supabase related keys
+        Object.keys(localStorage).forEach(key => {
+          if (key.startsWith('sb-') || key.includes('supabase')) {
+            localStorage.removeItem(key)
+          }
+        })
+        sessionStorage.clear() // Also clear session storage
+      } catch (storageError) {
+        console.warn('Error clearing storage:', storageError)
+      }
+
+      const { error } = await supabase.auth.signOut({ scope: 'global' })
+
+      if (error) {
+        console.error('SignOut error:', error)
+      }
+
       return { error }
     } catch (error: any) {
+      console.error('SignOut catch error:', error)
       return { error }
     }
   }
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      profile, 
-      businessProfile, 
-      session, 
-      loading, 
-      signIn, 
-      signUp, 
+    <AuthContext.Provider value={{
+      user,
+      profile,
+      businessProfile,
+      session,
+      loading,
+      signIn,
+      signUp,
       signOut,
-      refreshBusinessProfile
+      refreshBusinessProfile,
+      clearCorruptedSession
     }}>
       {children}
     </AuthContext.Provider>

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
-import { 
+import {
   ArrowLeft,
   ArrowRight,
   Clock,
@@ -14,8 +14,16 @@ import {
   Heart,
   Star,
   Info,
-  Tag
+  Tag,
+  Sparkles,
+  Trophy,
+  Crown,
+  PawPrint
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 import { Navigation } from '@/components/navigation'
 import { useAuth } from '@/contexts/auth-context-simple'
 import { supabase } from '@/lib/supabase'
@@ -251,47 +259,78 @@ export default function BookService() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-chart-4">
       <Navigation />
-      
-      <main className="flex-1 py-8">
-        <div className="max-w-4xl mx-auto px-4">
-          {/* Progress indicator */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
+
+      {/* Hero Section - Neobrutalism Style */}
+      <section className="py-16 bg-chart-1 relative overflow-hidden border-t-4 border-black">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star1 className="absolute top-10 left-10 star-decoration" size={StarSizes.lg} />
+          <Star6 className="absolute top-20 right-20 star-decoration" size={StarSizes.md} />
+          <Star7 className="absolute bottom-16 left-32 star-decoration" size={StarSizes.xl} />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          {/* Progress indicator - Neobrutalism Style */}
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-6">
               <Button
-                variant="ghost"
+                className="bg-chart-8 hover:bg-chart-6 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black py-4 px-6 uppercase"
                 onClick={() => navigate(`/business/${businessSlug}`)}
-                className="flex items-center gap-2"
               >
-                <ArrowLeft className="w-4 h-4" />
-                Volver al perfil
+                <ArrowLeft className="icon-large mr-2 icon-float" />
+                <Star8 size={StarSizes.sm} className="star-decoration mr-2" />
+                VOLVER AL PERFIL
               </Button>
-              <div className="text-sm text-muted-foreground">
-                Paso 1 de 3
-              </div>
+              <Badge className="bg-chart-7 text-main-foreground brutal-border brutal-shadow font-black px-6 py-3 text-lg uppercase">
+                <Trophy className="icon-standard mr-2 icon-float" />
+                PASO 1 DE 3
+              </Badge>
             </div>
-            <Progress value={33} className="w-full" />
+            <div className="bg-chart-2 brutal-border-thick brutal-shadow-lg rounded-base p-4">
+              <Progress value={33} className="w-full h-6 bg-chart-3" />
+            </div>
           </div>
 
-          {/* Business header */}
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">
-              {business.business_name}
+          {/* Business header - Neobrutalism Style */}
+          <div className="text-center mb-12">
+            <Badge className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-4 text-xl font-black brutal-border-thick rounded-base transform -rotate-1 mb-8">
+              <Scissors className="icon-large mr-2 icon-float" />
+              <Star9 size={StarSizes.md} className="star-decoration" />
+              RESERVAR SERVICIO
+              <Star10 size={StarSizes.md} className="star-decoration" />
+              <Crown className="icon-large ml-2 icon-float" />
+            </Badge>
+            <h1 className="text-4xl md:text-6xl font-black text-main-foreground uppercase mb-6">
+              <Star13 size={StarSizes.lg} className="star-decoration inline-block mr-4" />
+              {business.business_name.toUpperCase()}
+              <Star19 size={StarSizes.lg} className="star-decoration inline-block ml-4" />
             </h1>
-            <p className="text-muted-foreground">
-              Selecciona el servicio que deseas reservar
+            <p className="text-2xl font-bold text-main-foreground/80 uppercase">
+              <Heart className="icon-large inline-block mr-2 icon-float" />
+              SELECCIONA EL SERVICIO QUE DESEAS RESERVAR
+              <Sparkles className="icon-large inline-block ml-2 icon-float" />
             </p>
           </div>
+        </div>
+      </section>
 
-          {/* Services by category */}
-          <div className="space-y-8">
+      <main className="py-16 bg-chart-3 border-t-4 border-black">
+        <div className="max-w-4xl mx-auto px-4">
+
+          {/* Services by category - Neobrutalism Style */}
+          <div className="space-y-12">
             {Object.entries(groupedServices).map(([category, services]) => (
               <div key={category}>
-                <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                  <Tag className="w-5 h-5" />
-                  {categoryNames[category] || category}
-                </h2>
+                <div className="text-center mb-8">
+                  <Badge className="bg-chart-6 text-main-foreground brutal-shadow-xl px-6 py-3 text-lg font-black brutal-border-thick rounded-base uppercase transform rotate-1">
+                    <Tag className="icon-large mr-2 icon-float" />
+                    <Star20 size={StarSizes.sm} className="star-decoration" />
+                    {(categoryNames[category] || category).toUpperCase()}
+                    <Star21 size={StarSizes.sm} className="star-decoration" />
+                    <PawPrint className="icon-large ml-2 icon-float" />
+                  </Badge>
+                </div>
                 
                 <div className="grid gap-4">
                   {services.map((service, categoryIndex) => {

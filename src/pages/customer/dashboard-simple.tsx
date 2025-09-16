@@ -287,37 +287,63 @@ export default function CustomerDashboardSimple() {
       <div className="min-h-screen bg-background">
         <Navigation />
         
-        {/* Welcome Header */}
-      <div className="brutal-border-thick border-t-0 border-x-0 bg-main">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4 py-8">
-            <div className="w-16 h-16 bg-chart-2 brutal-border brutal-shadow rounded-base flex items-center justify-center">
-              <User className="w-8 h-8 text-main-foreground" />
+        {/* Welcome Header - Neobrutalism Style */}
+        <section className="py-16 bg-chart-1 relative overflow-hidden border-t-4 border-black">
+          {/* Floating Stars Background */}
+          <div className="absolute inset-0 pointer-events-none">
+            <Star1 className="absolute top-10 left-10 star-decoration" size={StarSizes.lg} />
+            <Star6 className="absolute top-20 right-20 star-decoration" size={StarSizes.md} />
+            <Star7 className="absolute bottom-16 left-32 star-decoration" size={StarSizes.xl} />
+          </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-8">
+              <Badge className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-4 text-lg font-black brutal-border-thick rounded-base transform -rotate-1">
+                <Crown className="icon-large mr-2 icon-float" />
+                <Star8 size={StarSizes.md} className="star-decoration" />
+                DASHBOARD CLIENTE
+                <Star9 size={StarSizes.md} className="star-decoration" />
+                <Trophy className="icon-large ml-2 icon-float" />
+              </Badge>
             </div>
-            <div>
-              <h1 className="text-3xl font-bold text-foreground">
-                Hola {profile?.full_name || 'Cliente'}!
-              </h1>
-              <p className="text-foreground/70 text-lg">
-                Panel de cliente • {user?.email}
-              </p>
+            <div className="flex items-center justify-center gap-8">
+              <div className="p-6 bg-chart-2 brutal-border-thick brutal-shadow-xl rounded-base">
+                <Heart className="icon-hero text-main-foreground icon-float" />
+              </div>
+              <div className="text-center">
+                <h1 className="text-4xl md:text-6xl font-black text-main-foreground uppercase mb-4">
+                  <Star10 size={StarSizes.lg} className="star-decoration inline-block mr-2" />
+                  ¡HOLA {(profile?.full_name || 'CLIENTE').toUpperCase()}!
+                  <Star13 size={StarSizes.lg} className="star-decoration inline-block ml-2" />
+                </h1>
+                <p className="text-xl font-bold text-main-foreground/80 uppercase">
+                  <Dog className="icon-large inline-block mr-2 icon-float" />
+                  PANEL DE CLIENTE
+                  <Sparkles className="icon-large inline-block mx-2 icon-float" />
+                  {user?.email}
+                  <Zap className="icon-large inline-block ml-2 icon-float" />
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid gap-8 lg:grid-cols-2">
+      <section className="py-16 bg-chart-3 border-t-4 border-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-2">
           
           {/* Main Content - Appointments */}
           <div className="space-y-8">
             
             {/* Pending Actions - Reschedule Responses */}
             {appointments.filter(apt => apt.status === 'reschedule_pending').length > 0 && (
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <AlertCircle className="w-5 h-5 text-chart-3" />
-                  <h2 className="text-lg font-semibold text-foreground">Acción Requerida</h2>
+              <div className="space-y-6">
+                <div className="text-center">
+                  <Badge className="bg-chart-6 text-main-foreground brutal-shadow-xl px-8 py-4 text-xl font-black brutal-border-thick rounded-base uppercase transform rotate-1">
+                    <AlertCircle className="icon-large mr-2 icon-float" />
+                    <Star19 size={StarSizes.md} className="star-decoration" />
+                    ACCIÓN REQUERIDA
+                    <Star20 size={StarSizes.md} className="star-decoration" />
+                  </Badge>
                 </div>
                 {appointments
                   .filter(apt => apt.status === 'reschedule_pending')
@@ -342,45 +368,49 @@ export default function CustomerDashboardSimple() {
               
               if (todaysAppointments.length > 0) {
                 return (
-                  <Card className="bg-chart-1 brutal-border brutal-shadow">
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2 text-main-foreground">
-                        <Clock className="w-5 h-5" />
-                        Cita de Hoy
+                  <Card className="bg-chart-1 brutal-border-thick brutal-shadow-xl hover:brutal-hover transition-all duration-200">
+                    <CardHeader className="bg-chart-4 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0">
+                      <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-2xl uppercase">
+                        <Clock className="icon-hero icon-float" />
+                        <Star21 size={StarSizes.lg} className="star-decoration" />
+                        CITA DE HOY
+                        <Star22 size={StarSizes.lg} className="star-decoration" />
                       </CardTitle>
-                      <CardDescription className="text-main-foreground/80">
-                        Tienes {todaysAppointments.length} cita{todaysAppointments.length > 1 ? 's' : ''} programada{todaysAppointments.length > 1 ? 's' : ''} para hoy
+                      <CardDescription className="text-main-foreground/80 font-bold text-lg uppercase">
+                        <CheckCircle className="icon-large inline-block mr-2 icon-float" />
+                        TIENES {todaysAppointments.length} CITA{todaysAppointments.length > 1 ? 'S' : ''} PROGRAMADA{todaysAppointments.length > 1 ? 'S' : ''} PARA HOY
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-6 bg-chart-1">
                       {todaysAppointments.map((appointment) => (
-                        <div key={appointment.id} className="bg-main/90 rounded-base p-4 brutal-border">
+                        <div key={appointment.id} className="bg-main rounded-base p-6 brutal-border-thick brutal-shadow-lg hover:brutal-hover">
                           <div className="flex items-center justify-between">
                             <div className="flex-1">
-                              <div className="flex items-center gap-3 mb-2">
-                                <h3 className="text-lg font-semibold text-foreground">
-                                  {appointment.service_name}
+                              <div className="flex items-center gap-4 mb-4">
+                                <h3 className="text-xl font-black text-main-foreground uppercase">
+                                  <Star23 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                                  {appointment.service_name.toUpperCase()}
                                 </h3>
-                                <Badge className="bg-green-100 text-green-800 border-green-200">
-                                  {appointment.status === 'confirmed' && 'Confirmada'}
-                                  {appointment.status === 'pending' && 'Pendiente'}
-                                  {appointment.status === 'completed' && 'Completada'}
+                                <Badge className="bg-chart-5 text-main-foreground brutal-border brutal-shadow font-black">
+                                  {appointment.status === 'confirmed' && 'CONFIRMADA'}
+                                  {appointment.status === 'pending' && 'PENDIENTE'}
+                                  {appointment.status === 'completed' && 'COMPLETADA'}
                                 </Badge>
                               </div>
                               
-                              <div className="text-sm space-y-1">
-                                <p className="flex items-center gap-1 font-medium text-primary">
-                                  <Clock className="w-4 h-4" />
+                              <div className="space-y-3">
+                                <p className="flex items-center gap-2 font-black text-main-foreground text-lg">
+                                  <Clock className="icon-large icon-float" />
                                   {appointment.start_time} - {appointment.end_time}
                                 </p>
-                                <p className="flex items-center gap-1 text-muted-foreground">
-                                  <MapPin className="w-4 h-4" />
-                                  {appointment.business_name}
+                                <p className="flex items-center gap-2 font-bold text-main-foreground/80 uppercase">
+                                  <MapPin className="icon-standard icon-float" />
+                                  {appointment.business_name?.toUpperCase()}
                                 </p>
                                 {appointment.pet_name && (
-                                  <p className="flex items-center gap-1 text-muted-foreground">
-                                    <Dog className="w-4 h-4" />
-                                    {appointment.pet_name} ({appointment.pet_breed})
+                                  <p className="flex items-center gap-2 font-bold text-main-foreground/80 uppercase">
+                                    <Dog className="icon-standard icon-float" />
+                                    {appointment.pet_name.toUpperCase()} ({appointment.pet_breed?.toUpperCase()})
                                   </p>
                                 )}
                               </div>
@@ -672,6 +702,7 @@ export default function CustomerDashboardSimple() {
           </div>
         </div>
         </div>
+      </section>
       </div>
     </AuthWrapper>
   )

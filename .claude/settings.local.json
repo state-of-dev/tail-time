@@ -8,7 +8,8 @@
       "Bash(find:*)",
       "WebFetch(domain:ui.shadcn.com)",
       "WebFetch(domain:github.com)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

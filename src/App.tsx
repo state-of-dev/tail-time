@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '@/contexts/auth-context-simple';
 import NotificationProvider from '@/components/notifications/notification-provider';
 // import { Toaster } from 'sonner';
-import { LandingPage } from '@/pages/landing/landing-page';
 import HomePage from '@/pages/HomePage';
 import { DashboardPage } from '@/pages/admin/dashboard-page';
 import { SubdomainHome } from '@/pages/subdomain/subdomain-home';
@@ -15,21 +14,18 @@ import ServicesSetup from '@/pages/setup/services-setup';
 import PortfolioSetup from '@/pages/setup/portfolio-setup';
 import LaunchConfirmation from '@/pages/setup/launch-confirmation';
 import DatabaseSetupPage from '@/pages/admin/database-setup';
-import GroomerDashboard from '@/pages/groomer/dashboard';
+import GroomerDashboard from '@/pages/groomer/dashboard-neobrutalism';
 import ServicesManagement from '@/pages/groomer/services-management';
 import CalendarView from '@/pages/groomer/calendar-view';
 import AppointmentDetail from '@/pages/groomer/appointment-detail';
 import AppointmentsManagement from '@/pages/groomer/appointments-management';
-import BusinessLanding from '@/pages/business/business-landing';
 import BusinessSimple from '@/pages/business/business-simple';
-import BusinessTest from '@/pages/business/business-test';
 import ServicesCatalog from '@/pages/business/services-catalog';
 import BookService from '@/pages/business/book-service';
 import BookDatetime from '@/pages/business/book-datetime';
 import BookPetInfo from '@/pages/business/book-pet-info';
 import BookConfirmation from '@/pages/business/book-confirmation';
 import CustomerDashboardSimple from '@/pages/customer/dashboard-simple';
-import CustomerDashboardRedesigned from '@/pages/customer/dashboard-redesigned';
 import CustomerAppointmentDetail from '@/pages/customer/appointment-detail';
 import AllAppointments from '@/pages/customer/all-appointments';
 import CustomerProfile from '@/pages/customer/profile';
@@ -108,7 +104,7 @@ function App() {
         <Route path="/business/:businessSlug/book/datetime" element={<BookDatetime />} />
         <Route path="/business/:businessSlug/book/pet-info" element={<BookPetInfo />} />
         <Route path="/business/:businessSlug/book/confirmation" element={<BookConfirmation />} />
-        <Route path="/customer/dashboard" element={<CustomerDashboardRedesigned />} />
+        <Route path="/customer/dashboard" element={<CustomerDashboardSimple />} />
         <Route path="/customer/appointments" element={<AllAppointments />} />
         <Route path="/customer/appointment/:appointmentId" element={<CustomerAppointmentDetail />} />
         <Route path="/customer/profile" element={<CustomerProfile />} />
@@ -118,7 +114,7 @@ function App() {
         {/* Fallback routes for development */}
         <Route path="/admin/*" element={<DashboardPage />} />
         <Route path="/subdomain/*" element={<SubdomainHome />} />
-        <Route path="*" element={<LandingPage />} />
+        <Route path="*" element={<HomePage />} />
         </Routes>
         </Router>
       </NotificationProvider>
