@@ -338,10 +338,10 @@ export default function BookService() {
                     return (
                       <Card
                         key={service.index}
-                        className={`cursor-pointer brutal-shadow hover:brutal-hover transition-all duration-200 ${
+                        className={`cursor-pointer brutal-shadow-lg hover:brutal-hover transition-all duration-200 brutal-border-thick ${
                           isSelected
-                            ? 'bg-chart-1 text-main-foreground brutal-border'
-                            : 'bg-secondary-background hover:bg-chart-4/20 brutal-border'
+                            ? 'bg-chart-1 text-main-foreground'
+                            : 'bg-chart-4 hover:bg-chart-1/20'
                         }`}
                         onClick={() => handleServiceSelect(service.index)}
                       >
@@ -349,31 +349,41 @@ export default function BookService() {
                           <div className="flex items-center justify-between">
                             <div className="flex-1">
                               <div className="flex items-center gap-3 mb-2">
-                                <h3 className="text-lg font-semibold">
+                                <h3 className={`text-lg font-black uppercase ${
+                                  isSelected ? 'text-main-foreground' : 'text-foreground'
+                                }`}>
                                   {service.name}
                                 </h3>
                                 {isSelected && (
-                                  <CheckCircle className="w-5 h-5 text-chart-4" />
+                                  <CheckCircle className="w-5 h-5 text-main-foreground icon-float" />
                                 )}
                               </div>
-                              <p className="text-muted-foreground text-sm mb-3">
+                              <p className={`text-sm mb-3 font-bold uppercase ${
+                                isSelected ? 'text-main-foreground/80' : 'text-muted-foreground'
+                              }`}>
                                 {service.description}
                               </p>
                               <div className="flex items-center gap-4 text-sm">
-                                <div className="flex items-center gap-1 text-muted-foreground">
-                                  <Clock className="w-4 h-4" />
-                                  {service.duration} min
+                                <div className={`flex items-center gap-1 font-bold ${
+                                  isSelected ? 'text-main-foreground/80' : 'text-muted-foreground'
+                                }`}>
+                                  <Clock className="w-4 h-4 icon-float" />
+                                  {service.duration} MIN
                                 </div>
-                                <div className="flex items-center gap-1 font-semibold text-foreground">
-                                  <DollarSign className="w-4 h-4" />
+                                <div className={`flex items-center gap-1 font-black text-lg ${
+                                  isSelected ? 'text-main-foreground' : 'text-foreground'
+                                }`}>
+                                  <DollarSign className="w-4 h-4 icon-float" />
                                   ${service.price}
                                 </div>
                               </div>
                             </div>
-                            
+
                             <div className="ml-4">
-                              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                                <Scissors className="w-6 h-6 text-primary" />
+                              <div className={`w-12 h-12 rounded-full brutal-border flex items-center justify-center ${
+                                isSelected ? 'bg-chart-8' : 'bg-chart-6'
+                              }`}>
+                                <Scissors className="w-6 h-6 text-main-foreground icon-float" />
                               </div>
                             </div>
                           </div>
@@ -386,45 +396,53 @@ export default function BookService() {
             ))}
           </div>
 
-          {/* Continue button */}
+          {/* Continue button - Neobrutalism Style */}
           <div className="mt-8 flex justify-center">
             <Button
               type="button"
               size="lg"
               onClick={handleContinue}
               disabled={!bookingState.selectedService}
-              className="flex items-center gap-2 bg-chart-2 hover:bg-chart-2/90 text-main-foreground brutal-shadow hover:brutal-hover"
+              className="flex items-center gap-4 bg-chart-2 hover:bg-chart-2/90 text-main-foreground brutal-border-thick brutal-shadow-xl hover:brutal-hover font-black py-6 px-12 text-xl uppercase"
             >
-              Continuar
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="icon-large icon-float" />
+              <Star25 size={StarSizes.sm} className="star-decoration" />
+              CONTINUAR AL SIGUIENTE PASO
+              <Star26 size={StarSizes.sm} className="star-decoration" />
+              <Trophy className="icon-large icon-float" />
             </Button>
           </div>
 
-          {/* Selected service summary */}
+          {/* Selected service summary - Neobrutalism Style */}
           {bookingState.selectedService && (
-            <Card className="mt-8 bg-chart-3 brutal-shadow brutal-border">
+            <Card className="mt-8 bg-chart-3 brutal-shadow-xl brutal-border-thick relative overflow-hidden">
+              <div className="absolute top-2 right-2">
+                <Star27 className="star-decoration" size={StarSizes.md} />
+              </div>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-main-foreground">
-                  <Star className="w-5 h-5 text-main-foreground" />
-                  Servicio Seleccionado
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <Star className="w-5 h-5 text-main-foreground icon-float" />
+                  <Star28 size={StarSizes.sm} className="star-decoration" />
+                  SERVICIO SELECCIONADO
+                  <Crown className="icon-large icon-float" />
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-semibold text-lg text-main-foreground">
+                    <h3 className="font-black text-xl text-main-foreground uppercase mb-2">
                       {bookingState.selectedService.name}
                     </h3>
-                    <p className="text-main-foreground/80 text-sm">
+                    <p className="text-main-foreground/80 text-sm font-bold uppercase">
                       {bookingState.selectedService.description}
                     </p>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-main-foreground">
+                    <div className="text-3xl font-black text-main-foreground mb-1">
                       ${bookingState.selectedService.price}
                     </div>
-                    <div className="text-sm text-main-foreground/80">
-                      {bookingState.selectedService.duration} minutos
+                    <div className="text-sm text-main-foreground/80 font-bold uppercase">
+                      {bookingState.selectedService.duration} MINUTOS
                     </div>
                   </div>
                 </div>

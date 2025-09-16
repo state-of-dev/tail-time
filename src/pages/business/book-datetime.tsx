@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { Label } from '@/components/ui/label'
-import { 
+import {
   ArrowLeft,
   ArrowRight,
   Clock,
@@ -13,8 +13,18 @@ import {
   Heart,
   Info,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Star,
+  Trophy,
+  Crown,
+  Sparkles,
+  PawPrint,
+  Tag
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 import { Navigation } from '@/components/navigation'
 import { supabase } from '@/lib/supabase'
 
@@ -425,89 +435,110 @@ export default function BookDatetime() {
   const currentMonthNumber = currentMonth.getMonth()
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-chart-4">
       <Navigation />
-      {/* Header */}
-      <div className="bg-card border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center gap-4 mb-6">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate(`/business/${businessSlug}/book`)}
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Cambiar Servicio
-            </Button>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">
-                Seleccionar Fecha y Hora - {business.business_name}
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Paso 2 de 4: Elige cuándo quieres tu cita
-              </p>
+
+      {/* Hero Section - Neobrutalism Style */}
+      <section className="py-16 bg-chart-1 relative overflow-hidden border-t-4 border-black">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star1 className="absolute top-10 left-10 star-decoration" size={StarSizes.lg} />
+          <Star6 className="absolute top-20 right-20 star-decoration" size={StarSizes.md} />
+          <Star7 className="absolute bottom-16 left-32 star-decoration" size={StarSizes.xl} />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          {/* Progress indicator - Neobrutalism Style */}
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-6">
+              <Button
+                className="bg-chart-8 hover:bg-chart-6 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black py-4 px-6 uppercase"
+                onClick={() => navigate(`/business/${businessSlug}/book`)}
+              >
+                <ArrowLeft className="icon-large mr-2 icon-float" />
+                <Star8 size={StarSizes.sm} className="star-decoration mr-2" />
+                CAMBIAR SERVICIO
+              </Button>
+              <div className="bg-chart-7 text-main-foreground brutal-border brutal-shadow font-black px-6 py-3 text-lg uppercase rounded-base">
+                <Trophy className="icon-standard mr-2 icon-float inline-block" />
+                PASO 2 DE 4
+              </div>
+            </div>
+            <div className="bg-chart-2 brutal-border-thick brutal-shadow-lg rounded-base p-4">
+              <Progress value={50} className="w-full h-6 bg-chart-3" />
             </div>
           </div>
 
-          {/* Progress Bar */}
-          <div className="space-y-2">
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Servicio</span>
-              <span className="text-primary font-medium">Fecha y Hora</span>
-              <span>Información</span>
-              <span>Confirmación</span>
+          {/* Business header - Neobrutalism Style */}
+          <div className="text-center mb-12">
+            <div className="bg-chart-8 text-main-foreground brutal-shadow-lg hover:brutal-hover px-8 py-4 text-xl font-black brutal-border-thick rounded-base transform -rotate-1 mb-8 inline-block">
+              <Calendar className="icon-large mr-2 icon-float" />
+              <Star9 size={StarSizes.md} className="star-decoration" />
+              SELECCIONAR FECHA Y HORA
+              <Star10 size={StarSizes.md} className="star-decoration" />
+              <Clock className="icon-large ml-2 icon-float" />
             </div>
-            <Progress value={50} className="h-2" />
+            <h1 className="text-4xl md:text-6xl font-black text-main-foreground uppercase mb-6">
+              <Star13 size={StarSizes.lg} className="star-decoration inline-block mr-4" />
+              {business.business_name.toUpperCase()}
+              <Star19 size={StarSizes.lg} className="star-decoration inline-block ml-4" />
+            </h1>
+            <p className="text-2xl font-bold text-main-foreground/80 uppercase">
+              <Heart className="icon-large inline-block mr-2 icon-float" />
+              ELIGE CUÁNDO QUIERES TU CITA
+              <Sparkles className="icon-large inline-block ml-2 icon-float" />
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Calendar and Time Selection */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Calendar */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5" />
-                    Seleccionar Fecha
-                  </CardTitle>
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        const prevMonth = new Date(currentMonth)
-                        prevMonth.setMonth(prevMonth.getMonth() - 1)
-                        setCurrentMonth(prevMonth)
-                      }}
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                    </Button>
-                    <span className="text-sm font-medium min-w-[120px] text-center">
-                      {currentMonth.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
-                    </span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        const nextMonth = new Date(currentMonth)
-                        nextMonth.setMonth(nextMonth.getMonth() + 1)
-                        setCurrentMonth(nextMonth)
-                      }}
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </Button>
-                  </div>
+      {/* Content - Neobrutalism Style */}
+      <main className="py-16 bg-chart-3 border-t-4 border-black">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Calendar and Time Selection */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Calendar - Neobrutalism Style */}
+              <Card className="bg-chart-2 brutal-border-thick brutal-shadow-xl">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                      <Calendar className="icon-large icon-float" />
+                      <Star20 size={StarSizes.sm} className="star-decoration" />
+                      SELECCIONAR FECHA
+                    </CardTitle>
+                    <div className="flex items-center gap-4">
+                      <Button
+                        className="bg-chart-6 hover:bg-chart-6/90 text-main-foreground brutal-border brutal-shadow hover:brutal-hover font-black px-4 py-2"
+                        onClick={() => {
+                          const prevMonth = new Date(currentMonth)
+                          prevMonth.setMonth(prevMonth.getMonth() - 1)
+                          setCurrentMonth(prevMonth)
+                        }}
+                      >
+                        <ChevronLeft className="w-4 h-4 icon-float" />
+                      </Button>
+                      <div className="bg-chart-8 text-main-foreground brutal-border px-4 py-2 text-sm font-black min-w-[150px] text-center uppercase rounded-base">
+                        <Star21 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                        {currentMonth.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }).toUpperCase()}
+                        <Star22 size={StarSizes.sm} className="star-decoration inline-block ml-2" />
+                      </div>
+                      <Button
+                        className="bg-chart-6 hover:bg-chart-6/90 text-main-foreground brutal-border brutal-shadow hover:brutal-hover font-black px-4 py-2"
+                        onClick={() => {
+                          const nextMonth = new Date(currentMonth)
+                          nextMonth.setMonth(nextMonth.getMonth() + 1)
+                          setCurrentMonth(nextMonth)
+                        }}
+                      >
+                        <ChevronRight className="w-4 h-4 icon-float" />
+                      </Button>
+                    </div>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-7 gap-1 mb-4">
+                <div className="grid grid-cols-7 gap-2 mb-6">
                   {DAY_NAMES.map((day, index) => (
-                    <div key={index} className="text-center text-xs font-medium text-muted-foreground p-2">
+                    <div key={index} className="text-center text-sm font-black text-main-foreground p-3 bg-chart-7 brutal-border rounded-base uppercase">
                       {day.slice(0, 3)}
                     </div>
                   ))}
@@ -526,11 +557,11 @@ export default function BookDatetime() {
                         onClick={() => !isPast && isCurrentMonth && handleDateSelect(dateStr)}
                         disabled={isPast || !isCurrentMonth}
                         className={`
-                          aspect-square p-2 text-sm rounded-md transition-all duration-200
-                          ${!isCurrentMonth ? 'text-muted-foreground/30' : ''}
-                          ${isPast ? 'text-muted-foreground/50 cursor-not-allowed' : ''}
-                          ${isSelected ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}
-                          ${isToday && !isSelected ? 'bg-muted border border-primary' : ''}
+                          aspect-square p-3 text-sm font-black rounded-base transition-all duration-200 brutal-border
+                          ${!isCurrentMonth ? 'text-main-foreground/30 bg-chart-4/50' : ''}
+                          ${isPast ? 'text-main-foreground/50 cursor-not-allowed bg-chart-4/20' : ''}
+                          ${isSelected ? 'bg-chart-1 text-main-foreground brutal-shadow-lg' : 'bg-chart-6 hover:bg-chart-1/50 text-main-foreground brutal-shadow hover:brutal-hover'}
+                          ${isToday && !isSelected ? 'bg-chart-8 brutal-border-thick' : ''}
                           ${!isPast && isCurrentMonth ? 'cursor-pointer' : ''}
                         `}
                       >
@@ -542,23 +573,26 @@ export default function BookDatetime() {
               </CardContent>
             </Card>
 
-            {/* Time Slots */}
-            {selectedDate && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Clock className="w-5 h-5" />
-                    Horarios Disponibles
-                  </CardTitle>
-                  <CardDescription>
-                    {new Date(selectedDate).toLocaleDateString('es-ES', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
-                  </CardDescription>
-                </CardHeader>
+              {/* Time Slots - Neobrutalism Style */}
+              {selectedDate && (
+                <Card className="bg-chart-3 brutal-border-thick brutal-shadow-xl">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                      <Clock className="icon-large icon-float" />
+                      <Star23 size={StarSizes.sm} className="star-decoration" />
+                      HORARIOS DISPONIBLES
+                    </CardTitle>
+                    <CardDescription className="text-main-foreground/80 font-bold text-lg uppercase">
+                      <Star24 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                      {new Date(selectedDate).toLocaleDateString('es-ES', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      }).toUpperCase()}
+                      <Star25 size={StarSizes.sm} className="star-decoration inline-block ml-2" />
+                    </CardDescription>
+                  </CardHeader>
                 <CardContent>
                   {loadingSlots ? (
                     <div className="text-center py-8">
@@ -571,19 +605,19 @@ export default function BookDatetime() {
                       <p className="text-sm">No hay horarios disponibles en esta fecha</p>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
                       {timeSlots.map((slot) => (
                         <button
                           key={slot.time}
                           onClick={() => slot.available && handleTimeSelect(slot.time)}
                           disabled={!slot.available}
                           className={`
-                            p-3 rounded-md text-sm font-medium transition-all duration-200
-                            ${slot.available 
-                              ? selectedTime === slot.time 
-                                ? 'bg-primary text-primary-foreground' 
-                                : 'bg-muted hover:bg-muted/80 border border-border hover:border-primary/50'
-                              : 'bg-muted/50 text-muted-foreground cursor-not-allowed'
+                            p-4 rounded-base text-sm font-black transition-all duration-200 brutal-border uppercase
+                            ${slot.available
+                              ? selectedTime === slot.time
+                                ? 'bg-chart-1 text-main-foreground brutal-shadow-lg'
+                                : 'bg-chart-6 hover:bg-chart-1/50 text-main-foreground brutal-shadow hover:brutal-hover'
+                              : 'bg-chart-4/50 text-main-foreground/50 cursor-not-allowed'
                             }
                           `}
                         >
@@ -597,86 +631,96 @@ export default function BookDatetime() {
             )}
           </div>
 
-          {/* Sidebar - Booking Summary */}
-          <div className="space-y-6">
-            {/* Selected Details */}
-            <Card className="sticky top-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Scissors className="w-5 h-5" />
-                  Resumen de Cita
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {/* Service */}
-                <div className="pb-4 border-b border-border">
-                  <Label className="text-xs text-muted-foreground">SERVICIO</Label>
-                  <h4 className="font-semibold text-foreground">
-                    {bookingState.service.name}
-                  </h4>
-                  <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
-                    <span>{bookingState.service.duration} min</span>
-                    <span className="text-primary font-semibold">${bookingState.service.price}</span>
-                  </div>
-                </div>
-
-                {/* Date & Time */}
-                <div className="pb-4 border-b border-border">
-                  <Label className="text-xs text-muted-foreground">FECHA Y HORA</Label>
-                  {selectedDate && selectedTime ? (
-                    <div className="space-y-1">
-                      <div className="font-semibold text-foreground">
-                        {new Date(selectedDate).toLocaleDateString('es-ES', { 
-                          weekday: 'long', 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
-                        })}
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        {formatTime(selectedTime)}
-                      </div>
+            {/* Sidebar - Booking Summary - Neobrutalism Style */}
+            <div className="space-y-6">
+              {/* Selected Details */}
+              <Card className="sticky top-6 bg-chart-8 brutal-border-thick brutal-shadow-xl">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                    <Scissors className="icon-large icon-float" />
+                    <Star26 size={StarSizes.sm} className="star-decoration" />
+                    RESUMEN DE CITA
+                    <Trophy className="icon-large icon-float" />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  {/* Service */}
+                  <div className="pb-4 border-b-4 border-chart-4">
+                    <div className="bg-chart-6 text-main-foreground brutal-border px-3 py-1 text-xs font-black uppercase rounded-base mb-2 inline-block">
+                      SERVICIO
                     </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">
-                      {!selectedDate ? 'Selecciona una fecha' : 'Selecciona una hora'}
-                    </p>
-                  )}
-                </div>
-
-                {/* Continue Button */}
-                <div className="pt-4">
-                  <Button 
-                    className="w-full"
-                    disabled={!selectedDate || !selectedTime}
-                    onClick={handleContinue}
-                  >
-                    Continuar
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Info Card */}
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-start gap-3">
-                  <Info className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <div className="space-y-2">
-                    <h4 className="font-medium text-foreground">
-                      Política de Cancelación
+                    <h4 className="font-black text-lg text-main-foreground uppercase mb-2">
+                      {bookingState.service.name}
                     </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Puedes cancelar o reprogramar tu cita hasta 24 horas antes sin costo adicional.
-                    </p>
+                    <div className="flex items-center gap-4 text-sm">
+                      <span className="text-main-foreground/80 font-bold uppercase">{bookingState.service.duration} MIN</span>
+                      <span className="text-main-foreground font-black text-lg">${bookingState.service.price}</span>
+                    </div>
                   </div>
-                </div>
+
+                  {/* Date & Time */}
+                  <div className="pb-4 border-b-4 border-chart-4">
+                    <div className="bg-chart-6 text-main-foreground brutal-border px-3 py-1 text-xs font-black uppercase rounded-base mb-2 inline-block">
+                      FECHA Y HORA
+                    </div>
+                    {selectedDate && selectedTime ? (
+                      <div className="space-y-2">
+                        <div className="font-black text-lg text-main-foreground uppercase">
+                          {new Date(selectedDate).toLocaleDateString('es-ES', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          }).toUpperCase()}
+                        </div>
+                        <div className="text-main-foreground/80 font-bold text-lg uppercase">
+                          {formatTime(selectedTime)}
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-main-foreground/80 font-bold uppercase">
+                        {!selectedDate ? 'SELECCIONA UNA FECHA' : 'SELECCIONA UNA HORA'}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Continue Button - Neobrutalism Style */}
+                  <div className="pt-4">
+                    <Button
+                      className="w-full bg-chart-2 hover:bg-chart-2/90 text-main-foreground brutal-border-thick brutal-shadow-xl hover:brutal-hover font-black py-4 text-lg uppercase"
+                      disabled={!selectedDate || !selectedTime}
+                      onClick={handleContinue}
+                    >
+                      <Star27 size={StarSizes.sm} className="star-decoration mr-2" />
+                      CONTINUAR AL SIGUIENTE PASO
+                      <ArrowRight className="icon-large ml-2 icon-float" />
+                      <Star28 size={StarSizes.sm} className="star-decoration ml-2" />
+                    </Button>
+                  </div>
               </CardContent>
             </Card>
+
+              {/* Info Card - Neobrutalism Style */}
+              <Card className="bg-chart-4 brutal-border-thick brutal-shadow-xl">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <Info className="w-6 h-6 text-main-foreground flex-shrink-0 mt-1 icon-float" />
+                    <div className="space-y-3">
+                      <h4 className="font-black text-lg text-main-foreground uppercase">
+                        <Star37 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                        POLÍTICA DE CANCELACIÓN
+                      </h4>
+                      <p className="text-sm text-main-foreground/80 font-bold uppercase">
+                        PUEDES CANCELAR O REPROGRAMAR TU CITA HASTA 24 HORAS ANTES SIN COSTO ADICIONAL.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }

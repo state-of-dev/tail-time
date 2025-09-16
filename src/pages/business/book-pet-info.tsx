@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Progress } from '@/components/ui/progress'
-import { 
+import {
   ArrowLeft,
   ArrowRight,
   Heart,
@@ -16,8 +16,17 @@ import {
   Mail,
   MessageSquare,
   Info,
-  Scissors
+  Scissors,
+  Star,
+  Trophy,
+  Crown,
+  Sparkles,
+  Tag
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 import { Navigation } from '@/components/navigation'
 
 interface Service {

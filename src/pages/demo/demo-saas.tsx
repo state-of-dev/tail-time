@@ -218,106 +218,126 @@ export default function DemoSaas() {
             </Card>
 
             {/* Calendar Screenshot */}
-            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="aspect-video bg-gradient-to-br from-green-500/20 to-teal-500/20 relative">
+            <Card className="overflow-hidden brutal-shadow-xl hover:brutal-hover transition-all duration-300 brutal-border-thick bg-chart-6">
+              <div className="aspect-video bg-gradient-to-br from-chart-2 to-chart-3 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <Calendar className="w-16 h-16 text-green-600 mx-auto mb-4" />
-                    <p className="text-lg font-medium">Calendario Inteligente</p>
+                    <Calendar className="w-16 h-16 text-main-foreground mx-auto mb-4 icon-float" />
+                    <p className="text-xl font-black text-main-foreground uppercase">
+                      <Star8 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                      CALENDARIO INTELIGENTE
+                    </p>
                   </div>
                 </div>
               </div>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5" />
-                  Gestión de Citas
+              <CardHeader className="bg-chart-6 p-6">
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <Calendar className="icon-large icon-float" />
+                  <Star9 size={StarSizes.sm} className="star-decoration" />
+                  GESTIÓN DE CITAS
                 </CardTitle>
-                <CardDescription>
-                  Calendario interactivo con drag & drop, disponibilidad automática
+                <CardDescription className="text-main-foreground/80 font-bold text-lg">
+                  CALENDARIO INTERACTIVO CON DRAG & DROP, DISPONIBILIDAD AUTOMÁTICA
                 </CardDescription>
               </CardHeader>
             </Card>
 
             {/* Mobile App Screenshot */}
-            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 relative">
+            <Card className="overflow-hidden brutal-shadow-xl hover:brutal-hover transition-all duration-300 brutal-border-thick bg-chart-7">
+              <div className="aspect-video bg-gradient-to-br from-chart-8 to-chart-1 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <Smartphone className="w-16 h-16 text-purple-600 mx-auto mb-4" />
-                    <p className="text-lg font-medium">App Móvil</p>
+                    <Smartphone className="w-16 h-16 text-main-foreground mx-auto mb-4 icon-float" />
+                    <p className="text-xl font-black text-main-foreground uppercase">
+                      <Star10 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                      APP MÓVIL
+                    </p>
                   </div>
                 </div>
               </div>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Smartphone className="w-5 h-5" />
-                  Versión Móvil
+              <CardHeader className="bg-chart-7 p-6">
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <Smartphone className="icon-large icon-float" />
+                  <Star13 size={StarSizes.sm} className="star-decoration" />
+                  VERSIÓN MÓVIL
                 </CardTitle>
-                <CardDescription>
-                  Interfaz optimizada para móviles, gestión sobre la marcha
+                <CardDescription className="text-main-foreground/80 font-bold text-lg">
+                  INTERFAZ OPTIMIZADA PARA MÓVILES, GESTIÓN SOBRE LA MARCHA
                 </CardDescription>
               </CardHeader>
             </Card>
 
             {/* Customer Portal */}
-            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="aspect-video bg-gradient-to-br from-orange-500/20 to-red-500/20 relative">
+            <Card className="overflow-hidden brutal-shadow-xl hover:brutal-hover transition-all duration-300 brutal-border-thick bg-chart-4">
+              <div className="aspect-video bg-gradient-to-br from-chart-1 to-chart-2 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <Users className="w-16 h-16 text-orange-600 mx-auto mb-4" />
-                    <p className="text-lg font-medium">Portal de Clientes</p>
+                    <Users className="w-16 h-16 text-main-foreground mx-auto mb-4 icon-float" />
+                    <p className="text-xl font-black text-main-foreground uppercase">
+                      <Star19 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                      PORTAL DE CLIENTES
+                    </p>
                   </div>
                 </div>
               </div>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="w-5 h-5" />
-                  Experiencia del Cliente
+              <CardHeader className="bg-chart-4 p-6">
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <Users className="icon-large icon-float" />
+                  <Star20 size={StarSizes.sm} className="star-decoration" />
+                  EXPERIENCIA DEL CLIENTE
                 </CardTitle>
-                <CardDescription>
-                  Reservas online, historial de mascotas, recordatorios automáticos
+                <CardDescription className="text-main-foreground/80 font-bold text-lg">
+                  RESERVAS ONLINE, HISTORIAL DE MASCOTAS, RECORDATORIOS AUTOMÁTICOS
                 </CardDescription>
               </CardHeader>
             </Card>
 
             {/* Payment System */}
-            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="aspect-video bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 relative">
+            <Card className="overflow-hidden brutal-shadow-xl hover:brutal-hover transition-all duration-300 brutal-border-thick bg-chart-3">
+              <div className="aspect-video bg-gradient-to-br from-chart-6 to-chart-7 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <CreditCard className="w-16 h-16 text-emerald-600 mx-auto mb-4" />
-                    <p className="text-lg font-medium">Pagos Integrados</p>
+                    <CreditCard className="w-16 h-16 text-main-foreground mx-auto mb-4 icon-float" />
+                    <p className="text-xl font-black text-main-foreground uppercase">
+                      <Star21 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                      PAGOS INTEGRADOS
+                    </p>
                   </div>
                 </div>
               </div>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CreditCard className="w-5 h-5" />
-                  Sistema de Pagos
+              <CardHeader className="bg-chart-3 p-6">
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <CreditCard className="icon-large icon-float" />
+                  <Star22 size={StarSizes.sm} className="star-decoration" />
+                  SISTEMA DE PAGOS
                 </CardTitle>
-                <CardDescription>
-                  Pagos seguros con Stripe, facturación automática, reportes financieros
+                <CardDescription className="text-main-foreground/80 font-bold text-lg">
+                  PAGOS SEGUROS CON STRIPE, FACTURACIÓN AUTOMÁTICA, REPORTES FINANCIEROS
                 </CardDescription>
               </CardHeader>
             </Card>
 
             {/* Business Profile */}
-            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="aspect-video bg-gradient-to-br from-indigo-500/20 to-blue-500/20 relative">
+            <Card className="overflow-hidden brutal-shadow-xl hover:brutal-hover transition-all duration-300 brutal-border-thick bg-chart-8">
+              <div className="aspect-video bg-gradient-to-br from-chart-4 to-chart-5 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <Scissors className="w-16 h-16 text-indigo-600 mx-auto mb-4" />
-                    <p className="text-lg font-medium">Perfil de Negocio</p>
+                    <Scissors className="w-16 h-16 text-main-foreground mx-auto mb-4 icon-float" />
+                    <p className="text-xl font-black text-main-foreground uppercase">
+                      <Star23 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                      PERFIL DE NEGOCIO
+                    </p>
                   </div>
                 </div>
               </div>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Scissors className="w-5 h-5" />
-                  Página de Negocio
+              <CardHeader className="bg-chart-8 p-6">
+                <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-xl uppercase">
+                  <Scissors className="icon-large icon-float" />
+                  <Star24 size={StarSizes.sm} className="star-decoration" />
+                  PÁGINA DE NEGOCIO
                 </CardTitle>
-                <CardDescription>
-                  Página web personalizada, portfolio, servicios, horarios
+                <CardDescription className="text-main-foreground/80 font-bold text-lg">
+                  PÁGINA WEB PERSONALIZADA, PORTFOLIO, SERVICIOS, HORARIOS
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -325,78 +345,131 @@ export default function DemoSaas() {
         </div>
       </section>
 
-      {/* Features Highlight */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Features Highlight - Neobrutalism Style */}
+      <section className="py-16 bg-chart-4 border-t-4 border-black relative overflow-hidden">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star28 className="absolute top-10 left-10 star-decoration" size={StarSizes.xl} />
+          <Star37 className="absolute top-20 right-20 star-decoration" size={StarSizes.lg} />
+          <Star39 className="absolute bottom-16 left-32 star-decoration" size={StarSizes.md} />
+          <Star40 className="absolute bottom-10 right-16 star-decoration" size={StarSizes.xl} />
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Características Principales</h2>
-            <p className="text-lg text-muted-foreground">
-              Todo lo que necesitas para administrar tu negocio de grooming
+            <Badge className="bg-chart-1 text-main-foreground brutal-shadow-xl hover:brutal-hover px-8 py-4 text-xl font-black brutal-border-thick rounded-base transform rotate-1 mb-8">
+              <Sparkles className="icon-large mr-2 icon-float" />
+              <Star1 size={StarSizes.md} className="star-decoration" />
+              CARACTERÍSTICAS PRINCIPALES
+              <Star6 size={StarSizes.md} className="star-decoration" />
+              <Trophy className="icon-large ml-2 icon-float" />
+            </Badge>
+            <h2 className="text-4xl md:text-6xl font-black text-main-foreground uppercase mb-6">
+              <Star7 size={StarSizes.lg} className="star-decoration inline-block mr-4" />
+              TODO LO QUE NECESITAS
+              <Star8 size={StarSizes.lg} className="star-decoration inline-block ml-4" />
+            </h2>
+            <p className="text-2xl font-bold text-main-foreground/80 uppercase">
+              <Heart className="icon-large inline-block mr-2 icon-float" />
+              PARA ADMINISTRAR TU NEGOCIO DE GROOMING
+              <Crown className="icon-large inline-block ml-2 icon-float" />
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-primary" />
+            <Card className="text-center p-6 bg-chart-1 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200">
+              <div className="w-16 h-16 bg-chart-8 brutal-border rounded-full flex items-center justify-center mx-auto mb-4">
+                <Calendar className="w-8 h-8 text-main-foreground icon-float" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Reservas 24/7</h3>
-              <p className="text-sm text-muted-foreground">Clientes pueden reservar en cualquier momento</p>
-            </div>
+              <h3 className="text-lg font-black mb-2 text-main-foreground uppercase">
+                <Star9 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                RESERVAS 24/7
+              </h3>
+              <p className="text-sm text-main-foreground/80 font-bold uppercase">CLIENTES PUEDEN RESERVAR EN CUALQUIER MOMENTO</p>
+            </Card>
 
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Bell className="w-8 h-8 text-primary" />
+            <Card className="text-center p-6 bg-chart-2 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200">
+              <div className="w-16 h-16 bg-chart-6 brutal-border rounded-full flex items-center justify-center mx-auto mb-4">
+                <Bell className="w-8 h-8 text-main-foreground icon-float" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Recordatorios</h3>
-              <p className="text-sm text-muted-foreground">Notificaciones automáticas por SMS y email</p>
-            </div>
+              <h3 className="text-lg font-black mb-2 text-main-foreground uppercase">
+                <Star10 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                RECORDATORIOS
+              </h3>
+              <p className="text-sm text-main-foreground/80 font-bold uppercase">NOTIFICACIONES AUTOMÁTICAS POR SMS Y EMAIL</p>
+            </Card>
 
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Camera className="w-8 h-8 text-primary" />
+            <Card className="text-center p-6 bg-chart-3 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200">
+              <div className="w-16 h-16 bg-chart-7 brutal-border rounded-full flex items-center justify-center mx-auto mb-4">
+                <Camera className="w-8 h-8 text-main-foreground icon-float" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Portfolio Digital</h3>
-              <p className="text-sm text-muted-foreground">Muestra tu trabajo con fotos antes/después</p>
-            </div>
+              <h3 className="text-lg font-black mb-2 text-main-foreground uppercase">
+                <Star13 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                PORTFOLIO DIGITAL
+              </h3>
+              <p className="text-sm text-main-foreground/80 font-bold uppercase">MUESTRA TU TRABAJO CON FOTOS ANTES/DESPUÉS</p>
+            </Card>
 
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CreditCard className="w-8 h-8 text-primary" />
+            <Card className="text-center p-6 bg-chart-8 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200">
+              <div className="w-16 h-16 bg-chart-4 brutal-border rounded-full flex items-center justify-center mx-auto mb-4">
+                <CreditCard className="w-8 h-8 text-main-foreground icon-float" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Pagos Online</h3>
-              <p className="text-sm text-muted-foreground">Cobra anticipos y pagos completos</p>
-            </div>
+              <h3 className="text-lg font-black mb-2 text-main-foreground uppercase">
+                <Star19 size={StarSizes.sm} className="star-decoration inline-block mr-2" />
+                PAGOS ONLINE
+              </h3>
+              <p className="text-sm text-main-foreground/80 font-bold uppercase">COBRA ANTICIPOS Y PAGOS COMPLETOS</p>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <PawPrint className="w-16 h-16 mx-auto mb-6 opacity-80" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            ¿Listo para Transformar tu Negocio?
+      {/* CTA Section - Neobrutalism Style */}
+      <section className="py-16 bg-chart-1 border-t-4 border-black relative overflow-hidden">
+        {/* Floating Stars Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Star20 className="absolute top-10 left-10 star-decoration" size={StarSizes.xl} />
+          <Star21 className="absolute top-20 right-20 star-decoration" size={StarSizes.lg} />
+          <Star22 className="absolute bottom-16 left-32 star-decoration" size={StarSizes.md} />
+          <Star23 className="absolute bottom-10 right-16 star-decoration" size={StarSizes.xl} />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="mb-8">
+            <PawPrint className="w-20 h-20 mx-auto mb-6 text-main-foreground icon-float" />
+            <Star24 className="absolute top-6 left-1/2 transform -translate-x-1/2 star-decoration" size={StarSizes.lg} />
+          </div>
+          <Badge className="bg-chart-8 text-main-foreground brutal-shadow-xl hover:brutal-hover px-8 py-4 text-xl font-black brutal-border-thick rounded-base transform -rotate-1 mb-8">
+            <Trophy className="icon-large mr-2 icon-float" />
+            <Star25 size={StarSizes.md} className="star-decoration" />
+            TRANSFORMAR TU NEGOCIO
+            <Star26 size={StarSizes.md} className="star-decoration" />
+            <Crown className="icon-large ml-2 icon-float" />
+          </Badge>
+          <h2 className="text-4xl md:text-6xl font-black text-main-foreground uppercase mb-6">
+            <Star27 size={StarSizes.lg} className="star-decoration inline-block mr-4" />
+            ¿LISTO PARA EL ÉXITO?
+            <Star28 size={StarSizes.lg} className="star-decoration inline-block ml-4" />
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Únete a cientos de groomers que ya están creciendo con TailTime
+          <p className="text-2xl font-bold text-main-foreground/80 uppercase mb-8">
+            <Heart className="icon-large inline-block mr-2 icon-float" />
+            ÚNETE A CIENTOS DE GROOMERS QUE YA ESTÁN CRECIENDO
+            <Sparkles className="icon-large inline-block ml-2 icon-float" />
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              variant="secondary"
-              className="bg-white text-primary hover:bg-gray-100"
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button
+              size="lg"
+              className="bg-chart-2 hover:bg-chart-2/90 text-main-foreground brutal-border-thick brutal-shadow-xl hover:brutal-hover font-black py-4 px-8 uppercase"
             >
-              <Calendar className="w-5 h-5 mr-2" />
-              Comenzar Prueba Gratis
+              <Calendar className="icon-large mr-2 icon-float" />
+              <Star37 size={StarSizes.sm} className="star-decoration mr-2" />
+              COMENZAR PRUEBA GRATIS
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-primary"
+            <Button
+              size="lg"
+              className="bg-chart-6 hover:bg-chart-6/90 text-main-foreground brutal-border-thick brutal-shadow-xl hover:brutal-hover font-black py-4 px-8 uppercase"
             >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Hablar con Ventas
+              <MessageCircle className="icon-large mr-2 icon-float" />
+              <Star39 size={StarSizes.sm} className="star-decoration mr-2" />
+              HABLAR CON VENTAS
             </Button>
           </div>
         </div>
