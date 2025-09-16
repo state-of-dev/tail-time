@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Navigation } from '@/components/navigation'
+import { AppointmentsTable } from '@/components/appointments/appointments-table'
 import {
   Calendar,
   Clock,
@@ -25,7 +26,8 @@ import {
   Sparkles,
   Trophy,
   Crown,
-  Zap
+  Zap,
+  BarChart3
 } from 'lucide-react'
 import {
   Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
@@ -703,6 +705,52 @@ export default function CustomerDashboardSimple() {
             </Card>
 
           </div>
+        </div>
+
+        {/* All Appointments Table - Neobrutalism Style */}
+        <div className="mt-12">
+          <Card className="bg-chart-7 brutal-border-thick brutal-shadow-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-2xl uppercase">
+                <BarChart3 className="icon-hero icon-float" />
+                <Star37 size={StarSizes.lg} className="star-decoration" />
+                HISTORIAL COMPLETO DE CITAS
+                <Star39 size={StarSizes.lg} className="star-decoration" />
+              </CardTitle>
+              <CardDescription className="text-main-foreground/80 font-bold text-lg uppercase">
+                REVISA TODAS TUS CITAS PASADAS Y FUTURAS
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-6">
+              <AppointmentsTable
+                appointments={appointments.map(apt => ({
+                  id: apt.id || Math.random().toString(),
+                  customer_name: (customerProfile?.name || profile?.full_name || 'Cliente'),
+                  pet_name: apt.pet_name || 'Mascota',
+                  pet_breed: apt.pet_breed || 'Raza no especificada',
+                  service_name: apt.service_name || 'Servicio',
+                  appointment_date: apt.appointment_date,
+                  start_time: apt.start_time,
+                  end_time: apt.end_time,
+                  status: apt.status as 'pending' | 'confirmed' | 'completed' | 'cancelled' | 'rejected',
+                  total_amount: apt.total_amount || 0,
+                  duration: apt.duration || 60,
+                  notes: apt.customer_notes
+                }))}
+                onViewAppointment={(appointment) => {
+                  navigate(`/customer/appointment/${appointment.id}`)
+                }}
+                onEditAppointment={(appointment) => {
+                  console.log('Editar cita:', appointment)
+                  // Implementar edición de cita para cliente
+                }}
+                onCancelAppointment={(appointment) => {
+                  console.log('Cancelar cita:', appointment)
+                  // Implementar cancelación de cita para cliente
+                }}
+              />
+            </CardContent>
+          </Card>
         </div>
         </div>
       </section>

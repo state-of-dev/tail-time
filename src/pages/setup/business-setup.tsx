@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Separator } from '@/components/ui/separator'
 import { Progress } from '@/components/ui/progress'
-import { 
+import {
   Building2,
   Globe,
   MapPin,
@@ -23,14 +23,24 @@ import {
   Instagram,
   Facebook,
   Scissors,
-  Sparkles
+  Sparkles,
+  Star,
+  Crown,
+  Heart,
+  Trophy,
+  Zap,
+  PawPrint
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28, Star37, Star39, Star40,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 
 const STEPS = [
-  { id: 1, title: 'Información Básica', icon: Building2 },
-  { id: 2, title: 'Ubicación y Contacto', icon: MapPin },
-  { id: 3, title: 'Branding y Redes', icon: Camera },
-  { id: 4, title: 'Finalizar Setup', icon: Check }
+  { id: 1, title: 'INFORMACIÓN BÁSICA', icon: Building2 },
+  { id: 2, title: 'UBICACIÓN Y CONTACTO', icon: MapPin },
+  { id: 3, title: 'BRANDING Y REDES', icon: Camera },
+  { id: 4, title: 'FINALIZAR SETUP', icon: Check }
 ]
 
 export default function BusinessSetupPage() {
@@ -202,9 +212,10 @@ export default function BusinessSetupPage() {
         return (
           <div className="space-y-6">
             <div>
-              <Label htmlFor="businessName" className="flex items-center gap-2">
-                <Building2 className="w-4 h-4" />
-                Nombre del Negocio
+              <Label htmlFor="businessName" className="flex items-center gap-2 text-main-foreground font-black uppercase">
+                <Building2 className="w-4 h-4 icon-float" />
+                <Star20 size={StarSizes.sm} className="star-decoration" />
+                NOMBRE DEL NEGOCIO
               </Label>
               <Input
                 id="businessName"
@@ -220,13 +231,14 @@ export default function BusinessSetupPage() {
             </div>
 
             <div>
-              <Label htmlFor="slug" className="flex items-center gap-2">
-                <Globe className="w-4 h-4" />
-                URL de tu Negocio
+              <Label htmlFor="slug" className="flex items-center gap-2 text-main-foreground font-black uppercase">
+                <Globe className="w-4 h-4 icon-float" />
+                <Star19 size={StarSizes.sm} className="star-decoration" />
+                URL DE TU NEGOCIO
               </Label>
               <div className="flex items-center mt-1">
-                <span className="text-sm text-muted-foreground px-3 py-2 bg-muted border border-r-0 rounded-l-md">
-                  https://
+                <span className="text-sm text-main-foreground font-black px-3 py-2 bg-chart-8 brutal-border border-r-0 rounded-l-md uppercase">
+                  HTTPS://
                 </span>
                 <Input
                   id="slug"
@@ -236,12 +248,12 @@ export default function BusinessSetupPage() {
                   className="rounded-l-none border-l-0"
                   placeholder="tu-negocio"
                 />
-                <span className="text-sm text-muted-foreground px-3 py-2 bg-muted border border-l-0 rounded-r-md">
-                  .tailtime.com
+                <span className="text-sm text-main-foreground font-black px-3 py-2 bg-chart-8 brutal-border border-l-0 rounded-r-md uppercase">
+                  .TAILTIME.COM
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                Esta será la URL única de tu perfil de negocio
+              <p className="text-xs text-main-foreground/80 font-bold mt-1 uppercase">
+                ESTA SERÁ LA URL ÚNICA DE TU PERFIL DE NEGOCIO
               </p>
               {errors.slug && (
                 <p className="text-sm text-destructive mt-1">{errors.slug}</p>

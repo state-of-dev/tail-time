@@ -1,17 +1,19 @@
 "use client"
 
+import * as ReactTable from "@tanstack/react-table"
 import {
-  ColumnDef,
-  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
-  VisibilityState,
 } from "@tanstack/react-table"
+
+type ColumnDef<TData, TValue = unknown> = ReactTable.ColumnDef<TData, TValue>
+type ColumnFiltersState = ReactTable.ColumnFiltersState
+type SortingState = ReactTable.SortingState
+type VisibilityState = ReactTable.VisibilityState
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
 
 import * as React from "react"

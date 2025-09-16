@@ -15,67 +15,80 @@ export function AuthWrapper({ children, requireAuth = true, fallback }: AuthWrap
   const [sessionError, setSessionError] = useState(false);
 
   useEffect(() => {
-    // Check for session inconsistencies
+    // Check for session inconsistencies with more tolerance
     if (!loading) {
       const hasUser = !!user;
       const hasSession = !!session;
-      
+
+      // Only flag as error if we have a user but no session for an extended period
       if (requireAuth && hasUser && !hasSession) {
-        setSessionError(true);
+        // Much longer delay to allow for natural token refresh and loading
+        const errorTimer = setTimeout(() => {
+          // Re-check after delay and ensure it's still a problem
+          if (!!user && !session && !loading) {
+            console.warn('AuthWrapper: Session error detected after 10s delay');
+            setSessionError(true);
+          }
+        }, 10000); // Increased to 10 seconds
+
+        return () => clearTimeout(errorTimer);
       } else {
         setSessionError(false);
       }
     }
   }, [user, session, loading, requireAuth]);
 
-  // Loading state
+  // Loading state with neobrutalism styling
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-chart-4 flex items-center justify-center">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Verificando sesión...</p>
+          <div className="p-8 bg-chart-8 brutal-border-thick brutal-shadow-xl rounded-base inline-block mb-6">
+            <RefreshCw className="w-8 h-8 animate-spin text-main-foreground" />
+          </div>
+          <p className="text-main-foreground font-black uppercase text-lg">VERIFICANDO SESIÓN...</p>
         </div>
       </div>
     );
   }
 
-  // Session error state
+  // Session error state with neobrutalism styling
   if (sessionError) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
+      <div className="min-h-screen bg-chart-4 flex items-center justify-center p-4">
+        <Card className="w-full max-w-md bg-chart-2 brutal-border-thick brutal-shadow-xl">
           <CardHeader className="text-center">
-            <AlertTriangle className="w-12 h-12 text-amber-500 mx-auto mb-2" />
-            <CardTitle>Sesión Expirada</CardTitle>
-            <CardDescription>
-              Tu sesión ha expirado o hay un problema de autenticación.
+            <div className="p-4 bg-chart-8 brutal-border rounded-base inline-block mb-4">
+              <AlertTriangle className="w-12 h-12 text-main-foreground" />
+            </div>
+            <CardTitle className="text-main-foreground font-black uppercase text-xl">SESIÓN EXPIRADA</CardTitle>
+            <CardDescription className="text-main-foreground/80 font-bold uppercase">
+              TU SESIÓN HA EXPIRADO O HAY UN PROBLEMA DE AUTENTICACIÓN.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="text-sm text-muted-foreground text-center">
-              Para continuar, necesitas cerrar sesión e iniciar sesión nuevamente.
+            <div className="text-sm text-main-foreground/80 font-bold text-center uppercase">
+              PARA CONTINUAR, NECESITAS CERRAR SESIÓN E INICIAR SESIÓN NUEVAMENTE.
             </div>
             <div className="space-y-2">
-              <Button 
+              <Button
                 onClick={async () => {
                   await signOut();
                   // Clear any problematic tokens
                   localStorage.removeItem('sb-auth-token');
                   window.location.href = '/auth/login';
-                }} 
-                className="w-full"
+                }}
+                className="w-full bg-chart-8 text-main-foreground brutal-border font-black uppercase hover:brutal-hover"
               >
-                Cerrar Sesión e Intentar de Nuevo
+                CERRAR SESIÓN E INTENTAR DE NUEVO
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
                 onClick={() => {
                   window.location.reload();
-                }} 
-                className="w-full"
+                }}
+                className="w-full bg-chart-6 text-main-foreground brutal-border font-black uppercase hover:brutal-hover"
               >
-                Recargar Página
+                RECARGAR PÁGINA
               </Button>
             </div>
           </CardContent>
@@ -89,12 +102,15 @@ export function AuthWrapper({ children, requireAuth = true, fallback }: AuthWrap
     if (fallback) {
       return <>{fallback}</>;
     }
-    
+
     // Redirect will be handled by useAuthGuard in the consuming components
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-chart-4 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-muted-foreground">Redirigiendo al login...</p>
+          <div className="p-8 bg-chart-8 brutal-border-thick brutal-shadow-xl rounded-base inline-block mb-6">
+            <RefreshCw className="w-8 h-8 animate-spin text-main-foreground" />
+          </div>
+          <p className="text-main-foreground font-black uppercase text-lg">REDIRIGIENDO AL LOGIN...</p>
         </div>
       </div>
     );

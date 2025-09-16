@@ -65,12 +65,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       setIsFetchingProfile(true)
+      console.log('Fetching user profile for:', userId.slice(-4))
       
-      const { data, error } = await supabase
+      // Add timeout protection for database calls
+      const profilePromise = supabase
         .from('user_profiles')
         .select('*')
         .eq('id', userId)
         .single()
+
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Profile fetch timeout')), 5000)
+      })
+
+      const { data, error } = await Promise.race([profilePromise, timeoutPromise]) as any
 
       if (error) {
         
@@ -247,7 +255,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Clear all storage
     try {
-      localStorage.clear()
+      const keysToRemove = Object.keys(localStorage).filter(key =>
+        key.includes('supabase') || key.startsWith('sb-')
+      )
+      console.log('Removing keys:', keysToRemove)
+      keysToRemove.forEach(key => localStorage.removeItem(key))
       sessionStorage.clear()
     } catch (error) {
       console.warn('Error clearing storage:', error)
@@ -261,52 +273,129 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  // Add debugging function for the loading issue
+  const debugAuth = () => {
+    const authKeys = Object.keys(localStorage).filter(key =>
+      key.includes('supabase') || key.startsWith('sb-')
+    )
+
+    console.log('🔍 AUTH DEBUG:', {
+      loading,
+      user: !!user,
+      session: !!session,
+      profile: !!profile,
+      isFetchingProfile,
+      userId: user?.id?.slice(-4),
+      sessionExpiry: session?.expires_at,
+      storageKeys: authKeys,
+      storageValues: authKeys.reduce((acc, key) => {
+        try {
+          acc[key] = JSON.parse(localStorage.getItem(key) || '{}')
+        } catch {
+          acc[key] = localStorage.getItem(key)
+        }
+        return acc
+      }, {} as Record<string, any>)
+    })
+  }
+
+  // Expose debug function globally
+  if (typeof window !== 'undefined') {
+    window.debugAuth = debugAuth
+    window.clearCorruptedAuth = clearCorruptedSession
+  }
+
   useEffect(() => {
     let mounted = true
     let initializationTimeout: NodeJS.Timeout
-    
-    // Get initial session with timeout protection
+    let fallbackTimeout: NodeJS.Timeout
+
+    // Get initial session with improved error handling and aggressive fallbacks
     const initializeAuth = async () => {
       try {
-        
-        // Set timeout to prevent infinite loading
+        console.log('Initializing auth...')
+
+        // First timeout - only for detecting hanging requests
         initializationTimeout = setTimeout(() => {
           if (mounted) {
+            console.warn('Auth initialization taking longer than expected (5s)')
+            // Don't clear tokens yet, just set loading to false and let the auth flow continue
             setLoading(false)
           }
-        }, 5000) // 5 second timeout
-        
-        const { data: { session }, error } = await supabase.auth.getSession()
-        
-        // Clear timeout on successful response
-        if (initializationTimeout) {
-          clearTimeout(initializationTimeout)
-        }
-        
-        if (error) {
+        }, 5000) // Give more time for normal auth flow
+
+        // Second timeout - absolute fallback only for real hangs
+        fallbackTimeout = setTimeout(() => {
           if (mounted) {
+            console.error('Auth initialization absolute timeout (10s) - checking for real issues')
+
+            // Only clear if we truly have no session AND there are potentially corrupted tokens
+            const hasStorageTokens = Object.keys(localStorage).some(key =>
+              key.includes('supabase') || key.startsWith('sb-')
+            )
+
+            if (hasStorageTokens && !session && !user) {
+              console.log('Detected truly corrupted tokens after 10s - clearing')
+              Object.keys(localStorage).forEach(key => {
+                if (key.includes('supabase') || key.startsWith('sb-')) {
+                  localStorage.removeItem(key)
+                }
+              })
+            }
+
+            setLoading(false)
+          }
+        }, 10000) // Much longer timeout - only for real hangs
+
+        const { data: { session }, error } = await supabase.auth.getSession()
+
+        // Clear both timeouts on successful response
+        if (initializationTimeout) clearTimeout(initializationTimeout)
+        if (fallbackTimeout) clearTimeout(fallbackTimeout)
+
+        if (error) {
+          console.error('Error getting session:', error)
+          if (mounted) {
+            setSession(null)
+            setUser(null)
             setLoading(false)
           }
           return
         }
 
-        
+        console.log('Initial session loaded:', !!session, session?.user?.id?.slice(-4))
+
         if (mounted) {
           setSession(session)
           setUser(session?.user ?? null)
-          
+
           if (session?.user) {
-            await fetchUserProfile(session.user.id)
-          } else {
+            // Add timeout protection for profile fetch too
+            const profileTimeout = setTimeout(() => {
+              if (mounted) {
+                console.warn('Profile fetch timeout - continuing without profile')
+                setLoading(false)
+              }
+            }, 3000)
+
+            try {
+              await fetchUserProfile(session.user.id)
+              clearTimeout(profileTimeout)
+            } catch (profileError) {
+              console.error('Profile fetch error:', profileError)
+              clearTimeout(profileTimeout)
+            }
           }
-          
+
           setLoading(false)
         }
       } catch (error) {
-        if (initializationTimeout) {
-          clearTimeout(initializationTimeout)
-        }
+        console.error('Auth initialization error:', error)
+        if (initializationTimeout) clearTimeout(initializationTimeout)
+        if (fallbackTimeout) clearTimeout(fallbackTimeout)
         if (mounted) {
+          setSession(null)
+          setUser(null)
           setLoading(false)
         }
       }
@@ -314,7 +403,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     initializeAuth()
 
-    // Listen for changes
+    // Listen for changes with improved event handling
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -322,47 +411,69 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return
       }
 
-      console.log('Auth state change:', event, session?.user?.id)
+      console.log('Auth state change:', event, !!session, session?.user?.id?.slice(-4))
 
-      // Handle TOKEN_REFRESHED separately to avoid unnecessary state updates
-      if (event === 'TOKEN_REFRESHED') {
-        // Only update session, don't refetch profile or change loading state
-        setSession(session)
-        setUser(session?.user ?? null)
-        return
+      // Handle different auth events appropriately
+      switch (event) {
+        case 'TOKEN_REFRESHED':
+          // Only update session silently, don't trigger profile refetch
+          if (session) {
+            setSession(session)
+            setUser(session.user)
+          }
+          return
+
+        case 'SIGNED_IN':
+        case 'INITIAL_SESSION':
+          setSession(session)
+          setUser(session?.user ?? null)
+          if (session?.user && !isFetchingProfile) {
+            await fetchUserProfile(session.user.id)
+          }
+          setLoading(false)
+          break
+
+        case 'SIGNED_OUT':
+          setSession(null)
+          setUser(null)
+          setProfile(null)
+          setBusinessProfile(null)
+          setIsFetchingProfile(false)
+
+          // Clear storage more selectively to avoid conflicts
+          try {
+            // Get current storage key from supabase config
+            const storageKey = `sb-${supabase.supabaseUrl.split('//')[1].split('.')[0]}-auth-token`
+            localStorage.removeItem(storageKey)
+            localStorage.removeItem('sb-auth-token') // fallback
+
+            // Clear any other supabase keys but be more careful
+            Object.keys(localStorage).forEach(key => {
+              if (key.startsWith('sb-') && key.includes('auth')) {
+                localStorage.removeItem(key)
+              }
+            })
+          } catch (error) {
+            console.warn('Error clearing localStorage:', error)
+          }
+          setLoading(false)
+          break
+
+        default:
+          // For other events, just update the basic state
+          setSession(session)
+          setUser(session?.user ?? null)
+          setLoading(false)
       }
-
-      setSession(session)
-      setUser(session?.user ?? null)
-
-      // Only fetch profile for significant auth changes
-      if (session?.user && ['SIGNED_IN', 'INITIAL_SESSION'].includes(event)) {
-        await fetchUserProfile(session.user.id)
-      } else if (!session && event === 'SIGNED_OUT') {
-        setProfile(null)
-        setBusinessProfile(null)
-        // Clear all possible token storage locations
-        try {
-          localStorage.removeItem('sb-auth-token')
-          localStorage.removeItem('supabase.auth.token')
-          // Clear all supabase related keys
-          Object.keys(localStorage).forEach(key => {
-            if (key.startsWith('sb-') || key.includes('supabase')) {
-              localStorage.removeItem(key)
-            }
-          })
-        } catch (error) {
-          console.warn('Error clearing localStorage:', error)
-        }
-      }
-
-      setLoading(false)
     })
 
     return () => {
       mounted = false
       if (initializationTimeout) {
         clearTimeout(initializationTimeout)
+      }
+      if (fallbackTimeout) {
+        clearTimeout(fallbackTimeout)
       }
       subscription.unsubscribe()
     }

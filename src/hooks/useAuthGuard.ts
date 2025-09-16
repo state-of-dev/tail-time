@@ -21,35 +21,48 @@ export function useAuthGuard(requireAuth: boolean = true, redirectTo: string = '
 }
 
 export function useSessionMonitor() {
-  const { user, session, clearCorruptedSession } = useAuth();
+  const { user, session, loading, clearCorruptedSession } = useAuth();
 
   useEffect(() => {
-    // Detect session inconsistencies
-    const hasInconsistency = (user && !session) || (!user && session);
+    // Only check for inconsistencies after loading is complete
+    if (loading) return;
 
-    if (hasInconsistency) {
-      console.warn('Session inconsistency detected:', { user: !!user, session: !!session });
+    // Be much more conservative about what we consider an inconsistency
+    // Only flag as inconsistent if we have a user but no session AND it's been stable for a while
+    const hasSerousInconsistency = user && !session;
 
-      // Auto-clear corrupted sessions after a short delay
+    if (hasSerousInconsistency) {
+      console.warn('Potential session inconsistency detected:', { user: !!user, session: !!session });
+
+      // Much longer delay and more conservative approach
       const clearTimer = setTimeout(() => {
-        console.log('Auto-clearing corrupted session...');
-        clearCorruptedSession();
-      }, 2000);
+        // Triple-check the inconsistency still exists and is serious
+        const stillHasSeriousIssue = user && !session && !loading;
+        if (stillHasSeriousIssue) {
+          console.log('Serious session inconsistency persisted for 15s, clearing...');
+          clearCorruptedSession();
+        } else {
+          console.log('Session inconsistency resolved naturally');
+        }
+      }, 15000); // Much longer delay - 15 seconds
 
       return () => clearTimeout(clearTimer);
     }
-  }, [user, session, clearCorruptedSession]);
+  }, [user, session, loading, clearCorruptedSession]);
 
-  // Debug info for the console
+  // Enhanced debug info for the console
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.debugAuth = () => {
         console.log('Auth Debug Info:', {
           user: !!user,
           session: !!session,
+          loading,
           userId: user?.id,
           sessionExpiry: session?.expires_at,
-          tokenCount: Object.keys(localStorage).filter(k => k.includes('supabase') || k.startsWith('sb-')).length
+          timeToExpiry: session?.expires_at ? new Date(session.expires_at * 1000).getTime() - Date.now() : null,
+          tokenCount: Object.keys(localStorage).filter(k => k.includes('supabase') || k.startsWith('sb-')).length,
+          storageKeys: Object.keys(localStorage).filter(k => k.includes('supabase') || k.startsWith('sb-'))
         });
       };
 
@@ -58,10 +71,10 @@ export function useSessionMonitor() {
         clearCorruptedSession();
       };
     }
-  }, [user, session, clearCorruptedSession]);
+  }, [user, session, loading, clearCorruptedSession]);
 
   return {
-    hasSessionIssue: (user && !session) || (!user && session),
+    hasSessionIssue: !loading && ((user && !session) || (!user && session)),
     clearCorruptedSession
   };
 }

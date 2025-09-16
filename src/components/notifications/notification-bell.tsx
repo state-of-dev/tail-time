@@ -3,8 +3,8 @@ import { useAuth } from '@/contexts/auth-context-simple'
 import { useNotifications } from './notification-provider'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { 
-  Bell, 
+import {
+  Bell,
   BellDot,
   X,
   Check,
@@ -12,8 +12,17 @@ import {
   Clock,
   CheckCircle,
   XCircle,
-  RefreshCw
+  RefreshCw,
+  Star,
+  Sparkles,
+  Crown,
+  Heart,
+  Zap
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 
 export function NotificationBell() {
   const { user, businessProfile, profile } = useAuth()
@@ -87,47 +96,62 @@ export function NotificationBell() {
 
   return (
     <div className="relative">
-      {/* Bell Button */}
-      <Button
-        variant="ghost"
-        size="sm"
-        className="relative"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {unreadCount > 0 ? (
-          <BellDot className="w-5 h-5" />
-        ) : (
-          <Bell className="w-5 h-5" />
-        )}
-        
+      {/* Bell Button - Enhanced Neobrutalism */}
+      <div className="relative">
+        <Button
+          size="sm"
+          className="relative bg-chart-8 hover:bg-chart-6 text-main-foreground brutal-border brutal-shadow hover:brutal-hover font-black p-3"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {unreadCount > 0 ? (
+            <BellDot className="w-5 h-5 icon-float" />
+          ) : (
+            <Bell className="w-5 h-5 icon-float" />
+          )}
+
+          {/* Floating star decoration */}
+          <Star8 size={StarSizes.sm} className="absolute -top-1 -left-1 star-decoration" />
+        </Button>
+
         {unreadCount > 0 && (
-          <Badge 
-            className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center bg-red-500 text-white text-xs"
+          <Badge
+            className="absolute -top-2 -right-2 h-6 w-6 rounded-full p-0 flex items-center justify-center bg-chart-2 text-main-foreground brutal-border font-black text-xs"
           >
             {unreadCount > 99 ? '99+' : unreadCount}
           </Badge>
         )}
-        
-        {/* Connection indicator */}
-        <div className={`absolute -bottom-1 -right-1 w-2 h-2 rounded-full ${
-          isConnected ? 'bg-green-500' : 'bg-gray-400'
+
+        {/* Enhanced connection indicator */}
+        <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full brutal-border ${
+          isConnected ? 'bg-chart-1' : 'bg-chart-7'
         }`} />
-      </Button>
+      </div>
 
       {/* Notifications Dropdown - Neobrutalism Style */}
       {isOpen && (
         <div className="absolute right-0 top-full mt-2 w-80 bg-chart-2 brutal-border-thick brutal-shadow-xl rounded-base z-50 max-h-96 overflow-hidden">
-          {/* Header - Neobrutalism Style */}
-          <div className="flex items-center justify-between p-4 border-b-4 border-chart-4">
-            <div className="flex items-center gap-2">
-              <h3 className="font-black text-main-foreground uppercase">NOTIFICACIONES</h3>
+          {/* Header - Enhanced Neobrutalism Style */}
+          <div className="flex items-center justify-between p-4 border-b-4 border-chart-4 bg-chart-1 relative overflow-hidden">
+            {/* Floating stars in header */}
+            <Star24 size={StarSizes.sm} className="absolute top-1 left-2 star-decoration" />
+            <Star25 size={StarSizes.sm} className="absolute bottom-1 right-2 star-decoration" />
+
+            <div className="flex items-center gap-3 relative z-10">
+              <div className="p-2 bg-chart-8 brutal-border-thick rounded-base">
+                <Bell className="w-5 h-5 text-main-foreground icon-float" />
+              </div>
+              <div className="flex items-center gap-2">
+                <h3 className="font-black text-main-foreground uppercase text-lg">NOTIFICACIONES</h3>
+                <Star26 size={StarSizes.sm} className="star-decoration" />
+              </div>
               {unreadCount > 0 && (
-                <Badge className="bg-chart-8 text-main-foreground brutal-border font-black text-xs uppercase">
+                <Badge className="bg-chart-8 text-main-foreground brutal-border-thick brutal-shadow font-black text-xs uppercase px-3 py-1">
+                  <Sparkles className="w-3 h-3 mr-1 icon-float" />
                   {unreadCount} NUEVAS
                 </Badge>
               )}
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2 relative z-10">
               {notifications.length > 0 && (
                 <>
                   <Button
@@ -135,19 +159,19 @@ export function NotificationBell() {
                     onClick={() => {
                       setIsOpen(false)
                     }}
-                    className="bg-chart-1 text-main-foreground brutal-border font-black text-xs h-8 px-2 uppercase hover:brutal-hover"
+                    className="bg-chart-4 text-main-foreground brutal-border-thick brutal-shadow font-black text-xs h-8 px-3 uppercase hover:brutal-hover transform hover:scale-105 transition-all duration-200"
                   >
-                    <Check className="w-3 h-3 mr-1" />
-                    MARCAR TODAS
+                    <Check className="w-3 h-3 mr-1 icon-float" />
+                    MARCAR
                   </Button>
                   <Button
                     size="sm"
                     onClick={() => {
                       setIsOpen(false)
                     }}
-                    className="bg-chart-2 text-main-foreground brutal-border font-black text-xs h-8 px-2 uppercase hover:brutal-hover"
+                    className="bg-chart-6 text-main-foreground brutal-border-thick brutal-shadow font-black text-xs h-8 px-3 uppercase hover:brutal-hover transform hover:scale-105 transition-all duration-200"
                   >
-                    <X className="w-3 h-3 mr-1" />
+                    <X className="w-3 h-3 mr-1 icon-float" />
                     LIMPIAR
                   </Button>
                 </>
@@ -155,9 +179,9 @@ export function NotificationBell() {
               <Button
                 size="sm"
                 onClick={() => setIsOpen(false)}
-                className="bg-chart-8 text-main-foreground brutal-border font-black h-8 w-8 p-0 hover:brutal-hover"
+                className="bg-chart-8 text-main-foreground brutal-border-thick brutal-shadow-lg font-black h-8 w-8 p-0 hover:brutal-hover transform hover:scale-110 transition-all duration-200"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4 icon-float" />
               </Button>
             </div>
           </div>
@@ -165,38 +189,67 @@ export function NotificationBell() {
           {/* Notifications List */}
           <div className="max-h-80 overflow-y-auto">
             {notifications.length === 0 ? (
-              <div className="p-8 text-center">
-                <Bell className="w-8 h-8 mx-auto mb-3 text-main-foreground/50" />
-                <p className="text-sm font-black text-main-foreground uppercase">NO HAY NOTIFICACIONES</p>
-                <p className="text-xs mt-1 font-bold text-main-foreground/80 uppercase">
+              <div className="p-8 text-center relative">
+                {/* Floating stars background */}
+                <Star19 size={StarSizes.sm} className="absolute top-4 left-4 star-decoration" />
+                <Star20 size={StarSizes.sm} className="absolute top-6 right-6 star-decoration" />
+                <Star21 size={StarSizes.sm} className="absolute bottom-4 left-6 star-decoration" />
+
+                <div className="p-6 bg-chart-8 brutal-border-thick brutal-shadow-lg rounded-base inline-block mb-6 relative">
+                  <Bell className="w-8 h-8 text-main-foreground icon-float" />
+                  <Star22 size={StarSizes.xs} className="absolute -top-1 -right-1 star-decoration" />
+                  <Sparkles className="absolute -bottom-1 -left-1 w-4 h-4 text-main-foreground icon-float" />
+                </div>
+
+                <h3 className="text-lg font-black text-main-foreground uppercase mb-2">
+                  <Crown className="inline-block w-5 h-5 mr-2 icon-float" />
+                  NO HAY NOTIFICACIONES
+                  <Heart className="inline-block w-5 h-5 ml-2 icon-float" />
+                </h3>
+
+                <p className="text-sm font-bold text-main-foreground/80 uppercase mb-4">
                   LAS NOTIFICACIONES APARECERÁN AQUÍ AUTOMÁTICAMENTE
                 </p>
+
+                <div className="flex items-center justify-center gap-2">
+                  <Zap className="w-4 h-4 text-main-foreground icon-float" />
+                  <span className="text-xs font-bold text-main-foreground/60 uppercase">TIEMPO REAL</span>
+                  <Star23 size={StarSizes.xs} className="star-decoration" />
+                </div>
               </div>
             ) : (
-              <div className="divide-y divide-border">
-                {notifications.map((notification) => (
+              <div className="divide-y-4 divide-chart-4">
+                {notifications.map((notification, index) => (
                   <div
                     key={notification.id}
-                    className={`p-4 hover:bg-chart-1/20 transition-colors cursor-pointer ${
-                      !notification.read ? 'bg-chart-8/20' : ''
+                    className={`p-4 hover:bg-chart-7 transition-all duration-200 cursor-pointer relative overflow-hidden ${
+                      !notification.read ? 'bg-chart-8/30 brutal-border-l-4 border-chart-1' : 'hover:brutal-shadow-lg'
                     }`}
                     onClick={() => markAsRead(notification.id)}
                   >
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 mt-1">
+                    {/* Floating star decoration for each notification */}
+                    <Star27 size={StarSizes.xs} className="absolute top-1 right-1 star-decoration" />
+
+                    <div className="flex items-start gap-4 relative z-10">
+                      <div className="flex-shrink-0 mt-1 p-2 bg-chart-6 brutal-border rounded-base">
                         {getNotificationIcon(notification.type)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between">
-                          <h4 className="text-sm font-black text-main-foreground line-clamp-1 uppercase">
-                            {notification.title?.toUpperCase()}
-                          </h4>
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-sm font-black text-main-foreground line-clamp-1 uppercase">
+                              {notification.title?.toUpperCase()}
+                            </h4>
+                            <Star28 size={StarSizes.xs} className="star-decoration" />
+                          </div>
                           <div className="flex items-center gap-2 ml-2">
-                            <span className="text-xs text-main-foreground/80 font-bold">
-                              {formatTime(notification.created_at)}
-                            </span>
+                            <div className="bg-chart-3 brutal-border px-2 py-1 rounded-base">
+                              <span className="text-xs text-main-foreground font-black uppercase">
+                                {formatTime(notification.created_at)}
+                              </span>
+                            </div>
                             {!notification.read && (
-                              <div className="w-2 h-2 bg-chart-8 rounded-full" />
+                              <div className="w-3 h-3 bg-chart-1 brutal-border rounded-full pulse-animation" />
                             )}
                           </div>
                         </div>

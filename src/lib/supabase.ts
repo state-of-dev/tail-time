@@ -18,8 +18,18 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: true,
-    storageKey: 'sb-auth-token', // Use explicit storage key
-    storage: window.localStorage // Use localStorage explicitly
+    // Use standard Supabase storage key format for better compatibility
+    storageKey: `sb-${supabaseUrl.split('//')[1].split('.')[0]}-auth-token`,
+    storage: window.localStorage,
+    // Improve token refresh behavior
+    flowType: 'pkce',
+    debug: false
+  },
+  // Add global config for better error handling
+  global: {
+    headers: {
+      'X-Client-Info': 'tailtime-frontend'
+    }
   }
 })
 

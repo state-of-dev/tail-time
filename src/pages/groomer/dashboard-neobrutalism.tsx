@@ -4,6 +4,7 @@ import { useAuth } from '@/contexts/auth-context-simple'
 import { useAppointmentsRealtime } from '@/hooks/use-appointments-realtime'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Navigation } from '@/components/navigation'
+import { AppointmentsTable } from '@/components/appointments/appointments-table'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -257,6 +258,52 @@ export default function DashboardNeobrutalism() {
             </CardContent>
           </Card>
         </div>
+
+        {/* All Appointments Table - Neobrutalism Style */}
+        <Card className="brutal-shadow-xl bg-chart-2 brutal-border-thick mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-4 text-main-foreground font-black text-2xl uppercase">
+              <BarChart3 className="icon-hero icon-float" />
+              <Star37 size={StarSizes.lg} className="star-decoration" />
+              TODAS LAS CITAS
+              <Star39 size={StarSizes.lg} className="star-decoration" />
+            </CardTitle>
+            <CardDescription className="text-main-foreground/80 font-bold text-lg uppercase">
+              GESTIONA TODAS TUS CITAS CON FUNCIONES AVANZADAS
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="p-6">
+            <AppointmentsTable
+              appointments={appointments.map(apt => ({
+                id: apt.id,
+                customer_name: apt.customer_name || 'Cliente',
+                pet_name: apt.pet_name || 'Mascota',
+                pet_breed: apt.pet_breed || 'Raza no especificada',
+                service_name: apt.service_name || 'Servicio',
+                appointment_date: apt.appointment_date,
+                start_time: apt.appointment_time,
+                end_time: apt.end_time || apt.appointment_time,
+                status: apt.status as 'pending' | 'confirmed' | 'completed' | 'cancelled' | 'rejected',
+                total_amount: apt.total_amount || 0,
+                duration: apt.duration || 60,
+                customer_phone: apt.customer_phone,
+                notes: apt.notes
+              }))}
+              onViewAppointment={(appointment) => {
+                console.log('Ver cita:', appointment)
+                // Implementar navegación a vista de cita
+              }}
+              onEditAppointment={(appointment) => {
+                console.log('Editar cita:', appointment)
+                // Implementar edición de cita
+              }}
+              onCancelAppointment={(appointment) => {
+                console.log('Cancelar cita:', appointment)
+                // Implementar cancelación de cita
+              }}
+            />
+          </CardContent>
+        </Card>
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

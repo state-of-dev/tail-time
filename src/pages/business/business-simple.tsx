@@ -136,10 +136,15 @@ export default function BusinessSimple() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <Heart className="w-8 h-8 animate-pulse text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Cargando...</p>
+      <div className="min-h-screen bg-chart-4 flex items-center justify-center">
+        <div className="text-center relative">
+          <Star1 size={StarSizes.sm} className="absolute top-0 left-8 star-decoration" />
+          <Star6 size={StarSizes.sm} className="absolute top-4 right-8 star-decoration" />
+          <div className="p-8 bg-chart-8 brutal-border-thick brutal-shadow-xl rounded-base inline-block mb-6">
+            <Heart className="w-12 h-12 animate-pulse text-main-foreground icon-float" />
+            <Star7 size={StarSizes.xs} className="absolute -top-1 -right-1 star-decoration" />
+          </div>
+          <p className="text-main-foreground font-black uppercase text-xl">CARGANDO NEGOCIO...</p>
         </div>
       </div>
     )
@@ -147,15 +152,24 @@ export default function BusinessSimple() {
 
   if (error || !business) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Card className="max-w-md">
-          <CardHeader>
-            <CardTitle>Negocio no encontrado</CardTitle>
-            <CardDescription>{error || 'Este negocio no está disponible'}</CardDescription>
+      <div className="min-h-screen bg-chart-4 flex items-center justify-center p-4">
+        <Card className="max-w-md bg-chart-2 brutal-border-thick brutal-shadow-xl">
+          <CardHeader className="text-center">
+            <div className="p-6 bg-chart-8 brutal-border rounded-base inline-block mb-4">
+              <XCircle className="w-16 h-16 text-main-foreground" />
+            </div>
+            <CardTitle className="text-main-foreground font-black uppercase text-2xl">NEGOCIO NO ENCONTRADO</CardTitle>
+            <CardDescription className="text-main-foreground/80 font-bold uppercase text-lg">
+              {(error || 'ESTE NEGOCIO NO ESTÁ DISPONIBLE').toUpperCase()}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={() => navigate('/')}>
-              Volver al inicio
+            <Button
+              onClick={() => navigate('/')}
+              className="w-full bg-chart-8 text-main-foreground brutal-border brutal-shadow hover:brutal-hover font-black uppercase"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2 icon-float" />
+              VOLVER AL INICIO
             </Button>
           </CardContent>
         </Card>
@@ -290,84 +304,137 @@ export default function BusinessSimple() {
               </div>
             </div>
 
-            {/* Features Section */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-foreground mb-6">¿Por qué elegirnos?</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
-                  <div>
-                    <h3 className="font-medium text-foreground">Profesionales Certificados</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Nuestros groomers están certificados y tienen años de experiencia
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
-                  <div>
-                    <h3 className="font-medium text-foreground">Productos de Calidad</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Usamos solo los mejores productos para el cuidado de tu mascota
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
-                  <div>
-                    <h3 className="font-medium text-foreground">Ambiente Seguro</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Instalaciones limpias y seguras para la comodidad de tu mascota
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 mt-1" />
-                  <div>
-                    <h3 className="font-medium text-foreground">Citas Flexibles</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Horarios flexibles que se adaptan a tu disponibilidad
-                    </p>
-                  </div>
-                </div>
+            {/* Features Section - Neobrutalism Style */}
+            <div className="mb-16">
+              <div className="text-center mb-12">
+                <Badge className="bg-chart-6 text-main-foreground brutal-shadow-xl px-8 py-4 text-xl font-black brutal-border-thick rounded-base uppercase transform -rotate-1">
+                  <Trophy className="icon-large mr-2 icon-float" />
+                  <Star27 size={StarSizes.md} className="star-decoration" />
+                  ¿POR QUÉ ELEGIRNOS?
+                  <Star28 size={StarSizes.md} className="star-decoration" />
+                  <Crown className="icon-large ml-2 icon-float" />
+                </Badge>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card className="bg-chart-8 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200 transform hover:rotate-1">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-chart-1 brutal-border rounded-base">
+                        <CheckCircle className="w-6 h-6 text-main-foreground icon-float" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-black text-main-foreground uppercase mb-2">
+                          PROFESIONALES CERTIFICADOS
+                        </h3>
+                        <p className="text-main-foreground/80 font-bold uppercase">
+                          NUESTROS GROOMERS ESTÁN CERTIFICADOS Y TIENEN AÑOS DE EXPERIENCIA
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-chart-3 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200 transform hover:-rotate-1">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-chart-8 brutal-border rounded-base">
+                        <Star className="w-6 h-6 text-main-foreground icon-float" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-black text-main-foreground uppercase mb-2">
+                          PRODUCTOS DE CALIDAD
+                        </h3>
+                        <p className="text-main-foreground/80 font-bold uppercase">
+                          USAMOS SOLO LOS MEJORES PRODUCTOS PARA EL CUIDADO DE TU MASCOTA
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-chart-6 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200 transform hover:rotate-1">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-chart-7 brutal-border rounded-base">
+                        <Heart className="w-6 h-6 text-main-foreground icon-float" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-black text-main-foreground uppercase mb-2">
+                          AMBIENTE SEGURO
+                        </h3>
+                        <p className="text-main-foreground/80 font-bold uppercase">
+                          INSTALACIONES LIMPIAS Y SEGURAS PARA LA COMODIDAD DE TU MASCOTA
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-chart-2 brutal-border-thick brutal-shadow-lg hover:brutal-hover transition-all duration-200 transform hover:-rotate-1">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-chart-1 brutal-border rounded-base">
+                        <Calendar className="w-6 h-6 text-main-foreground icon-float" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-black text-main-foreground uppercase mb-2">
+                          CITAS FLEXIBLES
+                        </h3>
+                        <p className="text-main-foreground/80 font-bold uppercase">
+                          HORARIOS FLEXIBLES QUE SE ADAPTAN A TU DISPONIBILIDAD
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
+          {/* Sidebar - Neobrutalism Style */}
+          <div className="space-y-8">
             {/* Contact Info */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Información de Contacto</CardTitle>
+            <Card className="bg-chart-5 brutal-border-thick brutal-shadow-xl">
+              <CardHeader className="bg-chart-8 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0">
+                <CardTitle className="text-xl font-black text-main-foreground uppercase flex items-center gap-3">
+                  <Phone className="w-6 h-6 icon-float" />
+                  <Star37 size={StarSizes.sm} className="star-decoration" />
+                  INFORMACIÓN DE CONTACTO
+                </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6 p-8">
                 {business.phone && (
-                  <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-primary" />
+                  <div className="flex items-center gap-4 p-4 bg-chart-2 brutal-border rounded-base">
+                    <div className="p-3 bg-chart-1 brutal-border rounded-base">
+                      <Phone className="w-5 h-5 text-main-foreground icon-float" />
+                    </div>
                     <div>
-                      <p className="font-medium text-foreground">Teléfono</p>
-                      <p className="text-sm text-muted-foreground">{business.phone}</p>
+                      <p className="font-black text-main-foreground uppercase">TELÉFONO</p>
+                      <p className="text-main-foreground/80 font-bold text-lg">{business.phone}</p>
                     </div>
                   </div>
                 )}
                 {business.email && (
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-primary" />
+                  <div className="flex items-center gap-4 p-4 bg-chart-3 brutal-border rounded-base">
+                    <div className="p-3 bg-chart-8 brutal-border rounded-base">
+                      <Mail className="w-5 h-5 text-main-foreground icon-float" />
+                    </div>
                     <div>
-                      <p className="font-medium text-foreground">Email</p>
-                      <p className="text-sm text-muted-foreground">{business.email}</p>
+                      <p className="font-black text-main-foreground uppercase">EMAIL</p>
+                      <p className="text-main-foreground/80 font-bold text-lg">{business.email}</p>
                     </div>
                   </div>
                 )}
                 {business.address && (
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-primary mt-1" />
+                  <div className="flex items-start gap-4 p-4 bg-chart-4 brutal-border rounded-base">
+                    <div className="p-3 bg-chart-6 brutal-border rounded-base">
+                      <MapPin className="w-5 h-5 text-main-foreground icon-float" />
+                    </div>
                     <div>
-                      <p className="font-medium text-foreground">Dirección</p>
-                      <p className="text-sm text-muted-foreground">
-                        {business.address}
-                        {business.city && `, ${business.city}`}
+                      <p className="font-black text-main-foreground uppercase">DIRECCIÓN</p>
+                      <p className="text-main-foreground/80 font-bold text-lg">
+                        {business.address.toUpperCase()}
+                        {business.city && `, ${business.city.toUpperCase()}`}
                       </p>
                     </div>
                   </div>
@@ -376,45 +443,53 @@ export default function BusinessSimple() {
             </Card>
 
             {/* Business Hours */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Horarios de Atención</CardTitle>
+            <Card className="bg-chart-7 brutal-border-thick brutal-shadow-xl">
+              <CardHeader className="bg-chart-3 brutal-border-thick border-b-4 border-l-0 border-r-0 border-t-0">
+                <CardTitle className="text-xl font-black text-main-foreground uppercase flex items-center gap-3">
+                  <Clock className="w-6 h-6 icon-float" />
+                  <Star39 size={StarSizes.sm} className="star-decoration" />
+                  HORARIOS DE ATENCIÓN
+                </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center py-1">
-                    <span className="text-sm text-muted-foreground">Lunes - Viernes</span>
-                    <span className="text-sm font-medium text-foreground">9:00 AM - 6:00 PM</span>
+              <CardContent className="p-8">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center p-4 bg-chart-2 brutal-border rounded-base">
+                    <span className="font-bold text-main-foreground uppercase">LUNES - VIERNES</span>
+                    <span className="font-black text-main-foreground text-lg">9:00 AM - 6:00 PM</span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
-                    <span className="text-sm text-muted-foreground">Sábado</span>
-                    <span className="text-sm font-medium text-foreground">10:00 AM - 4:00 PM</span>
+                  <div className="flex justify-between items-center p-4 bg-chart-4 brutal-border rounded-base">
+                    <span className="font-bold text-main-foreground uppercase">SÁBADO</span>
+                    <span className="font-black text-main-foreground text-lg">10:00 AM - 4:00 PM</span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
-                    <span className="text-sm text-muted-foreground">Domingo</span>
-                    <span className="text-sm font-medium text-foreground">Cerrado</span>
+                  <div className="flex justify-between items-center p-4 bg-chart-6 brutal-border rounded-base">
+                    <span className="font-bold text-main-foreground uppercase">DOMINGO</span>
+                    <span className="font-black text-main-foreground text-lg">CERRADO</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* CTA Card */}
-            <Card className="bg-primary/5 border-primary/20">
-              <CardContent className="pt-6">
+            <Card className="bg-chart-1 brutal-border-thick brutal-shadow-xl relative overflow-hidden">
+              <Star40 size={StarSizes.md} className="absolute top-2 right-2 star-decoration" />
+              <CardContent className="pt-8 pb-8 px-8">
                 <div className="text-center">
-                  <Heart className="w-8 h-8 text-primary mx-auto mb-3" />
-                  <h3 className="font-medium text-foreground mb-2">
-                    ¿Listo para consentir a tu mascota?
+                  <div className="p-6 bg-chart-8 brutal-border-thick brutal-shadow-lg rounded-base inline-block mb-6">
+                    <Heart className="w-12 h-12 text-main-foreground icon-float" />
+                  </div>
+                  <h3 className="text-xl font-black text-main-foreground mb-4 uppercase">
+                    ¿LISTO PARA CONSENTIR A TU MASCOTA?
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Agenda tu cita ahora y dale a tu mascota el cuidado que se merece
+                  <p className="text-main-foreground/80 font-bold uppercase mb-6">
+                    AGENDA TU CITA AHORA Y DALE A TU MASCOTA EL CUIDADO QUE SE MERECE
                   </p>
-                  <Button 
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  <Button
+                    className="w-full bg-chart-8 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black uppercase text-lg py-4 transform hover:scale-105 transition-all duration-200"
                     onClick={() => navigate(`/business/${businessSlug}/book`)}
                   >
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Agendar Ahora
+                    <Calendar className="w-5 h-5 mr-3 icon-float" />
+                    AGENDAR AHORA
+                    <Sparkles className="w-5 h-5 ml-3 icon-float" />
                   </Button>
                 </div>
               </CardContent>

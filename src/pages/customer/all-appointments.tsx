@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Navigation } from '@/components/navigation'
-import { 
+import {
   ArrowLeft,
   Calendar,
   Clock,
@@ -18,8 +18,15 @@ import {
   AlertCircle,
   Hourglass,
   Filter,
-  Search
+  Search,
+  Sparkles,
+  Crown,
+  Star
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 
 interface Appointment {
   id: string
@@ -42,33 +49,33 @@ interface Appointment {
 const STATUS_CONFIG = {
   pending: {
     icon: Hourglass,
-    label: 'Pendiente',
-    color: 'bg-yellow-100 text-yellow-800 border-yellow-200'
+    label: 'PENDIENTE',
+    color: 'bg-chart-3 text-main-foreground brutal-border brutal-shadow font-black uppercase'
   },
   confirmed: {
     icon: CheckCircle,
-    label: 'Confirmada',
-    color: 'bg-blue-100 text-blue-800 border-blue-200'
+    label: 'CONFIRMADA',
+    color: 'bg-chart-1 text-main-foreground brutal-border brutal-shadow font-black uppercase'
   },
   in_progress: {
     icon: Clock,
-    label: 'En Progreso',
-    color: 'bg-purple-100 text-purple-800 border-purple-200'
+    label: 'EN PROGRESO',
+    color: 'bg-chart-8 text-main-foreground brutal-border brutal-shadow font-black uppercase'
   },
   completed: {
     icon: CheckCircle,
-    label: 'Completada',
-    color: 'bg-green-100 text-green-800 border-green-200'
+    label: 'COMPLETADA',
+    color: 'bg-chart-6 text-main-foreground brutal-border brutal-shadow font-black uppercase'
   },
   cancelled: {
     icon: XCircle,
-    label: 'Cancelada',
-    color: 'bg-red-100 text-red-800 border-red-200'
+    label: 'CANCELADA',
+    color: 'bg-chart-7 text-main-foreground brutal-border brutal-shadow font-black uppercase'
   },
   no_show: {
     icon: AlertCircle,
-    label: 'No se presentó',
-    color: 'bg-gray-100 text-gray-800 border-gray-200'
+    label: 'NO SE PRESENTÓ',
+    color: 'bg-chart-4 text-main-foreground brutal-border brutal-shadow font-black uppercase'
   }
 }
 
@@ -163,14 +170,17 @@ export default function AllAppointments() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-chart-4">
         <Navigation />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center py-12">
-            <div className="animate-pulse">
-              <div className="h-8 bg-muted rounded w-1/3 mx-auto mb-4"></div>
-              <div className="h-4 bg-muted rounded w-1/2 mx-auto"></div>
+          <div className="text-center py-12 relative">
+            <Star19 size={StarSizes.sm} className="absolute top-4 left-1/3 star-decoration" />
+            <Star20 size={StarSizes.sm} className="absolute top-8 right-1/3 star-decoration" />
+            <div className="p-8 bg-chart-8 brutal-border-thick brutal-shadow-xl rounded-base inline-block mb-6 relative">
+              <Clock className="w-8 h-8 animate-spin text-main-foreground icon-float" />
+              <Star21 size={StarSizes.xs} className="absolute -top-1 -right-1 star-decoration" />
             </div>
+            <p className="text-main-foreground font-black uppercase text-lg">CARGANDO CITAS...</p>
           </div>
         </div>
       </div>
@@ -178,165 +188,264 @@ export default function AllAppointments() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-chart-4">
       <Navigation />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8">
+        {/* Header - Neobrutalism Style */}
+        <div className="mb-8 relative">
+          <Star22 size={StarSizes.sm} className="absolute top-0 right-8 star-decoration" />
+          <Star23 size={StarSizes.sm} className="absolute top-12 left-12 star-decoration" />
+
           <Button
-            variant="ghost"
             onClick={() => navigate('/customer/dashboard')}
-            className="mb-4"
+            className="mb-6 bg-chart-6 text-main-foreground brutal-border brutal-shadow hover:brutal-hover font-black uppercase"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Volver al Dashboard
+            <ArrowLeft className="w-4 h-4 mr-2 icon-float" />
+            VOLVER AL DASHBOARD
           </Button>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-foreground mb-2">
-                Todas mis Citas
-              </h1>
-              <p className="text-muted-foreground">
-                Historial completo de tus citas de grooming
-              </p>
+
+          <div className="flex items-center justify-between relative">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-chart-8 brutal-border-thick brutal-shadow rounded-base">
+                <Calendar className="w-8 h-8 text-main-foreground icon-float" />
+                <Star24 size={StarSizes.xs} className="absolute -top-1 -right-1" />
+              </div>
+              <div>
+                <h1 className="text-4xl font-black text-main-foreground mb-2 uppercase flex items-center gap-3">
+                  TODAS MIS CITAS
+                  <Crown className="w-8 h-8 icon-float" />
+                </h1>
+                <p className="text-main-foreground/80 font-bold uppercase text-lg">
+                  HISTORIAL COMPLETO DE TUS CITAS DE GROOMING
+                  <Sparkles className="inline-block w-5 h-5 ml-2 icon-float" />
+                </p>
+              </div>
             </div>
-            
-            <Button onClick={() => navigate('/marketplace')}>
-              <Calendar className="w-4 h-4 mr-2" />
-              Agendar Nueva Cita
+
+            <Button
+              onClick={() => navigate('/marketplace')}
+              className="bg-chart-1 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black uppercase text-lg px-6 py-3 transform hover:scale-105 transition-all duration-200"
+            >
+              <Calendar className="w-5 h-5 mr-2 icon-float" />
+              AGENDAR NUEVA CITA
+              <Star25 className="inline-block w-4 h-4 ml-2" />
             </Button>
           </div>
         </div>
 
-        {/* Stats and Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-          <Card 
-            className={`cursor-pointer transition-all ${statusFilter === 'all' ? 'ring-2 ring-primary' : 'hover:shadow-md'}`}
+        {/* Stats and Filters - Neobrutalism Style */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+          <Card
+            className={`cursor-pointer transition-all duration-200 bg-chart-2 brutal-border-thick ${
+              statusFilter === 'all'
+                ? 'brutal-shadow-xl bg-chart-8 transform scale-105'
+                : 'brutal-shadow hover:brutal-hover hover:transform hover:scale-105'
+            }`}
             onClick={() => setStatusFilter('all')}
           >
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-foreground">{appointments.length}</div>
-              <div className="text-sm text-muted-foreground">Total</div>
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <Star26 size={StarSizes.xs} className="absolute top-1 right-1 star-decoration" />
+              <div className="text-3xl font-black text-main-foreground mb-2">{appointments.length}</div>
+              <div className="text-sm text-main-foreground/80 font-bold uppercase flex items-center justify-center gap-2">
+                <Sparkles className="w-4 h-4 icon-float" />
+                TOTAL
+              </div>
             </CardContent>
           </Card>
-          
-          <Card 
-            className={`cursor-pointer transition-all ${statusFilter === 'confirmed' ? 'ring-2 ring-primary' : 'hover:shadow-md'}`}
+
+          <Card
+            className={`cursor-pointer transition-all duration-200 bg-chart-2 brutal-border-thick ${
+              statusFilter === 'confirmed'
+                ? 'brutal-shadow-xl bg-chart-1 transform scale-105'
+                : 'brutal-shadow hover:brutal-hover hover:transform hover:scale-105'
+            }`}
             onClick={() => setStatusFilter('confirmed')}
           >
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">{statusCounts.confirmed || 0}</div>
-              <div className="text-sm text-muted-foreground">Confirmadas</div>
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <Star27 size={StarSizes.xs} className="absolute top-1 right-1 star-decoration" />
+              <div className="text-3xl font-black text-main-foreground mb-2">{statusCounts.confirmed || 0}</div>
+              <div className="text-sm text-main-foreground/80 font-bold uppercase flex items-center justify-center gap-2">
+                <CheckCircle className="w-4 h-4 icon-float" />
+                CONFIRMADAS
+              </div>
             </CardContent>
           </Card>
-          
-          <Card 
-            className={`cursor-pointer transition-all ${statusFilter === 'completed' ? 'ring-2 ring-primary' : 'hover:shadow-md'}`}
+
+          <Card
+            className={`cursor-pointer transition-all duration-200 bg-chart-2 brutal-border-thick ${
+              statusFilter === 'completed'
+                ? 'brutal-shadow-xl bg-chart-6 transform scale-105'
+                : 'brutal-shadow hover:brutal-hover hover:transform hover:scale-105'
+            }`}
             onClick={() => setStatusFilter('completed')}
           >
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-green-600">{statusCounts.completed || 0}</div>
-              <div className="text-sm text-muted-foreground">Completadas</div>
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <Star28 size={StarSizes.xs} className="absolute top-1 right-1 star-decoration" />
+              <div className="text-3xl font-black text-main-foreground mb-2">{statusCounts.completed || 0}</div>
+              <div className="text-sm text-main-foreground/80 font-bold uppercase flex items-center justify-center gap-2">
+                <Crown className="w-4 h-4 icon-float" />
+                COMPLETADAS
+              </div>
             </CardContent>
           </Card>
-          
-          <Card 
-            className={`cursor-pointer transition-all ${statusFilter === 'pending' ? 'ring-2 ring-primary' : 'hover:shadow-md'}`}
+
+          <Card
+            className={`cursor-pointer transition-all duration-200 bg-chart-2 brutal-border-thick ${
+              statusFilter === 'pending'
+                ? 'brutal-shadow-xl bg-chart-3 transform scale-105'
+                : 'brutal-shadow hover:brutal-hover hover:transform hover:scale-105'
+            }`}
             onClick={() => setStatusFilter('pending')}
           >
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-yellow-600">{statusCounts.pending || 0}</div>
-              <div className="text-sm text-muted-foreground">Pendientes</div>
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <Star19 size={StarSizes.xs} className="absolute top-1 right-1 star-decoration" />
+              <div className="text-3xl font-black text-main-foreground mb-2">{statusCounts.pending || 0}</div>
+              <div className="text-sm text-main-foreground/80 font-bold uppercase flex items-center justify-center gap-2">
+                <Hourglass className="w-4 h-4 icon-float" />
+                PENDIENTES
+              </div>
             </CardContent>
           </Card>
-          
-          <Card 
-            className={`cursor-pointer transition-all ${statusFilter === 'cancelled' ? 'ring-2 ring-primary' : 'hover:shadow-md'}`}
+
+          <Card
+            className={`cursor-pointer transition-all duration-200 bg-chart-2 brutal-border-thick ${
+              statusFilter === 'cancelled'
+                ? 'brutal-shadow-xl bg-chart-7 transform scale-105'
+                : 'brutal-shadow hover:brutal-hover hover:transform hover:scale-105'
+            }`}
             onClick={() => setStatusFilter('cancelled')}
           >
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-red-600">{statusCounts.cancelled || 0}</div>
-              <div className="text-sm text-muted-foreground">Canceladas</div>
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <Star20 size={StarSizes.xs} className="absolute top-1 right-1 star-decoration" />
+              <div className="text-3xl font-black text-main-foreground mb-2">{statusCounts.cancelled || 0}</div>
+              <div className="text-sm text-main-foreground/80 font-bold uppercase flex items-center justify-center gap-2">
+                <XCircle className="w-4 h-4 icon-float" />
+                CANCELADAS
+              </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Appointments List */}
-        <div className="space-y-4">
+        {/* Appointments List - Neobrutalism Style */}
+        <div className="space-y-6">
           {filteredAppointments.length === 0 ? (
-            <Card>
-              <CardContent className="text-center py-12">
-                <Dog className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-50" />
-                <h3 className="text-xl font-semibold mb-2">
-                  {statusFilter === 'all' ? 'No tienes citas registradas' : `No tienes citas ${STATUS_CONFIG[statusFilter as keyof typeof STATUS_CONFIG]?.label.toLowerCase()}`}
+            <Card className="bg-chart-2 brutal-border-thick brutal-shadow-xl">
+              <CardContent className="text-center py-16 relative overflow-hidden">
+                <Star1 size={StarSizes.sm} className="absolute top-4 left-8 star-decoration" />
+                <Star6 size={StarSizes.sm} className="absolute top-8 right-8 star-decoration" />
+                <Star7 size={StarSizes.sm} className="absolute bottom-6 left-12 star-decoration" />
+
+                <div className="p-8 bg-chart-8 brutal-border-thick brutal-shadow-lg rounded-base inline-block mb-8 relative">
+                  <Dog className="w-16 h-16 text-main-foreground icon-float" />
+                  <Star8 size={StarSizes.xs} className="absolute -top-2 -right-2 star-decoration" />
+                  <Sparkles className="absolute -bottom-2 -left-2 w-6 h-6 text-main-foreground icon-float" />
+                </div>
+
+                <h3 className="text-2xl font-black text-main-foreground mb-4 uppercase flex items-center justify-center gap-3">
+                  <Crown className="w-6 h-6 icon-float" />
+                  {statusFilter === 'all'
+                    ? 'NO TIENES CITAS REGISTRADAS'
+                    : `NO TIENES CITAS ${STATUS_CONFIG[statusFilter as keyof typeof STATUS_CONFIG]?.label}`}
+                  <Star9 size={StarSizes.sm} className="star-decoration" />
                 </h3>
-                <p className="text-muted-foreground mb-6">
-                  {statusFilter === 'all' 
-                    ? 'Agenda tu primera cita para darle a tu mascota el cuidado que se merece'
-                    : 'Filtra por otra categoría o agenda una nueva cita'
+
+                <p className="text-main-foreground/80 font-bold uppercase text-lg mb-8">
+                  {statusFilter === 'all'
+                    ? 'AGENDA TU PRIMERA CITA PARA DARLE A TU MASCOTA EL CUIDADO QUE SE MERECE'
+                    : 'FILTRA POR OTRA CATEGORÍA O AGENDA UNA NUEVA CITA'
                   }
                 </p>
-                <Button onClick={() => navigate('/marketplace')}>
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Agendar Nueva Cita
+
+                <Button
+                  onClick={() => navigate('/marketplace')}
+                  className="bg-chart-1 text-main-foreground brutal-border-thick brutal-shadow-lg hover:brutal-hover font-black uppercase text-lg px-8 py-4 transform hover:scale-105 transition-all duration-200"
+                >
+                  <Calendar className="w-5 h-5 mr-3 icon-float" />
+                  AGENDAR NUEVA CITA
+                  <Star10 size={StarSizes.sm} className="inline-block ml-3" />
                 </Button>
               </CardContent>
             </Card>
           ) : (
-            filteredAppointments.map((appointment) => {
+            filteredAppointments.map((appointment, index) => {
               const statusConfig = STATUS_CONFIG[appointment.status]
               const StatusIcon = statusConfig.icon
-              
+
               return (
-                <Card key={appointment.id} className="transition-all hover:shadow-md">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
+                <Card
+                  key={appointment.id}
+                  className="bg-chart-2 brutal-border-thick brutal-shadow hover:brutal-hover transition-all duration-200 hover:transform hover:scale-[1.02] relative overflow-hidden"
+                >
+                  <CardContent className="p-8 relative">
+                    <Star13 size={StarSizes.xs} className="absolute top-2 right-2 star-decoration" />
+                    <Star21 size={StarSizes.xs} className="absolute bottom-2 left-2 star-decoration" />
+
+                    <div className="flex items-start justify-between mb-6">
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-foreground">
-                            {appointment.service_name}
-                          </h3>
-                          <Badge className={statusConfig.color}>
-                            <StatusIcon className="w-4 h-4 mr-1" />
-                            {statusConfig.label}
-                          </Badge>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground mb-4">
-                          <div className="space-y-2">
-                            <p className="flex items-center gap-2">
-                              <Calendar className="w-4 h-4 text-primary" />
-                              <span className="capitalize">{formatDate(appointment.appointment_date)}</span>
-                            </p>
-                            <p className="flex items-center gap-2">
-                              <Clock className="w-4 h-4 text-primary" />
-                              <span>{formatTime(appointment.start_time)} - {formatTime(appointment.end_time)}</span>
-                            </p>
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="p-3 bg-chart-8 brutal-border rounded-base">
+                            <StatusIcon className="w-6 h-6 text-main-foreground icon-float" />
                           </div>
-                          <div className="space-y-2">
-                            <p className="flex items-center gap-2">
-                              <MapPin className="w-4 h-4 text-primary" />
-                              <span>{appointment.business_name}</span>
-                            </p>
-                            <p className="flex items-center gap-2">
-                              <Dog className="w-4 h-4 text-primary" />
-                              <span>{appointment.pet_name} ({appointment.pet_breed})</span>
-                            </p>
+                          <div className="flex-1">
+                            <h3 className="text-xl font-black text-main-foreground uppercase mb-2 flex items-center gap-2">
+                              {appointment.service_name.toUpperCase()}
+                              <Sparkles className="w-5 h-5 icon-float" />
+                            </h3>
+                            <Badge className={statusConfig.color}>
+                              <StatusIcon className="w-4 h-4 mr-2 icon-float" />
+                              {statusConfig.label}
+                            </Badge>
                           </div>
                         </div>
-                        
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm mb-6">
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-3 p-3 bg-chart-3 brutal-border rounded-base">
+                              <Calendar className="w-5 h-5 text-main-foreground icon-float" />
+                              <span className="font-bold text-main-foreground uppercase">
+                                {formatDate(appointment.appointment_date).toUpperCase()}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 bg-chart-4 brutal-border rounded-base">
+                              <Clock className="w-5 h-5 text-main-foreground icon-float" />
+                              <span className="font-bold text-main-foreground uppercase">
+                                {formatTime(appointment.start_time)} - {formatTime(appointment.end_time)}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-3 p-3 bg-chart-6 brutal-border rounded-base">
+                              <MapPin className="w-5 h-5 text-main-foreground icon-float" />
+                              <span className="font-bold text-main-foreground uppercase">
+                                {appointment.business_name.toUpperCase()}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-3 p-3 bg-chart-7 brutal-border rounded-base">
+                              <Dog className="w-5 h-5 text-main-foreground icon-float" />
+                              <span className="font-bold text-main-foreground uppercase">
+                                {appointment.pet_name.toUpperCase()} ({appointment.pet_breed.toUpperCase()})
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
                         <div className="flex items-center justify-between">
-                          <div className="text-2xl font-bold text-primary">
-                            ${appointment.total_amount}
+                          <div className="p-4 bg-chart-1 brutal-border-thick brutal-shadow rounded-base">
+                            <div className="text-3xl font-black text-main-foreground flex items-center gap-2">
+                              <DollarSign className="w-8 h-8 icon-float" />
+                              {appointment.total_amount}
+                              <Crown className="w-6 h-6 icon-float" />
+                            </div>
                           </div>
-                          
-                          <Button 
-                            variant="outline"
+
+                          <Button
                             onClick={() => navigate(`/customer/appointment/${appointment.id}`)}
+                            className="bg-chart-8 text-main-foreground brutal-border-thick brutal-shadow hover:brutal-hover font-black uppercase px-6 py-3 transform hover:scale-105 transition-all duration-200"
                           >
-                            Ver detalles
+                            <Search className="w-5 h-5 mr-2 icon-float" />
+                            VER DETALLES
+                            <Star22 size={StarSizes.xs} className="inline-block ml-2" />
                           </Button>
                         </div>
                       </div>

@@ -11,7 +11,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { PawPrint, User, Settings, LogOut, Home, UserCircle, Bell, CheckCircle, XCircle, Clock, CreditCard, PartyPopper, Mail } from 'lucide-react'
+import { PawPrint, User, Settings, LogOut, Home, UserCircle, Bell, CheckCircle, XCircle, Clock, CreditCard, PartyPopper, Mail, Sparkles, Crown, Star } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 
 export function Navigation() {
   const navigate = useNavigate()
@@ -31,18 +35,18 @@ export function Navigation() {
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
-      case 'appointment_confirmed': 
-        return <CheckCircle className="w-4 h-4 text-green-600" />
-      case 'appointment_cancelled': 
-        return <XCircle className="w-4 h-4 text-red-600" />
-      case 'appointment_reminder': 
-        return <Clock className="w-4 h-4 text-yellow-600" />
-      case 'payment_received': 
-        return <CreditCard className="w-4 h-4 text-blue-600" />
-      case 'appointment_completed': 
-        return <PartyPopper className="w-4 h-4 text-purple-600" />
-      default: 
-        return <Mail className="w-4 h-4 text-gray-600" />
+      case 'appointment_confirmed':
+        return <CheckCircle className="w-5 h-5 text-main-foreground icon-float" />
+      case 'appointment_cancelled':
+        return <XCircle className="w-5 h-5 text-main-foreground icon-float" />
+      case 'appointment_reminder':
+        return <Clock className="w-5 h-5 text-main-foreground icon-float" />
+      case 'payment_received':
+        return <CreditCard className="w-5 h-5 text-main-foreground icon-float" />
+      case 'appointment_completed':
+        return <PartyPopper className="w-5 h-5 text-main-foreground icon-float" />
+      default:
+        return <Mail className="w-5 h-5 text-main-foreground icon-float" />
     }
   }
 
@@ -134,102 +138,136 @@ export function Navigation() {
                 {/* Notification Bell - Available for all users */}
                 {/* <NotificationBellSimple /> */}
                 
-                {/* Notification Center - User Dropdown */}
+                {/* Notification Center - User Dropdown - Neobrutalism Style */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="relative flex items-center gap-2 bg-chart-3 text-main-foreground brutal-border brutal-shadow-sm rounded-base font-black hover:brutal-hover hover:bg-chart-4">
-                      <UserCircle className={`w-5 h-5 ${unreadCount > 0 ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <Button variant="ghost" size="sm" className="relative flex items-center gap-3 bg-chart-3 text-main-foreground brutal-border-thick brutal-shadow hover:brutal-hover rounded-base font-black transform hover:scale-105 transition-all duration-200">
+                      <UserCircle className="w-6 h-6 icon-float" />
                       {!loading && (
-                        <span className="hidden md:inline">
-                          {profile?.full_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Usuario'}
+                        <span className="hidden md:inline uppercase">
+                          {(profile?.full_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'USUARIO').toUpperCase()}
                         </span>
                       )}
+                      <Star1 size={StarSizes.xs} className="star-decoration" />
                       {unreadCount > 0 && (
-                        <Badge 
-                          variant="destructive" 
-                          className="absolute -top-2 -right-2 w-5 h-5 rounded-full p-0 flex items-center justify-center text-xs"
-                        >
+                        <Badge className="absolute -top-2 -right-2 w-6 h-6 rounded-full p-0 flex items-center justify-center text-xs bg-chart-2 text-main-foreground brutal-border font-black">
                           {unreadCount > 99 ? '99+' : unreadCount}
                         </Badge>
                       )}
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-80 bg-white border border-gray-200 shadow-lg" align="end" forceMount>
-                    {/* Header with user info and actions */}
-                    <DropdownMenuLabel className="font-normal p-3 border-b border-gray-200">
-                      <div className="flex items-center justify-between">
-                        <div className="flex flex-col space-y-1">
-                          <p className="text-sm font-medium leading-none">
-                            {profile?.full_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Usuario'}
-                          </p>
-                          <p className="text-xs leading-none text-muted-foreground">
-                            {user?.email}
-                          </p>
+                  <DropdownMenuContent className="w-96 bg-chart-2 brutal-border-thick brutal-shadow-xl rounded-base" align="end" forceMount>
+                    {/* Header with user info and actions - Neobrutalism Style */}
+                    <DropdownMenuLabel className="font-normal p-6 brutal-border-thick border-b-4 border-chart-4 bg-chart-1 relative overflow-hidden">
+                      <Star6 size={StarSizes.sm} className="absolute top-2 left-2 star-decoration" />
+                      <Star7 size={StarSizes.sm} className="absolute bottom-2 right-2 star-decoration" />
+
+                      <div className="flex items-center justify-between relative z-10">
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-chart-8 brutal-border rounded-base">
+                            <UserCircle className="w-8 h-8 text-main-foreground icon-float" />
+                          </div>
+                          <div className="flex flex-col space-y-1">
+                            <p className="text-lg font-black leading-none text-main-foreground uppercase">
+                              {(profile?.full_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'USUARIO').toUpperCase()}
+                            </p>
+                            <p className="text-sm leading-none text-main-foreground/80 font-bold">
+                              {user?.email?.toUpperCase()}
+                            </p>
+                          </div>
                         </div>
                         <div className="flex items-center gap-2">
                           {unreadCount > 0 && (
                             <Button
-                              variant="ghost"
-                              size="sm"
                               onClick={markAllAsRead}
-                              className="text-xs h-6 px-2"
+                              className="bg-chart-6 text-main-foreground brutal-border brutal-shadow hover:brutal-hover font-black text-xs h-8 px-3 uppercase transform hover:scale-105 transition-all duration-200"
                             >
-                              Marcar todas
+                              <CheckCircle className="w-3 h-3 mr-1 icon-float" />
+                              MARCAR TODAS
                             </Button>
                           )}
                         </div>
                       </div>
                     </DropdownMenuLabel>
 
-                    {/* Notifications Section */}
+                    {/* Notifications Section - Neobrutalism Style */}
                     <div className="max-h-80 overflow-y-auto">
                       {notificationsLoading ? (
-                        <div className="p-4 text-center text-sm text-gray-500">
-                          Cargando notificaciones...
+                        <div className="p-8 text-center relative">
+                          <Star8 size={StarSizes.sm} className="absolute top-2 left-1/3 star-decoration" />
+                          <div className="p-4 bg-chart-8 brutal-border brutal-shadow rounded-base inline-block mb-4">
+                            <Clock className="w-6 h-6 animate-spin text-main-foreground icon-float" />
+                          </div>
+                          <p className="text-main-foreground font-black uppercase">
+                            CARGANDO NOTIFICACIONES...
+                          </p>
                         </div>
                       ) : notifications.length === 0 ? (
-                        <div className="p-4 text-center text-sm text-gray-500">
-                          No tienes notificaciones
+                        <div className="p-8 text-center relative">
+                          <Star9 size={StarSizes.sm} className="absolute top-4 left-8 star-decoration" />
+                          <Star10 size={StarSizes.sm} className="absolute bottom-4 right-8 star-decoration" />
+
+                          <div className="p-6 bg-chart-8 brutal-border-thick brutal-shadow-lg rounded-base inline-block mb-6 relative">
+                            <Bell className="w-8 h-8 text-main-foreground icon-float" />
+                            <Star13 size={StarSizes.xs} className="absolute -top-1 -right-1 star-decoration" />
+                          </div>
+
+                          <h3 className="text-lg font-black text-main-foreground uppercase mb-2">
+                            <Crown className="inline-block w-5 h-5 mr-2 icon-float" />
+                            NO TIENES NOTIFICACIONES
+                          </h3>
+                          <p className="text-sm font-bold text-main-foreground/80 uppercase">
+                            LAS NOTIFICACIONES APARECERÁN AQUÍ AUTOMÁTICAMENTE
+                          </p>
                         </div>
                       ) : (
-                        <>
-                          {notifications.slice(0, 5).map((notification) => (
+                        <div className="divide-y-4 divide-chart-4">
+                          {notifications.slice(0, 5).map((notification, index) => (
                             <DropdownMenuItem
                               key={notification.id}
-                              className="p-3 cursor-pointer hover:bg-gray-50 focus:bg-gray-50"
+                              className={`p-4 cursor-pointer transition-all duration-200 relative overflow-hidden ${
+                                !notification.read
+                                  ? 'bg-chart-8/30 brutal-border-l-4 border-chart-1 hover:bg-chart-7'
+                                  : 'hover:bg-chart-3 hover:brutal-shadow-lg'
+                              }`}
                               onClick={() => {
                                 if (!notification.read) {
                                   markAsRead(notification.id)
                                 }
                               }}
                             >
-                              <div className="flex items-start gap-3 w-full">
-                                <div className="flex-shrink-0 mt-1">
+                              <Star19 size={StarSizes.xs} className="absolute top-1 right-1 star-decoration" />
+
+                              <div className="flex items-start gap-4 w-full relative z-10">
+                                <div className="flex-shrink-0 mt-1 p-2 bg-chart-6 brutal-border rounded-base">
                                   {getNotificationIcon(notification.type)}
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                  <div className="flex items-center gap-2 mb-1">
-                                    <p className="font-medium text-sm truncate flex-1">
-                                      {notification.title}
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <p className="font-black text-sm text-main-foreground line-clamp-1 flex-1 uppercase">
+                                      {notification.title?.toUpperCase()}
                                     </p>
+                                    <Star20 size={StarSizes.xs} className="star-decoration" />
                                     {!notification.read && (
-                                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
+                                      <div className="w-3 h-3 bg-chart-1 brutal-border rounded-full pulse-animation" />
                                     )}
                                   </div>
-                                  <p className="text-xs text-muted-foreground line-clamp-2 mb-1">
-                                    {notification.message}
+                                  <p className="text-xs text-main-foreground/80 font-bold line-clamp-2 mb-2 uppercase">
+                                    {notification.message?.toUpperCase()}
                                   </p>
-                                  <p className="text-xs text-muted-foreground">
-                                    {formatTimeAgo(notification.created_at)}
-                                  </p>
+                                  <div className="bg-chart-3 brutal-border px-2 py-1 rounded-base inline-block">
+                                    <p className="text-xs text-main-foreground font-black uppercase">
+                                      {formatTimeAgo(notification.created_at)}
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
                             </DropdownMenuItem>
                           ))}
                           
                           {notifications.length > 5 && (
-                            <DropdownMenuItem 
-                              className="p-3 text-center text-sm text-primary border-t border-gray-100 cursor-pointer hover:bg-gray-50"
+                            <DropdownMenuItem
+                              className="p-4 text-center brutal-border-t-4 border-chart-4 cursor-pointer bg-chart-1 hover:bg-chart-8 transition-all duration-200 relative"
                               onClick={() => {
                                 if (profile?.role === 'groomer' && businessProfile) {
                                   navigate(`/groomer/${businessProfile.slug}/dashboard`)
@@ -238,20 +276,29 @@ export function Navigation() {
                                 }
                               }}
                             >
-                              Y {notifications.length - 5} más...
+                              <Star21 size={StarSizes.xs} className="absolute top-1 left-1/3 star-decoration" />
+                              <p className="text-main-foreground font-black uppercase flex items-center justify-center gap-2">
+                                <Sparkles className="w-4 h-4 icon-float" />
+                                Y {notifications.length - 5} MÁS...
+                                <Crown className="w-4 h-4 icon-float" />
+                              </p>
                             </DropdownMenuItem>
                           )}
-                        </>
+                        </div>
                       )}
                     </div>
-                    
-                    <DropdownMenuSeparator />
-                    
-                    {/* Logout Only */}
-                    <div className="p-2">
-                      <DropdownMenuItem onClick={handleSignOut}>
-                        <LogOut className="mr-2 h-4 w-4" />
-                        <span>Cerrar Sesión</span>
+
+                    <DropdownMenuSeparator className="brutal-border-thick border-chart-4" />
+
+                    {/* Logout Only - Neobrutalism Style */}
+                    <div className="p-4 bg-chart-3">
+                      <DropdownMenuItem
+                        onClick={handleSignOut}
+                        className="bg-chart-8 text-main-foreground brutal-border-thick brutal-shadow hover:brutal-hover font-black uppercase p-4 rounded-base cursor-pointer transform hover:scale-105 transition-all duration-200"
+                      >
+                        <LogOut className="mr-3 h-5 w-5 icon-float" />
+                        <span>CERRAR SESIÓN</span>
+                        <Star22 size={StarSizes.xs} className="inline-block ml-3 star-decoration" />
                       </DropdownMenuItem>
                     </div>
                   </DropdownMenuContent>

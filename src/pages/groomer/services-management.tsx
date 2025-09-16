@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   Scissors,
   Plus,
   Edit,
@@ -22,8 +22,17 @@ import {
   MoreVertical,
   Eye,
   EyeOff,
-  Heart
+  Heart,
+  Star,
+  Crown,
+  Sparkles,
+  Trophy,
+  Zap
 } from 'lucide-react'
+import {
+  Star1, Star6, Star7, Star8, Star9, Star10, Star13, Star19, Star20, Star21, Star22, Star23, Star24, Star25, Star26, Star27, Star28,
+  StarSizes
+} from '@/components/ui/neobrutalism-stars'
 import { Navigation } from '@/components/navigation'
 
 interface Service {
@@ -271,20 +280,22 @@ export default function ServicesManagement() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center gap-4">
               <Button
-                variant="ghost"
                 size="sm"
                 onClick={() => navigate(`/groomer/${businessSlug}/dashboard`)}
+                className="bg-chart-8 text-main-foreground brutal-border font-black uppercase hover:brutal-hover"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Dashboard
+                <ArrowLeft className="w-4 h-4 mr-2 icon-float" />
+                DASHBOARD
               </Button>
               <div>
-                <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
-                  <Scissors className="w-5 h-5" />
-                  Gestión de Servicios
+                <h1 className="text-xl font-black text-main-foreground flex items-center gap-4 uppercase">
+                  <Scissors className="w-5 h-5 icon-float" />
+                  <Star19 size={StarSizes.md} className="star-decoration" />
+                  GESTIÓN DE SERVICIOS
+                  <Trophy className="w-5 h-5 icon-float" />
                 </h1>
-                <p className="text-sm text-muted-foreground">
-                  Administra los servicios que ofreces
+                <p className="text-sm text-main-foreground/80 font-bold uppercase">
+                  ADMINISTRA LOS SERVICIOS QUE OFRECES
                 </p>
               </div>
             </div>
